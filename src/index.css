@@ -1,0 +1,253 @@
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.full-width {
+  display: block;
+  width: 100% !important;
+}
+
+.gradient-text-color {
+  background: linear-gradient(to right, #090979 0%, #0072ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heading {
+  text-transform: capitalize;
+  font-size: 35px;
+  opacity: 0.9;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.text-primary {
+  color: #0667e9;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.btn-primary {
+  width: auto;
+  background-color: #056dbb;
+  color: white;
+  letter-spacing: 1.6px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-size: 15px;
+  transition: all 0.8s;
+}
+
+.btn-primary:hover { 
+  background-color: #1055b6; 
+  color: white;
+}
+
+.btn-primary:focus{ 
+  outline: 0; 
+  box-shadow: 0 0 0 0.2rem #056dbb75;
+}
+
+
+.hero{
+  background: linear-gradient(to right, #090979, #0072ff) border-box;
+  padding: 120px 0 70px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.faq-card {
+  text-align: center;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, #090979, #0072ff) border-box;
+  border-radius: 15px;
+  border: 3px solid transparent;
+  transition: all 2s ease-out;
+
+  position: relative;
+  z-index: 2;
+}
+
+.faq-card:before {
+  position: absolute;
+  content: "";
+  inset: 0; /* same as { top: 0; right: 0; bottom: 0; left: 0; } */
+  background: linear-gradient(to right, #090979, #0072ff) border-box;
+  border-radius: 10px;
+
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.faq-card:hover::before {
+  opacity: 1;
+}
+
+.faq-card > * {
+  transition: all 0.5s;
+  position: relative;
+  z-index: 2;
+}
+
+.faq-card:hover{
+  cursor: pointer;
+}
+
+.faq-card:hover > * {
+  color: white;
+  background: none;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+.faq-card i {
+  font-size: 70px;
+}
+
+.faq-card p {
+  font-weight: bold;
+  font-size: 25px;
+  letter-spacing: 1.6px;
+}
+
+footer h4, footer h5 {
+  font-size: 22px;
+}
+
+footer p {
+  line-height: 1.8;
+  color: #565656;
+}
+
+footer .links ul li a {
+  color: #565656;
+  font-weight: 500;
+  font-size: 18px;
+  transition: all 0.6s;
+}
+
+footer .links ul li a:hover {
+  color: #056dbb !important;
+  opacity: 1;
+}
+
+footer .links ul li {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: .8px;
+  opacity: 0.7;
+}
+
+footer .copyright ul li {
+  display: inline-block;
+}
+
+footer .copyright ul li a i {
+  font-size: 30px;
+}
+
+.main {
+  min-height: 100vh !important;
+  background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg) no-repeat scroll center center/cover;
+  position: relative;
+  z-index: 1;
+}
+
+.main:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to right, #090979 0%, #0072ff 100%);
+  top: 0;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.94;
+}
+
+.form {
+  background-color: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.37) !important;
+  border-radius: 8px;
+}
+
+.form > p {
+  font-size: 30px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #056dbb75;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #056dbb75;
+}
+
+.input-group {
+  display: flex;
+  width: 100%;
+}
+
+.input-group > .form-control {
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+}
+
+.form i {
+  width: 45px !important;
+  background-color: #e8ebee;
+  padding: 15px 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 5px 10px #00000024;
+}
+
+.form input {
+  border: none;
+  box-shadow: 00 5px 10px #00000024;
+}
+
+textarea {
+  height: 250px !important;
+}

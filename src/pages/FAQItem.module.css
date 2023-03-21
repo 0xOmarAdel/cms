@@ -1,0 +1,22 @@
+.faq-item i.arrow {
+  font-size: 30px;
+  line-height: 1.25;
+  color: #025fe6;
+}
+
+.faq-item h1 {
+  font-size: 30px;
+  text-transform: capitalize;
+  color: #025fe6;
+  letter-spacing: 2px;
+}
+
+.qa {
+  font-size: 17px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+.qa:not(:last-of-type) {
+  margin-bottom: 20px;
+}

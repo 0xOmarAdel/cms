@@ -1,0 +1,11 @@
+.intro h1 {
+  color: white;
+  font-size: 65px;
+}
+
+.intro p {
+  color: white;
+  font-size: 20px;
+  line-height: 1.5;
+  opacity: 0.85;
+}

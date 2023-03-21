@@ -1,0 +1,13 @@
+.alert {
+  background: #0257ddba;
+  color: #ffffff;
+  padding: 15px 20px;
+  font-size: 19px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.alert i {
+  font-size: 25px;
+}
