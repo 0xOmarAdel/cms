@@ -181,6 +181,7 @@ footer .copyright ul li a i {
   background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg) no-repeat scroll center center/cover;
   position: relative;
   z-index: 1;
+  margin-bottom: 50px;
 }
 
 .main:after {
