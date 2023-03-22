@@ -5,7 +5,7 @@ import classes from './Pagination.module.css'
 
 const Pagination = () => {
   return (
-    <ul className={'d-flex justify-content-center mt-5'}>
+    <ul className={'d-flex justify-content-center mt-4'}>
       <li>
         <Link className={`${classes['page-link']}`} to="#">«</Link>
       </li>

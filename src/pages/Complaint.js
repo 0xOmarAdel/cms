@@ -23,7 +23,7 @@ const Complaint = () => {
         <div className='container'>
           <div className='row'>
             <div className='col-sm-12 col-lg-8 mb-5 mb-lg-0'>
-              <div className={`${classes.messages} mb-3`}>
+              <div className={`${classes.messages} mb-4`}>
                 <ScrollableDiv>
                   <div className='row'>
                     <div className='col-7 p-0 ms-auto'>
@@ -51,7 +51,7 @@ const Complaint = () => {
               </div>
               <form>
               <div className='row justify-content-center'>
-                <div className='col-12 mb-4 p-0'>
+                <div className='col-12 mb-3 p-0'>
                   <textarea className="form-control" placeholder='Message' style={{ height: '20px !important' }} />
                 </div>
                 <Button text='Send' className='full-width' />

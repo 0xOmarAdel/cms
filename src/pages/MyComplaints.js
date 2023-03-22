@@ -13,7 +13,7 @@ const MyComplaints = () => {
       <section className='complaints'>
         <div className='container'>
           <div className='row'>
-            <Alert path='/create-complaint' className='mb-5' icon>Need help? create a new complaint from here.</Alert>
+            <Alert path='/create-complaint' icon>Need help? create a new complaint from here.</Alert>
           </div>
           <div className={`${classes.complaint} mb-3 text-muted`}>
             <Link to='/complaint/1'>

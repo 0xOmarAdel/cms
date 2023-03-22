@@ -12,11 +12,19 @@
 }
 
 .qa {
-  font-size: 17px;
   letter-spacing: 1px;
-  line-height: 1.8;
 }
 
 .qa:not(:last-of-type) {
   margin-bottom: 20px;
+}
+
+.qa p:first-child {
+  font-size: 17px;
+  line-height: 2.2;
+}
+
+.qa p:last-child {
+  font-size: 15px;
+  line-height: 1.6;
 }

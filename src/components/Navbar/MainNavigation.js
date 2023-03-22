@@ -15,7 +15,7 @@ const MainNavigation = () => {
       <div className='container'>
         <div className='row'>
           <div className='col'>
-            <p className='m-0'><Link to='/'>Logo</Link></p>
+            <p className='m-0'><Link to='/'>Demo</Link></p>
           </div>
           <nav className='col'>
           <ul className={'d-flex h-100 justify-content-end align-items-center ' + classes.list}>

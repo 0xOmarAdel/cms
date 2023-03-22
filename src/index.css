@@ -138,18 +138,19 @@
 }
 
 footer h4, footer h5 {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 footer p {
   line-height: 1.8;
+  font-size: 16px;
   color: #565656;
 }
 
 footer .links ul li a {
   color: #565656;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 17px;
   transition: all 0.6s;
 }
 
@@ -171,6 +172,8 @@ footer .copyright ul li {
 
 footer .copyright ul li a i {
   font-size: 30px;
+  position: relative;
+  left: -5px;
 }
 
 .main {

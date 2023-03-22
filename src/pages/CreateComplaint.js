@@ -11,6 +11,19 @@ const CreateComplaint = () => {
     navigate('/my-complaints');
   };
 
+  const selectOptions = [
+    'Water',
+    'Electricity',
+    'Gas',
+    'Garbage',
+    'Traffic',
+    'Roads',
+    'Railways',
+    'Rain',
+    'Telephone',
+    'Internet'
+  ];
+
   return (
     <>
       <Hero title='Create a New Complaint' />
@@ -25,7 +38,9 @@ const CreateComplaint = () => {
                 </div>
                 <div className='col-6  mb-4'>
                   <select className="form-control">
-                    <option>Electricity</option>
+                    {
+                      selectOptions.map(option => <option>{option}</option>)
+                    }
                   </select>
                 </div>
                 <div className='col-12 mb-4'>
