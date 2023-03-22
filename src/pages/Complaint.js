@@ -17,7 +17,7 @@ const Complaint = () => {
   return (
     <>
       <Hero title='Complaint Name'>
-        <p>Electricity - ID: #{params.complaintId}</p>
+        <p>Water - #{params.complaintId}</p>
       </Hero>
       <section className={classes.complaint}>
         <div className='container'>

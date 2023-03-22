@@ -39,7 +39,7 @@ const CreateComplaint = () => {
                 <div className='col-6  mb-4'>
                   <select className="form-control">
                     {
-                      selectOptions.map(option => <option>{option}</option>)
+                      selectOptions.map((option, index) => <option key={index}>{option}</option>)
                     }
                   </select>
                 </div>

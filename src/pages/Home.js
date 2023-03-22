@@ -4,6 +4,7 @@ const HomePage = () => {
   return ( 
     <>
       <Hero title='Home Page!' />
+      <section></section>
     </>
   );
 }
