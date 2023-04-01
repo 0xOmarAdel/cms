@@ -5,11 +5,25 @@
 
   --primary-color: blue;
   --secondary-color: gray;
+
+  --body-bg-color: #fff;
+  --body-color-light: #8b939c;
+  --body-font: "Roboto", sans-serif;
+  --page-bg-color: #f2f5f7;
+  --body-color: #3d4954;
+  --border-color: #d9dbdd;
+  --color-text: #111111;
+  --card-content: #242526;
+  --sec-border: #ebedef;
+  --darknwhite: #e9ecef;
 }
 
 * {
+  margin:0;
+  padding:0;
+  text-decoration: none;
   box-sizing: border-box;
-  margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body::-webkit-scrollbar {

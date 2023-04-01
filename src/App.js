@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "./pages/Root";
+import AdminRootLayout from "./pages/admin/AdminRoot";
+
 import ErrorPage from "./pages/Error";
 
 import HomePage from "./pages/Home";
@@ -11,6 +13,11 @@ import MyComplaints from "./pages/MyComplaints";
 import CreateComplaint from "./pages/CreateComplaint";
 import Complaint from "./pages/Complaint";
 import FAQItem from "./pages/FAQItem";
+import Dashboard from "./pages/admin/Dashboard";
+import Admins from "./pages/admin/Admins";
+import Users from "./pages/admin/Users";
+import Complaints from "./pages/admin/Complaints";
+import Categories from "./pages/admin/Categories";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +41,17 @@ const router = createBrowserRouter([
       { path: '/complaint/:complaintId', element: <Complaint /> },
 
     ],
+  },
+  {
+    path: '/admin',
+    element: <AdminRootLayout />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: 'admins', element: <Admins /> },
+      { path: 'users', element: <Users /> },
+      { path: 'categories', element: <Categories /> },
+      { path: 'complaints', element: <Complaints /> },
+    ]
   }
 ]);
 

@@ -87,8 +87,7 @@
               linear-gradient(to right, #090979, #0072ff) border-box;
   border-radius: 15px;
   border: 3px solid transparent;
-  transition: all 2s ease-out;
-
+  transition: all 0.8s ease-out;
   position: relative;
   z-index: 2;
 }
@@ -99,7 +98,6 @@
   inset: 0; /* same as { top: 0; right: 0; bottom: 0; left: 0; } */
   background: linear-gradient(to right, #090979, #0072ff) border-box;
   border-radius: 10px;
-
   z-index: 1;
   opacity: 0;
   transition: opacity 0.5s linear;
@@ -117,6 +115,7 @@
 
 .faq-card:hover{
   cursor: pointer;
+  border-color: white;
 }
 
 .faq-card:hover > * {
@@ -227,6 +226,10 @@ footer .copyright ul li a i {
   box-shadow: 0 0 0 0.2rem #056dbb75;
 }
 
+.form-control:disabled {
+  background-color: #e7e7e7;
+}
+
 .input-group {
   display: flex;
   width: 100%;
@@ -254,4 +257,36 @@ footer .copyright ul li a i {
 
 textarea {
   height: 250px !important;
+}
+
+.admins h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--color-text);
+}
+
+.admins h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--color-text);
+}
+
+.admins .table-heading {
+  font-size: 20px;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.admins .admin {
+  font-size: 17px;
+  letter-spacing: 0.8px;
+  color: #111111d1;
+}
+
+.admins .table-heading,
+.admins .admin:not(:last-of-type) {
+  border-bottom: 1px solid #11111152;
 }
