@@ -37,7 +37,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
   return (
     <ul className={'d-flex justify-content-center mt-4'}>
       {
-        currentPage !== 1 &&
+        parseInt(currentPage) !== 1 &&
         <li>
           <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) - 1}`}>«</Link>
         </li>
@@ -56,7 +56,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
       }
 
       {
-        currentPage !== pagesNumber &&
+        parseInt(currentPage) !== parseInt(pagesNumber) &&
         <li>
           <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) + 1}`}>»</Link>
         </li>
