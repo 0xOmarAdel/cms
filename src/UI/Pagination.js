@@ -14,24 +14,21 @@ const Pagination = ({ pagesNumber, currentPage }) => {
     return index + 1
   });
 
-  currentPage = parseInt(currentPage);
-  pagesNumber = parseInt(pagesNumber);
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isNaN(currentPage) || currentPage < 1) {
-      navigate(path + '1');
-    } else if (currentPage > pagesNumber) {
-      navigate(path + pagesNumber);
-    } else if (!currentPage) {
-      if (location.pathname.charAt(location.pathname.length - 1) === '/') {
-        navigate(location.pathname + '1')
+    if (currentPage === undefined) {
+      if (location.pathname.charAt(location.pathname.length - 1) !== '/') {
+        navigate(location.pathname + '/1')
       } else {
-        navigate(location.pathname + '/1');
+        navigate(path + '1');
       }
+    } else if (isNaN(parseInt(currentPage)) || parseInt(currentPage) < 1) {
+      navigate(path + '1');
+    } else if (parseInt(currentPage) > parseInt(pagesNumber)) {
+      navigate(path + parseInt(pagesNumber));
     }
-  }, [pagesNumber, currentPage, location.pathname])
+  })
 
   if ( pagesNumber < 2 ) {
     return;
@@ -42,7 +39,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
       {
         currentPage !== 1 &&
         <li>
-          <Link className={`${classes['page-link']}`} to={`${path}${currentPage - 1}`}>«</Link>
+          <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) - 1}`}>«</Link>
         </li>
       }
 
@@ -50,7 +47,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
         pages.map((page, index) => (
           <li key={index}>
             <Link 
-              className={currentPage === page ? classes['page-link'] + ' ' + classes.active : classes['page-link']} 
+              className={parseInt(currentPage) === page ? classes['page-link'] + ' ' + classes.active : classes['page-link']} 
               to={`${path}${page}`}>
                 {page}
             </Link>
@@ -61,7 +58,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
       {
         currentPage !== pagesNumber &&
         <li>
-          <Link className={`${classes['page-link']}`} to={`${path}${currentPage + 1}`}>»</Link>
+          <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) + 1}`}>»</Link>
         </li>
       }
   </ul>
