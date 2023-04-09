@@ -17,7 +17,7 @@ const SingleQuestion = ({ id, title, answer, activeId, toggleQuestion }) => {
           )}
         </button>
       </header>
-      {isActive && <p>{answer}</p>}
+      {<p style={{ height: isActive ? '100px' : '0px' }}>{answer}</p>}
     </article>
   );
 };
