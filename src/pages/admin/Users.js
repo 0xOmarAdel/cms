@@ -17,10 +17,109 @@ const Users = () => {
     getUsers();
   }, [getUsers]);
 
+  const DUMMY_USERS = [
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: 'Jan 3, 2021'
+    }
+  ]
+
   let { page: currentPage } = useParams();
 
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(users.length / elementsPerPage) === 0 ? 1 :  Math.ceil(users.length / elementsPerPage);
+  const pagesNumber = Math.ceil(DUMMY_USERS.length / elementsPerPage) === 0 ? 1 :  Math.ceil(DUMMY_USERS.length / elementsPerPage);
 
   const start = (currentPage - 1) * elementsPerPage
   const end = start + 10;
@@ -52,8 +151,8 @@ const Users = () => {
           </div>
 
           {
-            users.slice(start, end).map(user => 
-              <div key={user.id} className='admin py-3'>
+            DUMMY_USERS.slice(start, end).map(user => 
+              <div key={user.id} className='table-row py-3'>
                 <div className='row'>
                   <div className='col-1'>
                     <p>{user.id}</p>
