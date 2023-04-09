@@ -3,61 +3,61 @@ import Button from '../../UI/Button'
 import Input from '../../UI/Input'
 
 const Categories = () => {
-  const users = [
+  const categories = [
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     },
     {
       id: 1,
       title: 'Electricity',
-      name: 10
+      number: 10
     }
   ]
 
   return (
-    <div className='admins'>
+    <>
       <div className='row'>
         <div className='col-4'>
           <h1 className='mb-4'>Categories</h1>
@@ -74,17 +74,17 @@ const Categories = () => {
           </div>
 
           {
-            users.map(user => 
-              <div key={user.id} className='admin py-3'>
+            categories.map(category => 
+              <div key={category.id} className='table-row py-3'>
                 <div className='row'>
                   <div className='col-3'>
-                    <p>{user.id}</p>
+                    <p>{category.id}</p>
                   </div>
                   <div className='col-5'>
-                    <p>{user.title}</p>
+                    <p>{category.title}</p>
                   </div>
                   <div className='col-4'>
-                    <p>{user.name}</p>
+                    <p>{category.number}</p>
                   </div>
 
                 </div>
@@ -104,7 +104,7 @@ const Categories = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

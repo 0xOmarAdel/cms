@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../../UI/Button'
 import Input from '../../UI/Input'
 
 const Admins = () => {
+  const [admins, setAdmins] = useState([]);
+
+  const getAdmins = useCallback(async () => {
+    const response = await fetch('http://localhost:80/cms-api/admins.php');
+
+    const data = await response.json();
+  
+    setAdmins(data);
+  }, []);
+
+  useEffect(() => {
+    getAdmins();
+  }, [getAdmins]);
+
   return (
-    <div className='admins'>
+    <>
       <div className='row'>
         <div className='col-12'>
           <h1 className='mb-4'>Admins</h1>
@@ -28,141 +42,37 @@ const Admins = () => {
               <p>Added By</p>
             </div>
           </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
+
+          {
+            admins.map((admin, index) => (
+              <div className='table-row py-3'>
+                <div className='row'>
+                  <div className='col-1'>
+                    <p>1</p>
+                  </div>
+                  <div className='col-2'>
+                    <p>Omar Adel</p>
+                  </div>
+                  <div className='col-3'>
+                    <p>omaradel@gmail.com</p>
+                  </div>
+                  <div className='col-2'>
+                    <p>Administrator</p>
+                  </div>
+                  <div className='col-2'>
+                    <p>Jan 3, 2021</p>
+                  </div>
+                  <div className='col-2'>
+                    <p>Kerolos Talaat</p>
+                  </div>
+                </div>
               </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
-              </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
-              </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
-              </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
-              </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
-          <div className='admin py-3'>
-            <div className='row'>
-              <div className='col-1'>
-                <p>1</p>
-              </div>
-              <div className='col-2'>
-                <p>Omar Adel</p>
-              </div>
-              <div className='col-3'>
-                <p>omaradel@gmail.com</p>
-              </div>
-              <div className='col-2'>
-                <p>Administrator</p>
-              </div>
-<div className='col-2'>
-                <p>Jan 3, 2021</p>
-              </div>
-              <div className='col-2'>
-                <p>Kerolos Talaat</p>
-              </div>
-            </div>
-          </div>
+            ))
+          }
+
         </div>
       </div>
-      <div className='row mt-4'>
+      <div className='row mt-5'>
         <div className='col-12'>
           <h2 className='mb-4'>Add Moderator</h2>
           <form>
@@ -186,7 +96,7 @@ const Admins = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

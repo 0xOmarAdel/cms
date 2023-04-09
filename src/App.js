@@ -54,8 +54,10 @@ const router = createBrowserRouter([
           { path: 'dashboard', element: <Dashboard /> },
           { path: 'admins', element: <Admins /> },
           { path: 'users', element: <Users /> },
+          { path: 'users/:page', element: <Users /> },
           { path: 'categories', element: <Categories /> },
           { path: 'complaints', element: <Complaints /> },
+          { path: 'complaints/:page', element: <Complaints /> },
         ]
       }
     ]

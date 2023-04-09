@@ -1,94 +1,221 @@
 import React from 'react'
-import Button from '../../UI/Button'
-import Input from '../../UI/Input'
 import Pagination from '../../UI/Pagination'
+import { useParams } from 'react-router-dom'
 
 const Complaints = () => {
-  const users = [
+  const complaints = [
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     },
     {
       id: 1,
-      nationalId: 'Lorem ipsum dolor sit amet',
-      name: 'Electricity',
-      email: 'Marwan Yasser',
-      phone: 'Jan 3, 2021',
-      createdAt: 'Jan 3, 2021'
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
+    },
+    {
+      id: 1,
+      title: 'Lorem ipsum dolor sit amet',
+      category: 'Electricity',
+      user: 'Marwan Yasser',
+      createdAt: 'Jan 3, 2021',
+      lastModified: 'Jan 3, 2021'
     }
   ]
 
+  let { page: currentPage } = useParams();
+
+  const elementsPerPage = 10;
+  const pagesNumber = Math.ceil(complaints.length / elementsPerPage);
+
+  const start = (currentPage - 1) * elementsPerPage
+  const end = start + 10;
+  
   return (
-    <div className='admins'>
+    <>
       <div className='row'>
         <div className='col-12'>
           <h1 className='mb-4'>Complaints</h1>
@@ -114,26 +241,26 @@ const Complaints = () => {
           </div>
 
           {
-            users.map(user => 
-              <div key={user.id} className='admin py-3'>
+            complaints.slice(start, end).map(complaint => 
+              <div key={complaint.id} className='table-row py-3'>
                 <div className='row'>
                   <div className='col-1'>
-                    <p>{user.id}</p>
+                    <p>{complaint.id}</p>
                   </div>
                   <div className='col-3'>
-                    <p>{user.nationalId}</p>
+                    <p>{complaint.title}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{user.name}</p>
+                    <p>{complaint.category}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{user.email}</p>
+                    <p>{complaint.user}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{user.phone}</p>
+                    <p>{complaint.createdAt}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{user.createdAt}</p>
+                    <p>{complaint.lastModified}</p>
                   </div>
                 </div>
               </div>
@@ -144,10 +271,10 @@ const Complaints = () => {
       </div>
       <div className='row'>
         <div className='col-12'>
-          <Pagination />
+          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

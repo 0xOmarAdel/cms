@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = (props) => {
-  const menuItem=[
+  const menuItem = [
     {
       path: 'dashboard',
       name: 'Dashboard',
@@ -39,9 +39,10 @@ const Sidebar = (props) => {
       icon: 'fa-solid fa-circle-info'
     }
   ]
+
   return (
     <div className={props.menuIsOpened ? 'sidebar sidebar-opened' : 'sidebar'}>
-      <i class='fa-solid fa-bars' onClick={props.toggleMenu}></i>
+      <i className='fa-solid fa-bars' onClick={props.toggleMenu}></i>
 
       <h1>Admin Panel</h1>
 
@@ -66,7 +67,7 @@ const Sidebar = (props) => {
 
       <ul>
         {
-          menuItem.map((item, index)=>(
+          menuItem.map((item, index) => (
             <li key={index}>
               <NavLink to={item.path} className='link d-flex align-items-center'>
                 <i className={`d-inline-block ${item.icon}`}></i>

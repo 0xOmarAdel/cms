@@ -11,15 +11,7 @@ const Admin = () => {
   return (
     <>
       <AdminNav toggleMenu={toggleMenuHandler} menuIsOpened={menuIsOpened} />
-      <div 
-        style={{
-          marginLeft: menuIsOpened ? '300px' : '120px', 
-          backgroundColor: '#f2f5f7', 
-          minHeight: '100vh', 
-          color: 'white', 
-          padding: '90px 100px',
-          transition: '1.2s'
-          }}>
+      <div className='admin-page-content' style={{ marginLeft: menuIsOpened ? '300px' : '120px' }}>
         <Outlet />
       </div>
     </>

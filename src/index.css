@@ -306,34 +306,42 @@ textarea {
   height: 250px !important;
 }
 
-.admins h1 {
-  font-size: 28px;
+.admin-page-content {
+  background-color: #f2f5f7;
+  min-height: 100vh;
+  color: white;
+  padding: 90px 100px;
+  transition: margin-left 1.2s;
+}
+
+.admin-page-content h1 {
+  font-size: 35px;
   font-weight: 600;
   letter-spacing: 0.8px;
   color: var(--color-text);
 }
 
-.admins h2 {
+.admin-page-content h2 {
   font-size: 24px;
   font-weight: 600;
   letter-spacing: 0.8px;
   color: var(--color-text);
 }
 
-.admins .table-heading {
+.admin-page-content .table-heading {
   font-size: 20px;
   letter-spacing: 0.7px;
   font-weight: 600;
   color: var(--color-text);
 }
 
-.admins .admin {
+.admin-page-content .table-row {
   font-size: 17px;
   letter-spacing: 0.8px;
   color: #111111d1;
 }
 
-.admins .table-heading,
-.admins .admin:not(:last-of-type) {
+.admin-page-content .table-heading,
+.admin-page-content .table-row:not(:last-of-type) {
   border-bottom: 1px solid #11111152;
 }

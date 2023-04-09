@@ -1,22 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Button from '../../UI/Button'
-import Input from '../../UI/Input'
 import Pagination from '../../UI/Pagination'
+import { useParams } from 'react-router-dom'
 
 const Users = () => {
   const [users, setUsers] = useState([]);
 
-  const getUsers = useCallback(async () => {
-    const response = await fetch('http://localhost:80/cms-api/users.php');
+  let { page: currentPage } = useParams();
 
-    const data = await response.json();
-  
-    setUsers(data);
-  }, []);
+  const elementsPerPage = 10;
+  const pagesNumber = Math.ceil(users.length / elementsPerPage);
 
-  useEffect(() => {
-    getUsers();
-  }, [getUsers]);
+  const start = (currentPage - 1) * elementsPerPage
+  const end = start + 10;
 
   return (
     <div className='admins'>
@@ -45,7 +40,7 @@ const Users = () => {
           </div>
 
           {
-            users.map(user => 
+            users.slice(start, end).map(user => 
               <div key={user.id} className='admin py-3'>
                 <div className='row'>
                   <div className='col-1'>
@@ -75,7 +70,7 @@ const Users = () => {
       </div>
       <div className='row'>
         <div className='col-12'>
-          <Pagination />
+          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
         </div>
       </div>
     </div>
