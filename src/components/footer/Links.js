@@ -10,7 +10,7 @@ const Links = () => {
   ];
 
   return (
-    <div className="links d-flex flex-column col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+    <div className="links   col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
       <h5 className="font-weight-bold mb-2">Useful Links</h5>
       <ul className="list-unstyled">
         {links.map((link, index) => (
