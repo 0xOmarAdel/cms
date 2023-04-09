@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import "./default-styles.css";
 import "./index.css";
-// import "./grid.css";
+import "./grid.css";
 
 import App from "./App";
 
