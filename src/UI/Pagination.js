@@ -7,7 +7,6 @@ const Pagination = ({ pagesNumber, currentPage }) => {
   const location = useLocation();
 
   let path = location.pathname.split('/');
-  console.log(location.pathname)
   path.pop();
   path = path.join('/') + '/';  
 
@@ -16,7 +15,6 @@ const Pagination = ({ pagesNumber, currentPage }) => {
   });
 
   currentPage = parseInt(currentPage);
-  console.log(currentPage)
   pagesNumber = parseInt(pagesNumber);
 
   const navigate = useNavigate();
