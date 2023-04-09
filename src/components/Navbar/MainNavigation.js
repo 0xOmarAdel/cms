@@ -1,33 +1,57 @@
-import { Link } from 'react-router-dom';
-import classes from './MainNavigation.module.css';
+import { Link } from "react-router-dom";
+import classes from "./MainNavigation.module.css";
+import { FaBars, FaRegWindowMinimize } from "react-icons/fa";
+import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
+import { useState, useRef } from "react";
 
 const MainNavigation = () => {
-  const navLinks = [
-    {path: '/', text: 'Home'},
-    {path: '/faq', text: 'FAQ'},
-    {path: '/login', text: 'Log In'},
-    {path: '/signup', text: 'Sign Up'},
-  ]
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
 
-  return ( 
-    <header className={classes.header}>
-      <div className='container'>
-        <div className='row'>
-          <div className='col'>
-            <p className='m-0'><Link to='/'>Demo</Link></p>
-          </div>
-          <nav className='col'>
-          <ul className={'d-flex h-100 justify-content-end align-items-center ' + classes.list}>
-            {
-              navLinks.map((navLink, index) => <NavbarLink key={index} path={navLink.path} text={navLink.text} />)
-            }
-            </ul>
-          </nav>
-         </div>
+  const [showLinks, setShowLinks] = useState(false);
+
+  const toggleLinks = () => {
+    setShowLinks(!showLinks);
+  };
+
+  const linkStyles = {
+    height: showLinks
+      ? `${linksRef.current.getBoundingClientRect().height}px`
+      : "0px",
+  };
+
+  const navLinks = [
+    { path: "/", text: "Home" },
+    { path: "/faq", text: "FAQ" },
+    { path: "/login", text: "Log In" },
+    { path: "/signup", text: "Sign Up" },
+  ];
+
+  return (
+    <nav className="grad">
+      <div className="nav-center">
+        <div className="nav-header">
+          <h2>Demo</h2>
+          <button className="nav-toggle" onClick={toggleLinks}>
+            {showLinks ? <FaRegWindowMinimize /> : <FaBars />}
+          </button>
+        </div>
+
+        <div
+          className="links-container"
+          ref={linksContainerRef}
+          style={linkStyles}
+        >
+          <ul className="links" ref={linksRef}>
+            {navLinks.map((navLink, index) => (
+              <NavbarLink key={index} path={navLink.path} text={navLink.text} />
+            ))}
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
   );
-}
- 
+};
+
 export default MainNavigation;
