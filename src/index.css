@@ -1,3 +1,34 @@
+.shadow {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px!important;
+}
+
+.w-90vw {
+  width: 90vw;
+}
+
+.active-link {
+  color: #025fe6;
+}
+
+.menu-close {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  padding: 20px;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+
+.transparent {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  color: #fff;
+}
+
+
+
 .text-center {
   text-align: center;
 }
