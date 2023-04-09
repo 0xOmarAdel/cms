@@ -1,91 +1,22 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../../UI/Button'
 import Input from '../../UI/Input'
 import Pagination from '../../UI/Pagination'
 
 const Users = () => {
-  const users = [
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      nationalId: '30405030108215',
-      name: 'Omar Adel Awad',
-      email: 'omaradel@demo.com',
-      phone: '01074821730',
-      createdAt: 'Jan 3, 2021'
-    }
-  ]
+  const [users, setUsers] = useState([]);
+
+  const getUsers = useCallback(async () => {
+    const response = await fetch('http://localhost:80/cms-api/users.php');
+
+    const data = await response.json();
+  
+    setUsers(data);
+  }, []);
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
   return (
     <div className='admins'>
@@ -133,7 +64,7 @@ const Users = () => {
                     <p>{user.phone}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{user.createdAt}</p>
+                    <p>{user.created_at}</p>
                   </div>
                 </div>
               </div>

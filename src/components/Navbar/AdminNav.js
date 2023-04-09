@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const Sidebar = (props) => {
   const menuItem=[
     {
-      path: '/dashboard',
+      path: 'dashboard',
       name: 'Dashboard',
       icon: 'fa fa-globe-europe'
     },

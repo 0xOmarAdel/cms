@@ -18,6 +18,7 @@ import Admins from "./pages/admin/Admins";
 import Users from "./pages/admin/Users";
 import Complaints from "./pages/admin/Complaints";
 import Categories from "./pages/admin/Categories";
+import Login from "./pages/admin/LogIn";
 
 const router = createBrowserRouter([
   {
@@ -44,13 +45,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: <AdminRootLayout />,
     children: [
-      { index: true, element: <Dashboard /> },
-      { path: 'admins', element: <Admins /> },
-      { path: 'users', element: <Users /> },
-      { path: 'categories', element: <Categories /> },
-      { path: 'complaints', element: <Complaints /> },
+      { path: 'login', element: <Login /> },
+      {
+        element: <AdminRootLayout />,
+        children: [
+          { index: true, element: <Dashboard /> },
+          { path: 'dashboard', element: <Dashboard /> },
+          { path: 'admins', element: <Admins /> },
+          { path: 'users', element: <Users /> },
+          { path: 'categories', element: <Categories /> },
+          { path: 'complaints', element: <Complaints /> },
+        ]
+      }
     ]
   }
 ]);

@@ -1,12 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Alert from '../UI/Alert'
 import Hero from '../UI/Hero'
 import Pagination from '../UI/Pagination'
 
 import classes from './MyComplaints.module.css'
+import AuthContext from '../store/auth-context'
 
 const MyComplaints = () => {
+  const ctx = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    console.log(ctx.isLoggedIn)
+  }, [ctx.isLoggedIn])
+
+  const [userComplaints, setUserComplaints] = useState([]);
+
+  const getUserComplaints = useCallback(async () => {
+    const response = await fetch(
+      'http://localhost:80/cms-api/getUserComplaints.php', 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(localStorage.getItem('nationalId')),
+      }
+    );
+
+    const data = await response.json();
+    console.log(data)
+  
+    setUserComplaints(data);
+  }, []);
+
+  useEffect(() => {
+    getUserComplaints();
+  }, [getUserComplaints]);
+
   return (
     <>
       <Hero title='My Complaints' />
@@ -15,226 +47,34 @@ const MyComplaints = () => {
           <div className='row'>
             <Alert path='/create-complaint' icon>Need help? create a new complaint from here.</Alert>
           </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
+
+          {
+            userComplaints.map((complaint) => 
+              <div key={complaint.id} className={`${classes.complaint} mb-3 text-muted`}>
+                <Link to={`/complaint/${complaint.id}`}>
+                  <div className='row align-items-center'>
+                    <div className='col-5 ps-0 text-left'>
+                      <i className="fa-regular fa-envelope pe-3"></i>
+                      <p className='d-inline-block complaint-name'>{complaint.title}</p>
+                    </div>
+                    <div className='col-2'>
+                      <p className='complaint-category'>{complaint.categoryName}</p>
+                    </div>
+                    <div className='col-2'>
+                      <p className='complaint-date-created'>{complaint.date_created}</p>
+                    </div>
+                    <div className='col-2'>
+                      <p className='complaint-last-updated'>{complaint.last_modified}</p>
+                    </div>
+                    <div className='col-1 pe-0 text-right'>
+                      <p className='complaint-status'>{complaint.status}</p>
+                    </div>
+                  </div>
+                </Link>
               </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className={`${classes.complaint} mb-3 text-muted`}>
-            <Link to='/complaint/3784'>
-              <div className='row align-items-center'>
-                <div className='col-5 ps-0 text-left'>
-                  <i className="fa-regular fa-envelope pe-3"></i>
-                  <p className='d-inline-block complaint-name'>Lorem ipsum dolor sit amet</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-category'>Water</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-date-created'>03/12/2020</p>
-                </div>
-                <div className='col-2'>
-                  <p className='complaint-last-updated'>10/12/2020</p>
-                </div>
-                <div className='col-1 pe-0 text-right'>
-                  <p className='complaint-status'>Closed</p>
-                </div>
-              </div>
-            </Link>
-          </div>
+            )
+          }
+          
           <Pagination />
         </div>
       </section>
