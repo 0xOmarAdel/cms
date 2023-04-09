@@ -5,10 +5,22 @@ import { useParams } from 'react-router-dom'
 const Users = () => {
   const [users, setUsers] = useState([]);
 
+  const getUsers = useCallback(async () => {
+    const response = await fetch('http://localhost:80/cms-api/users.php');
+
+    const data = await response.json();
+  
+    setUsers(data);
+  }, []);
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
   let { page: currentPage } = useParams();
 
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(users.length / elementsPerPage);
+  const pagesNumber = Math.ceil(users.length / elementsPerPage) === 0 ? 1 :  Math.ceil(users.length / elementsPerPage);
 
   const start = (currentPage - 1) * elementsPerPage
   const end = start + 10;

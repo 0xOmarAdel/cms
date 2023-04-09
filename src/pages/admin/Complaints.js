@@ -209,7 +209,7 @@ const Complaints = () => {
   let { page: currentPage } = useParams();
 
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(complaints.length / elementsPerPage);
+  const pagesNumber = Math.ceil(complaints.length / elementsPerPage) === 0 ? 1 :  Math.ceil(complaints.length / elementsPerPage);
 
   const start = (currentPage - 1) * elementsPerPage
   const end = start + 10;

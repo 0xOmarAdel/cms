@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import classes from './Pagination.module.css'
 
 const Pagination = ({ pagesNumber, currentPage }) => {
+  pagesNumber = pagesNumber === 0 ? 1 : pagesNumber;
+
   const location = useLocation();
 
   let path = location.pathname.split('/');
@@ -30,7 +32,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
     }
   })
 
-  if ( pagesNumber < 2 ) {
+  if (pagesNumber < 2) {
     return;
   }
 
