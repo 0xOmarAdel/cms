@@ -31,7 +31,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
         navigate(location.pathname + '/1');
       }
     }
-  }, [pagesNumber, currentPage])
+  }, [pagesNumber, currentPage, location.pathname])
 
   if ( pagesNumber < 2 ) {
     return;
@@ -40,7 +40,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
   return (
     <ul className={'d-flex justify-content-center mt-4'}>
       {
-        currentPage != 1 &&
+        currentPage !== 1 &&
         <li>
           <Link className={`${classes['page-link']}`} to={`${path}${currentPage - 1}`}>«</Link>
         </li>
@@ -59,7 +59,7 @@ const Pagination = ({ pagesNumber, currentPage }) => {
       }
 
       {
-        currentPage != pagesNumber &&
+        currentPage !== pagesNumber &&
         <li>
           <Link className={`${classes['page-link']}`} to={`${path}${currentPage + 1}`}>»</Link>
         </li>
