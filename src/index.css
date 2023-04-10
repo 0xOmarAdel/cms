@@ -309,7 +309,6 @@ textarea {
 .admin-page-content {
   background-color: #f2f5f7;
   min-height: 100vh;
-  color: white;
   padding: 90px 100px;
   transition: margin-left 1.2s;
 }
