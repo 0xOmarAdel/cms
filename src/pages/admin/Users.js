@@ -21,36 +21,124 @@ const Users = () => {
   const DUMMY_USERS = [
     {
       id: 1,
-      nationalId: "30203040109381",
-      name: "Omar Adel",
-      email: "omaradel@demo.com",
-      phone: "01048463495",
-      created_at: "2023-04-10 12:17:46",
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
     },
     {
-      id: 2,
-      nationalId: "30203040109381",
-      name: "Omar Adel",
-      email: "omaradel@demo.com",
-      phone: "01048463495",
-      created_at: "2023-04-9 06:57:46",
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
     },
     {
-      id: 3,
-      nationalId: "30203040109381",
-      name: "Omar Adel",
-      email: "omaradel@demo.com",
-      phone: "01048463495",
-      created_at: "2023-04-10 04:05:46",
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
     },
     {
-      id: 4,
-      nationalId: "30203040109381",
-      name: "Omar Adel",
-      email: "omaradel@demo.com",
-      phone: "01048463495",
-      created_at: "2023-03-12 01:25:46",
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
     },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    },
+    {
+      id: 1,
+      nationalId: '30203040109381',
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      phone: '01048463495',
+      created_at: '2023-04-02 05:39:52'
+    }
   ];
 
   let { page: currentPage } = useParams();
