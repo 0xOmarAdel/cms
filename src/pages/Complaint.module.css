@@ -36,12 +36,12 @@
   height: 70px !important;
 }
 
-.complaint ul {
+.complaint ul.status {
   position: relative;
   padding: 20px 12px 10px;
 }
 
-.complaint ul:before {
+.complaint ul.status:before {
   position: absolute;
   content: '';
   height: 100%;
@@ -53,17 +53,17 @@
   animation-duration: 2s;
 }
 
-.complaint li {
+.complaint ul li {
   font-size: 18px;
   letter-spacing: 0.6px;
   position: relative;
 }
 
-.complaint li:not(:last-of-type) {
+.complaint ul li:not(:last-of-type) {
   margin-bottom: 20px;
 }
 
-.complaint li:before {
+.complaint ul.status li:before {
   content: '';
   position: absolute;
   width: 9px;
@@ -77,22 +77,22 @@
   animation-duration: 1s;
 }
 
-.complaint li p:not(:last-of-type) {
+.complaint ul li p:not(:last-of-type) {
   margin-bottom: 8px;
 }
 
-.complaint li p:first-child {
+.complaint ul li p:first-child {
   font-weight: bold;
   font-size: 17px;
   opacity: 0.7;
 }
 
-.complaint li p:nth-child(2) {
+.complaint ul li p:nth-child(2) {
   font-size: 16px;
   opacity: 0.7;
 }
 
-.complaint li p:last-child {
+.complaint ul li p:last-child {
   font-size: 15px;
   opacity: 0.58;
 }

@@ -24,8 +24,8 @@ const Complaint = () => {
           <div className='row'>
             <div className='col-sm-12 col-lg-8 mb-5 mb-lg-0'>
               <div className={`${classes.messages} mb-4`}>
-                <ScrollableDiv>
-                  <div className='row'>
+                <ScrollableDiv className='d-flex align-items-end'>
+                  <div className='row' style={{ maxHeight: '100%' }}>
                     <div className='col-7 p-0 ms-auto'>
                       <p className={`${classes.message} ${classes.sent} mb-1`}>Exercitation est nostrud enim aute irure excepteur eu et ea dolor voluptate qui reprehenderit.</p>
                       <p className={`${classes.date} ${classes.sent} mb-3`}>10-12-2022 06:00 AM</p>
@@ -59,7 +59,7 @@ const Complaint = () => {
             </form>
             </div>
             <div className='col-sm-12 col-lg-4 ps-5'>
-              <ul>
+              <ul className={classes.status}>
                 <li>
                   <p>Complaint Created</p>
                   <p>10-12-2022 06:00 AM</p>
