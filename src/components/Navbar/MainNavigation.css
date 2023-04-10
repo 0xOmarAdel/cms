@@ -28,6 +28,7 @@
   border-color: transparent;
   transition: var(--transition);
   cursor: pointer;
+  outline: none;
 }
 
 
