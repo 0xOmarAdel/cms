@@ -119,10 +119,10 @@ const Users = () => {
   let { page: currentPage } = useParams();
 
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(DUMMY_USERS.length / elementsPerPage) === 0 ? 1 :  Math.ceil(DUMMY_USERS.length / elementsPerPage);
+  const pagesNumber = Math.ceil(DUMMY_USERS.length / elementsPerPage) === 0 ? 1 : Math.ceil(DUMMY_USERS.length / elementsPerPage);
 
-  const start = (currentPage - 1) * elementsPerPage
-  const end = start + 10;
+  const start = (currentPage - 1) * elementsPerPage;
+  const end = start + elementsPerPage;
 
   return (
     <div className='admins'>
