@@ -17,8 +17,9 @@ import Dashboard from "./pages/admin/Dashboard";
 import Admins from "./pages/admin/Admins";
 import Users from "./pages/admin/Users";
 import Complaints from "./pages/admin/Complaints";
+import AdminComplaint from "./pages/admin/Complaint";
 import Categories from "./pages/admin/Categories";
-import Login from "./pages/admin/LogIn";
+import AdminLogIn from "./pages/admin/LogIn";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
       { path: '/signup', element: <SignUp /> },
       { path: '/create-complaint', element: <CreateComplaint /> },
       { path: '/my-complaints', element: <MyComplaints /> },
+      { path: '/my-complaints/:page', element: <MyComplaints /> },
       { path: '/complaint/:complaintId', element: <Complaint /> },
 
     ],
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     children: [
-      { path: 'login', element: <Login /> },
+      { path: 'login', element: <AdminLogIn /> },
       {
         element: <AdminRootLayout />,
         children: [
@@ -58,6 +60,8 @@ const router = createBrowserRouter([
           { path: 'categories', element: <Categories /> },
           { path: 'complaints', element: <Complaints /> },
           { path: 'complaints/:page', element: <Complaints /> },
+          { path: 'complaint/:id', element: <AdminComplaint /> },
+          { path: 'log', element: <Dashboard /> },
         ]
       }
     ]
