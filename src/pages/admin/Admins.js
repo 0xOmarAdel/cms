@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../../UI/Button'
 import Input from '../../UI/Input'
+import DateFormatter from '../../UI/DateFormatter';
 
 const Admins = () => {
   const [admins, setAdmins] = useState([]);
@@ -135,7 +136,9 @@ const Admins = () => {
                     <p>{admin.rank}</p>
                   </div>
                   <div className='col-2'>
-                    <p>{admin.createdAt}</p>
+                    <p>
+                      <DateFormatter date={admin.createdAt} />
+                    </p>
                   </div>
                   <div className='col-2'>
                     <p>{admin.addedBy}</p>

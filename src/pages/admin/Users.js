@@ -110,7 +110,7 @@ const Users = () => {
                 </div>
                 <div className="col-2">
                   <p>
-                    <DateFormatter dateFormatter={user.created_at} />
+                    <DateFormatter date={user.created_at} />
                   </p>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Pagination from '../../UI/Pagination'
 import { Link, useParams } from 'react-router-dom'
+import DateFormatter from '../../UI/DateFormatter';
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -256,10 +257,14 @@ const Complaints = () => {
                       <p>{complaint.userName}</p>
                     </div>
                     <div className='col-2'>
-                      <p>{complaint.date_created}</p>
+                      <p>
+                        <DateFormatter date={complaint.date_created} />
+                      </p>
                     </div>
                     <div className='col-2'>
-                      <p>{complaint.last_modified}</p>
+                      <p>
+                        <DateFormatter date={complaint.last_modified} />
+                      </p>
                     </div>
                   </div>
                 </Link>

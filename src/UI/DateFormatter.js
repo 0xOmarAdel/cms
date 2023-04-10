@@ -1,5 +1,5 @@
-const DateFormatter = ({ dateFormatter }) => {
-  const date = new Date(dateFormatter);
+const DateFormatter = (props) => {
+  const date = new Date(props.date);
   const today = new Date();
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
