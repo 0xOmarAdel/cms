@@ -44,26 +44,26 @@ const Admins = () => {
           </div>
 
           {
-            admins.map((admin, index) => (
-              <div className='table-row py-3'>
+            admins.map((admin) => (
+              <div className='table-row py-3' key={admin.id}>
                 <div className='row'>
                   <div className='col-1'>
-                    <p>1</p>
+                    <p>{admin.id}</p>
                   </div>
                   <div className='col-2'>
-                    <p>Omar Adel</p>
+                    <p>{admin.name}</p>
                   </div>
                   <div className='col-3'>
-                    <p>omaradel@gmail.com</p>
+                    <p>{admin.email}</p>
                   </div>
                   <div className='col-2'>
-                    <p>Administrator</p>
+                    <p>{admin.rank}</p>
                   </div>
                   <div className='col-2'>
-                    <p>Jan 3, 2021</p>
+                    <p>{admin.createdAt}</p>
                   </div>
                   <div className='col-2'>
-                    <p>Kerolos Talaat</p>
+                    <p>{admin.addedBy}</p>
                   </div>
                 </div>
               </div>
@@ -86,8 +86,7 @@ const Admins = () => {
                 <Input type='password' id='password2' placeholder='Confirm Password' />
               </div>
               <div className='col-4'>
-                <Input type='number' placeholder='ID' disabled className='mb-3' />
-                <Input type='text' placeholder='Moderator' disabled />
+                <Input type='number' placeholder='ID : 2' disabled />
               </div>
               <div className='col-2'>
                 <Button className='full-width mt-4' style={{ padding: '8px' }}>Submit</Button>
