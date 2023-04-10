@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Alert from '../UI/Alert'
 import Hero from '../UI/Hero'
 import Pagination from '../UI/Pagination'
@@ -39,6 +39,14 @@ const MyComplaints = () => {
     getUserComplaints();
   }, [getUserComplaints]);
 
+  let { page: currentPage } = useParams();
+
+  const elementsPerPage = 10;
+  const pagesNumber = Math.ceil(userComplaints.length / elementsPerPage) === 0 ? 1 : Math.ceil(userComplaints.length / elementsPerPage);
+
+  const start = (currentPage - 1) * elementsPerPage;
+  const end = start + elementsPerPage;
+
   return (
     <>
       <Hero title='My Complaints' />
@@ -49,7 +57,7 @@ const MyComplaints = () => {
           </div>
 
           {
-            userComplaints.map((complaint) => 
+            userComplaints.slice(start, end).map((complaint) => 
               <div key={complaint.id} className={`${classes.complaint} mb-3 text-muted`}>
                 <Link to={`/complaint/${complaint.id}`}>
                   <div className='row align-items-center'>
@@ -75,7 +83,7 @@ const MyComplaints = () => {
             )
           }
           
-          <Pagination />
+          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
         </div>
       </section>
     </>
