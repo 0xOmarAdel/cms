@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../../UI/Button'
 import Input from '../../UI/Input'
 
 const Categories = () => {
-  const categories = [
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = useCallback(async () => {
+    const response = await fetch('http://localhost:80/cms-api/getCategories.php');
+
+    const data = await response.json();
+  
+    setCategories(data);
+  }, []);
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
+  const DUMMY_CATEGORIES = [
     {
       id: 1,
       title: 'Electricity',
@@ -81,7 +95,7 @@ const Categories = () => {
                     <p>{category.id}</p>
                   </div>
                   <div className='col-5'>
-                    <p>{category.title}</p>
+                    <p>{category.name}</p>
                   </div>
                   <div className='col-4'>
                     <p>{category.number}</p>
@@ -93,8 +107,8 @@ const Categories = () => {
           }
 
         </div>
-        <div className='offset-1 col-7'>
-        <h1 className='mb-4'>Add Category</h1>
+        {/*<div className='offset-1 col-7'>
+          <h1 className='mb-4'>Add Category</h1>
           <form>
             <div className='row'>
               <Input type='number' placeholder='ID' disabled className='mb-3' />
@@ -102,7 +116,7 @@ const Categories = () => {
               <Button className='full-width mt-3' style={{ padding: '8px' }}>Submit</Button>
             </div>
           </form>
-        </div>
+        </div>*/}
       </div>
     </>
   )
