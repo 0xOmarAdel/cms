@@ -17,6 +17,81 @@ const Admins = () => {
     getAdmins();
   }, [getAdmins]);
 
+  const DUMMY_ADMINS = [
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    },
+    {
+      id: 1,
+      name: 'Omar Adel',
+      email: 'omaradel@demo.com',
+      rank: 'Admin',
+      createdAt: '2023-04-10 06:57:46',
+      addedBy: '-'
+    }
+  ]
+
   return (
     <>
       <div className='row'>
@@ -44,7 +119,7 @@ const Admins = () => {
           </div>
 
           {
-            admins.map((admin) => (
+            DUMMY_ADMINS.map((admin) => (
               <div className='table-row py-3' key={admin.id}>
                 <div className='row'>
                   <div className='col-1'>

@@ -21,209 +21,193 @@ const Complaints = () => {
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     },
     {
       id: 1,
       title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      category: 'Electricity',
-      user: 'Marwan Yasser',
-      createdAt: 'Jan 3, 2021',
-      lastModified: 'Jan 3, 2021'
+      categoryName: 'Electricity',
+      userName: 'Marwan Yasser',
+      date_created: '2023-04-10 06:57:46',
+      last_modified: '2023-04-10 06:57:46'
     }
   ]
 
   let { page: currentPage } = useParams();
 
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(complaints.length / elementsPerPage) === 0 ? 1 : Math.ceil(complaints.length / elementsPerPage);
+  const pagesNumber = Math.ceil(complaints.length / elementsPerPage) === 0 ? 1 : Math.ceil(DUMMY_COMPLAINTS.length / elementsPerPage);
 
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
@@ -255,7 +239,7 @@ const Complaints = () => {
           </div>
 
           {
-            complaints.slice(start, end).map(complaint => 
+            DUMMY_COMPLAINTS.slice(start, end).map(complaint => 
               <div key={complaint.id} className='table-row py-3'>
                 <Link to={`/admin/complaint/${complaint.id}`}>
                   <div className='row'>

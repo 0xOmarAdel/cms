@@ -88,14 +88,14 @@ const Categories = () => {
           </div>
 
           {
-            categories.map(category => 
+            DUMMY_CATEGORIES.map(category => 
               <div key={category.id} className='table-row py-3'>
                 <div className='row'>
                   <div className='col-3'>
                     <p>{category.id}</p>
                   </div>
                   <div className='col-5'>
-                    <p>{category.name}</p>
+                    <p>{category.title}</p>
                   </div>
                   <div className='col-4'>
                     <p>{category.number}</p>
