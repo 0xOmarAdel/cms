@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Pagination from '../../UI/Pagination'
+import PaginationHandler from "../../UI/PaginationHandler";
 import { Link, useParams } from 'react-router-dom'
 import DateFormatter from '../../UI/DateFormatter';
+
+import dummyData from '../../dummy-data.json'
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
@@ -18,198 +20,8 @@ const Complaints = () => {
     getComplaints();
   }, [getComplaints]);
 
-  const DUMMY_COMPLAINTS = [
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    },
-    {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet',
-      categoryName: 'Electricity',
-      userName: 'Marwan Yasser',
-      date_created: '2023-04-10 06:57:46',
-      last_modified: '2023-04-10 06:57:46'
-    }
-  ]
-
   let { page: currentPage } = useParams();
-
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(complaints.length / elementsPerPage) === 0 ? 1 : Math.ceil(DUMMY_COMPLAINTS.length / elementsPerPage);
-
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
   
@@ -240,7 +52,7 @@ const Complaints = () => {
           </div>
 
           {
-            DUMMY_COMPLAINTS.slice(start, end).map(complaint => 
+            dummyData.complaints.slice(start, end).map(complaint => 
               <div key={complaint.id} className='table-row py-3'>
                 <Link to={`/admin/complaint/${complaint.id}`}>
                   <div className='row'>
@@ -276,7 +88,7 @@ const Complaints = () => {
       </div>
       <div className='row'>
         <div className='col-12'>
-          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
+        <PaginationHandler currentPage={currentPage} elementsPerPage={elementsPerPage} dataLength={dummyData.complaints.length} />
         </div>
       </div>
     </>

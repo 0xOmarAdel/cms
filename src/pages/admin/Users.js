@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Pagination from "../../UI/Pagination";
 import { useParams } from "react-router-dom";
+import PaginationHandler from "../../UI/PaginationHandler";
 import DateFormatter from "../../UI/DateFormatter";
+
+import dummyData from '../../dummy-data.json'
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -18,137 +20,8 @@ const Users = () => {
     getUsers();
   }, [getUsers]);
 
-  const DUMMY_USERS = [
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    },
-    {
-      id: 1,
-      nationalId: '30203040109381',
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      phone: '01048463495',
-      created_at: '2023-04-02 05:39:52'
-    }
-  ];
-
   let { page: currentPage } = useParams();
-
   const elementsPerPage = 10;
-  const pagesNumber =
-    Math.ceil(DUMMY_USERS.length / elementsPerPage) === 0
-      ? 1
-      : Math.ceil(DUMMY_USERS.length / elementsPerPage);
-
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
 
@@ -178,7 +51,7 @@ const Users = () => {
             </div>
           </div>
 
-          {DUMMY_USERS.slice(start, end).map((user) => (
+          {dummyData.users.slice(start, end).map((user) => (
             <div key={user.id} className="table-row py-3">
               <div className="row">
                 <div className="col-1">
@@ -208,7 +81,7 @@ const Users = () => {
       </div>
       <div className="row">
         <div className="col-12">
-          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
+          <PaginationHandler currentPage={currentPage} elementsPerPage={elementsPerPage} dataLength={dummyData.users.length} />
         </div>
       </div>
     </div>

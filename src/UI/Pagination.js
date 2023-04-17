@@ -1,69 +1,46 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React from 'react'
+import PaginationLink from './PaginationLink';
 
-import classes from './Pagination.module.css'
+import './Pagination.css'
 
-const Pagination = ({ pagesNumber, currentPage }) => {
-  pagesNumber = pagesNumber === 0 ? 1 : pagesNumber;
-
-  const location = useLocation();
-
-  let path = location.pathname.split('/');
-  path.pop();
-  path = path.join('/') + '/';  
-
-  const pages = Array.from({length: pagesNumber}, (_, index) => {
-    return index + 1
-  });
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (currentPage === undefined) {
-      if (location.pathname.charAt(location.pathname.length - 1) !== '/') {
-        navigate(location.pathname + '/1')
-      } else {
-        navigate(path + '1');
-      }
-    } else if (isNaN(parseInt(currentPage)) || parseInt(currentPage) < 1) {
-      navigate(path + '1');
-    } else if (parseInt(currentPage) > parseInt(pagesNumber)) {
-      navigate(path + parseInt(pagesNumber));
-    }
-  })
-
-  if (pagesNumber < 2) {
-    return;
-  }
-
+const Pagination = ({ pages, pagesNumber, currentPage, path }) => {
+  const currentPageIndex = pages.indexOf(currentPage);
+  const max = 2;
+  const start = currentPageIndex - max < 0 ? 0 : currentPageIndex - max;
+  const end = currentPageIndex + max > pages.length ? pages.length : currentPageIndex + max;
+  const modifiedPages = pages.slice(start, end + 1)
   return (
-    <ul className={'d-flex justify-content-center mt-4'}>
-      {
-        parseInt(currentPage) !== 1 &&
-        <li>
-          <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) - 1}`}>«</Link>
-        </li>
-      }
+    <div className='pagination'>
+      <ul className={'d-flex justify-content-center mt-4'}>
+        {
+          currentPage !== 1 &&
+          <PaginationLink 
+            page='«' 
+            to={`${path}${currentPage - 1}`}
+          />
+        }
 
-      {
-        pages.map((page, index) => (
-          <li key={index}>
-            <Link 
-              className={parseInt(currentPage) === page ? classes['page-link'] + ' ' + classes.active : classes['page-link']} 
-              to={`${path}${page}`}>
-                {page}
-            </Link>
-          </li>
-        ))
-      }
+        {
+          modifiedPages.map((page) => (
+            <PaginationLink
+              key={page}
+              page={page}
+              className={currentPage === page ? 'active' : ''} 
+              to={`${path}${page}`} 
+            />
+          ))
+        }
 
-      {
-        parseInt(currentPage) !== parseInt(pagesNumber) &&
-        <li>
-          <Link className={`${classes['page-link']}`} to={`${path}${parseInt(currentPage) + 1}`}>»</Link>
-        </li>
-      }
-  </ul>
+        {
+          currentPage !== pagesNumber &&
+          <PaginationLink 
+            page='»' 
+            to={`${path}${currentPage + 1}`}
+          />
+        }
+      </ul>
+      <p className='mt-3 text-muted text-center'>Page {currentPage} out of {pagesNumber}</p>
+    </div>
   )
 }
 

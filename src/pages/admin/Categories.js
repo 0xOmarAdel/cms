@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Button from '../../UI/Button'
-import Input from '../../UI/Input'
+
+import dummyData from '../../dummy-data.json'
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -16,59 +16,6 @@ const Categories = () => {
   useEffect(() => {
     getCategories();
   }, [getCategories]);
-
-  const DUMMY_CATEGORIES = [
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    },
-    {
-      id: 1,
-      title: 'Electricity',
-      number: 10
-    }
-  ]
 
   return (
     <>
@@ -88,7 +35,7 @@ const Categories = () => {
           </div>
 
           {
-            DUMMY_CATEGORIES.map(category => 
+            dummyData.categories.map(category => 
               <div key={category.id} className='table-row py-3'>
                 <div className='row'>
                   <div className='col-3'>

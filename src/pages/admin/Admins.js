@@ -3,6 +3,8 @@ import Button from '../../UI/Button'
 import Input from '../../UI/Input'
 import DateFormatter from '../../UI/DateFormatter';
 
+import dummyData from '../../dummy-data.json'
+
 const Admins = () => {
   const [admins, setAdmins] = useState([]);
 
@@ -17,81 +19,6 @@ const Admins = () => {
   useEffect(() => {
     getAdmins();
   }, [getAdmins]);
-
-  const DUMMY_ADMINS = [
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    },
-    {
-      id: 1,
-      name: 'Omar Adel',
-      email: 'omaradel@demo.com',
-      rank: 'Admin',
-      createdAt: '2023-04-10 06:57:46',
-      addedBy: '-'
-    }
-  ]
 
   return (
     <>
@@ -120,7 +47,7 @@ const Admins = () => {
           </div>
 
           {
-            DUMMY_ADMINS.map((admin) => (
+            dummyData.admins.map((admin) => (
               <div className='table-row py-3' key={admin.id}>
                 <div className='row'>
                   <div className='col-1'>
