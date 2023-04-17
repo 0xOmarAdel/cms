@@ -24,13 +24,24 @@ const Complaints = () => {
   const elementsPerPage = 10;
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
+
+  if (dummyData.complaints.length === 0) {
+    return (
+      <div className="row">
+        <div className="col-12">
+          <h1 className="mb-4">Complaints</h1>
+          <p className="error-message">Found 0 records.</p>
+        </div>
+      </div>
+    )
+  }
   
   return (
     <>
       <div className='row'>
         <div className='col-12'>
           <h1 className='mb-4'>Complaints</h1>
-          <div className='table-heading row py-3'>
+          <div className='table-heading row d-none d-lg-flex py-3'>
             <div className='col-1'>
               <p>ID</p>
             </div>
@@ -56,27 +67,46 @@ const Complaints = () => {
               <div key={complaint.id} className='table-row py-3'>
                 <Link to={`/admin/complaint/${complaint.id}`}>
                   <div className='row'>
-                    <div className='col-1'>
+                    <div className='d-none d-lg-block col-1'>
                       <p>{complaint.id}</p>
                     </div>
-                    <div className='col-3'>
+                    <div className='d-none d-lg-block col-3'>
                       <p>{complaint.title}</p>
                     </div>
-                    <div className='col-2'>
+                    <div className='d-none d-lg-block col-2'>
                       <p>{complaint.categoryName}</p>
                     </div>
-                    <div className='col-2'>
+                    <div className='d-none d-lg-block col-2'>
                       <p>{complaint.userName}</p>
                     </div>
-                    <div className='col-2'>
+                    <div className='d-none d-lg-block col-2'>
                       <p>
                         <DateFormatter date={complaint.date_created} />
                       </p>
                     </div>
-                    <div className='col-2'>
+                    <div className='d-none d-lg-block col-2'>
                       <p>
                         <DateFormatter date={complaint.last_modified} />
                       </p>
+                    </div>
+
+                    <div className='d-block d-lg-none col-12'>
+                      <p>ID: {complaint.id}</p>
+                    </div>
+                    <div className='d-block d-lg-none col-12'>
+                      <p>Title: {complaint.title}</p>
+                    </div>
+                    <div className='d-block d-lg-none col-12'>
+                      <p>Category Name: {complaint.categoryName}</p>
+                    </div>
+                    <div className='d-block d-lg-none col-12'>
+                      <p>User: {complaint.userName}</p>
+                    </div>
+                    <div className='d-block d-lg-none col-12'>
+                      <p>Date Created: <DateFormatter date={complaint.date_created} /></p>
+                    </div>
+                    <div className='d-block d-lg-none col-12'>
+                      <p>Last Updated: <DateFormatter date={complaint.last_modified} /></p>
                     </div>
                   </div>
                 </Link>
