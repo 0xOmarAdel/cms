@@ -1,24 +1,54 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import PaginationHandler from "../../UI/PaginationHandler";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import DateFormatter from '../../UI/DateFormatter';
 
 import dummyData from '../../dummy-data.json'
+import Input from '../../UI/Input';
+import Badge from '../../UI/Badge';
+import useSearch from '../../hooks/useSearch';
+import useHttp from '../../hooks/useHttp';
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
+  const {isLoading, error, sendRequest: getComplaints} = useHttp();
+  const {setOriginalArray, filterArray, filteredArray, inputValue} = useSearch();
 
-  const getComplaints = useCallback(async () => {
-    const response = await fetch('http://localhost:80/cms-api/complaints.php');
+  const dataHandler = useCallback((data) => {
+    setComplaints(data)
+    setOriginalArray(data);
+  }, [setOriginalArray]);
 
-    const data = await response.json();
-  
-    setComplaints(data);
-  }, []);
+  const searchHandler = (value) => {
+    filterArray('title', value)
+  };
 
   useEffect(() => {
-    getComplaints();
-  }, [getComplaints]);
+    getComplaints({ url: 'http://localhost:80/cms-api/complaints.php' }, dataHandler);
+  }, [getComplaints, dataHandler]);
+
+
+  const [sortBy, SetSortBy] = useState('id');
+
+  const sort = (arr) => {
+    if (sortBy === 'title') {
+      arr.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+    } else if (sortBy === 'category') {
+      arr.sort((a,b) => (a.categoryName > b.categoryName) ? 1 : ((b.categoryName > a.categoryName) ? -1 : 0))
+    } else if (sortBy === 'user') {
+      arr.sort((a,b) => (a.userName > b.userName) ? 1 : ((b.userName > a.userName) ? -1 : 0))
+    } else if (sortBy === 'id') {
+      arr.sort((a,b) => a.id - b.id);
+    } else {
+      arr.reverse()
+    }
+
+    return arr
+  }
+
+  const sortHandler = (e) => {
+    SetSortBy(e.target.value)
+  };
 
   let { page: currentPage } = useParams();
   const elementsPerPage = 10;
@@ -41,6 +71,36 @@ const Complaints = () => {
       <div className='row'>
         <div className='col-12'>
           <h1 className='mb-4'>Complaints</h1>
+          <div className='mb-3'>
+            <form>
+              <div className='row'>
+                <div className='col-2 ps-0'>
+                  <Input
+                    className='search-input py-2'
+                    type='text'
+                    id='title'
+                    placeholder='Search'
+                    value={inputValue}
+                    onChange={(e) => searchHandler(e.target.value)}
+                  />
+                </div>
+                <div className='col-2 ps-0'>
+                  <select className="form-control" onChange={sortHandler}>
+                    <option value='id'>Id</option>
+                    <option value='title'>Title</option>
+                    <option value='category'>Category</option>
+                    <option value='user'>User</option>
+                  </select>
+                </div>
+                <div className='col-auto d-flex align-items-center'>
+                  <ul className=' d-flex'>
+                    <li><Badge className='me-2' text='Pending' /></li>
+                    <li><Badge text='Closed' /></li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
           <div className='table-heading row d-none d-lg-flex py-3'>
             <div className='col-1'>
               <p>ID</p>
@@ -63,7 +123,7 @@ const Complaints = () => {
           </div>
 
           {
-            dummyData.complaints.slice(start, end).map(complaint => 
+            sort(filteredArray, sortBy).slice(start, end).map(complaint => 
               <div key={complaint.id} className='table-row py-3'>
                 <Link to={`/admin/complaint/${complaint.id}`}>
                   <div className='row'>
@@ -118,7 +178,7 @@ const Complaints = () => {
       </div>
       <div className='row'>
         <div className='col-12'>
-        <PaginationHandler currentPage={currentPage} elementsPerPage={elementsPerPage} dataLength={dummyData.complaints.length} />
+        <PaginationHandler currentPage={currentPage} elementsPerPage={elementsPerPage} dataLength={filteredArray.length} />
         </div>
       </div>
     </>

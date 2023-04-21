@@ -288,7 +288,7 @@ footer .copyright ul li a i {
   min-width: 0;
 }
 
-.form i {
+.input-group i {
   width: 45px !important;
   background-color: #e8ebee;
   padding: 15px 0;
@@ -368,4 +368,34 @@ textarea {
 .admin-page-content .table-heading,
 .admin-page-content .table-row:not(:last-of-type) {
   border-bottom: 1px solid #11111152;
+}
+
+.search-input::before {
+  font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f002";
+}
+
+.search-input:after {
+  content: "";
+  height: 20px;
+  width: 1px;
+  position: absolute;
+  left: 35px;
+  transition: 0.6s all;
+}
+
+.badge {
+  background-color: #0056b3;
+  opacity: 0.6;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.badge:hover,
+.badge.active {
+  opacity: 1;
 }

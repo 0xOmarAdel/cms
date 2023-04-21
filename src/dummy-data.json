@@ -233,30 +233,6 @@
       "rank": "Admin",
       "createdAt": "2023-04-10 06:57:46",
       "addedBy": "-"
-    },
-    {
-      "id": 7,
-      "name": "Omar Adel",
-      "email": "omaradel@demo.com",
-      "rank": "Admin",
-      "createdAt": "2023-04-10 06:57:46",
-      "addedBy": "-"
-    },
-    {
-      "id": 8,
-      "name": "Omar Adel",
-      "email": "omaradel@demo.com",
-      "rank": "Admin",
-      "createdAt": "2023-04-10 06:57:46",
-      "addedBy": "-"
-    },
-    {
-      "id": 9,
-      "name": "Omar Adel",
-      "email": "omaradel@demo.com",
-      "rank": "Admin",
-      "createdAt": "2023-04-10 06:57:46",
-      "addedBy": "-"
     }
   ],
   "users": [

@@ -1,0 +1,44 @@
+import React, { useCallback, useState } from 'react'
+import { useSearchParams } from 'react-router-dom';
+
+const useSearch = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filteredArray, setFilteredArray] = useState([])
+
+  let originalArray;
+  const setOriginalArray = useCallback((arr) => {
+    originalArray = arr;
+    filterArray('title', searchParams.get('search'))
+  }, [])
+
+  const deleteSearchParam = useCallback(() => {
+    searchParams.delete('search')
+    setSearchParams(searchParams);
+  }, [])
+
+  const setSearchParam = useCallback((searchValue) => {
+
+    if (searchValue === '') {
+      deleteSearchParam();
+      setFilteredArray(originalArray)
+      return;
+    }
+
+    setSearchParams({search: searchValue});
+  }, [])
+
+  const filterArray = useCallback((attr, searchValue) => {
+    if(searchValue !== null) {
+      setSearchParam(searchValue);
+      setFilteredArray(originalArray.filter(element => element[attr].includes(searchValue)))
+    } else {
+      setFilteredArray(originalArray)
+    }
+  }, [])
+
+  const inputValue = searchParams.get('search') ? searchParams.get('search') : '';
+
+  return {setOriginalArray, filterArray, filteredArray, inputValue}
+}
+
+export default useSearch

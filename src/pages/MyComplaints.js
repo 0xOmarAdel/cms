@@ -6,6 +6,7 @@ import Pagination from '../UI/Pagination'
 
 import classes from './MyComplaints.module.css'
 import AuthContext from '../store/auth-context'
+import PaginationHandler from '../UI/PaginationHandler'
 
 const MyComplaints = () => {
   const ctx = useContext(AuthContext);
@@ -83,7 +84,7 @@ const MyComplaints = () => {
             )
           }
           
-          <Pagination pagesNumber={pagesNumber} currentPage={currentPage} />
+          <PaginationHandler currentPage={currentPage} elementsPerPage={elementsPerPage} dataLength={userComplaints.length} />
         </div>
       </section>
     </>

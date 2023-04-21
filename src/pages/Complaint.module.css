@@ -36,6 +36,17 @@
   height: 70px !important;
 }
 
+.complaint .send {
+  background-color: #6395e5;
+  padding: 9px;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  width: 40px;
+}
+
 .complaint ul.status {
   position: relative;
   padding: 20px 12px 10px;
