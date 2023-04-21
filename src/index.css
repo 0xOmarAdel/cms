@@ -385,6 +385,13 @@ textarea {
   transition: 0.6s all;
 }
 
+@media screen and (max-width: 992px) {
+  .pd {
+    margin-bottom: 10px;
+  }  
+}
+
+
 .badge {
   background-color: #0056b3;
   opacity: 0.6;
