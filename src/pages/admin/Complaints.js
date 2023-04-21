@@ -91,7 +91,6 @@ const Complaints = () => {
               <div className="row">
                 <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
                   <SearchBar
-                    className="py-2"
                     value={inputValue}
                     onChange={(e) => searchHandler(e.target.value)}
                   />
