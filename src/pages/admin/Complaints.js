@@ -9,9 +9,12 @@ import useSearch from "../../hooks/useSearch";
 import useHttp from "../../hooks/useHttp";
 import SearchBar from "../../UI/SearchBar";
 import SelectBar from "../../UI/SelectBar";
+import dynamicSort from "../../utils/dynamicSort";
+import Loading from "../../UI/Loading";
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
+  const [sortBy, setSortBy] = useState('id');
   const { isLoading, error, sendRequest: getComplaints } = useHttp();
   const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch();
 
@@ -23,9 +26,8 @@ const Complaints = () => {
     [setOriginalArray]
   );
 
-  const searchHandler = (value) => {
-    filterArray("title", value);
-  };
+  const searchHandler = (value) => { filterArray("title", value); };
+  const sortHandler = (value) => { setSortBy(value); };
 
   useEffect(() => {
     getComplaints(
@@ -33,37 +35,6 @@ const Complaints = () => {
       dataHandler
     );
   }, [getComplaints, dataHandler]);
-
-  const [sortBy, SetSortBy] = useState("id");
-
-  const sort = (arr) => {
-    if (sortBy === "title") {
-      arr.sort((a, b) => (a.title > b.title ? 1 : b.title > a.title ? -1 : 0));
-    } else if (sortBy === "category") {
-      arr.sort((a, b) =>
-        a.categoryName > b.categoryName
-          ? 1
-          : b.categoryName > a.categoryName
-          ? -1
-          : 0
-      );
-    } else if (sortBy === "user") {
-      arr.sort((a, b) =>
-        a.userName > b.userName ? 1 : b.userName > a.userName ? -1 : 0
-      );
-    } else if (sortBy === "id") {
-      arr.sort((a, b) => a.id - b.id);
-    } else {
-      arr.reverse();
-    }
-
-    return arr;
-  };
-
-  const sortHandler = (e) => {
-    SetSortBy(e.target.value);
-    console.log(e.target.value);
-  };
 
   let { page: currentPage } = useParams();
   const elementsPerPage = 10;
@@ -79,7 +50,10 @@ const Complaints = () => {
         </div>
       </div>
     );
-  }
+  };
+
+  if (isLoading) { return <Loading />; };
+  if (error) { return error; };
 
   return (
     <>
@@ -87,29 +61,24 @@ const Complaints = () => {
         <div className="col-12">
           <h1 className="mb-4">Complaints</h1>
           <div className="mb-3">
-            <form>
-              <div className="row">
-                <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
-                  <SearchBar
-                    value={inputValue}
-                    onChange={(e) => searchHandler(e.target.value)}
-                  />
-                </div>
-                <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
-                  <SelectBar onChange={sortHandler} />
-                </div>
-                <div className="col-auto d-flex align-items-center">
-                  <ul className=" d-flex">
-                    <li>
-                      <Badge className="me-2" text="Pending" />
-                    </li>
-                    <li>
-                      <Badge text="Closed" />
-                    </li>
-                  </ul>
-                </div>
+            <div className="row">
+              <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
+                <SearchBar value={inputValue} onChange={(e) => searchHandler(e.target.value)} />
               </div>
-            </form>
+              <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
+                <SelectBar onChange={(e) => sortHandler(e.target.value)} />
+              </div>
+              <div className="col-auto d-flex align-items-center">
+                <ul className=" d-flex">
+                  <li>
+                    <Badge className="me-2" text="Pending" />
+                  </li>
+                  <li>
+                    <Badge text="Closed" />
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div className="table-heading row d-none d-lg-flex py-3">
             <div className="col-1">
@@ -132,7 +101,7 @@ const Complaints = () => {
             </div>
           </div>
 
-          {sort(filteredArray, sortBy)
+          {filteredArray.sort(dynamicSort(sortBy))
             .slice(start, end)
             .map((complaint) => (
               <div key={complaint.id} className="table-row py-3">
@@ -188,7 +157,7 @@ const Complaints = () => {
                   </div>
                 </Link>
               </div>
-            ))}
+          ))}
         </div>
       </div>
       <div className="row">
