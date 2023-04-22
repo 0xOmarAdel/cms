@@ -22,7 +22,6 @@ const MainNavigation = () => {
   };
 
   const navLinks = [
-    { path: "/", text: "Home" },
     { path: "/faq", text: "FAQ" },
     { path: "/login", text: "Log In" },
     { path: "/signup", text: "Sign Up" },
