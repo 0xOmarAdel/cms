@@ -96,29 +96,6 @@ const Admins = () => {
 
         </div>
       </div>
-      <div className='row mt-5'>
-        <div className='col-12'>
-          <h2 className='mb-4'>Add Moderator</h2>
-          <form>
-            <div className='row'>
-              <div className='col-12 col-md-6 col-lg-4'>
-                <Input type='text' id='name' placeholder='Name' className='mb-3' />
-                <Input type='text' id='email' placeholder='Email' className='mb-3 mb-lg-0' />
-              </div>
-              <div className='col-12 col-md-6 col-lg-4'>
-                <Input type='password' id='password1' placeholder='Password' className='mb-3' />
-                <Input type='password' id='password2' placeholder='Confirm Password' className='mb-3 mb-lg-0' />
-              </div>
-              <div className='col-12 col-md-6 col-lg-4'>
-                <Input type='number' placeholder='ID : 2' disabled className='mb-3 mb-lg-0' />
-              </div>
-              <div className='col-6 col-md-4 col-lg-2'>
-                <Button className='full-width mt-lg-4' style={{ padding: '8px' }}>Submit</Button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </>
   )
 }

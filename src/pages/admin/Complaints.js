@@ -17,7 +17,6 @@ const Complaints = () => {
   const [sortBy, setSortBy] = useState('id');
   const { isLoading, error, sendRequest: getComplaints } = useHttp();
   const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch();
-
   const dataHandler = useCallback(
     (data) => {
       setComplaints(data);
@@ -28,6 +27,11 @@ const Complaints = () => {
 
   const searchHandler = (value) => { filterArray("title", value); };
   const sortHandler = (value) => { setSortBy(value); };
+  const filterHandler = (property, value) => { 
+    const result = filteredArray.filter(element => element[property] === value);
+
+    console.log(filteredArray)
+  }
 
   useEffect(() => {
     getComplaints(
@@ -65,13 +69,10 @@ const Complaints = () => {
               <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
                 <SearchBar value={inputValue} onChange={(e) => searchHandler(e.target.value)} />
               </div>
-              <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
-                <SelectBar onChange={(e) => sortHandler(e.target.value)} />
-              </div>
               <div className="col-auto d-flex align-items-center">
                 <ul className=" d-flex">
                   <li>
-                    <Badge className="me-2" text="Pending" />
+                    <Badge className="me-3" text="Pending" onClick={() => filterHandler('title', 'idk man')} />
                   </li>
                   <li>
                     <Badge text="Closed" />
@@ -82,22 +83,22 @@ const Complaints = () => {
           </div>
           <div className="table-heading row d-none d-lg-flex py-3">
             <div className="col-1">
-              <p>ID</p>
+              <p onClick={() => sortHandler('id')}>ID</p>
             </div>
             <div className="col-3">
               <p onClick={() => sortHandler('title')}>Title</p>
             </div>
             <div className="col-2">
-              <p>Category</p>
+              <p onClick={() => sortHandler('categoryName')}>Category</p>
             </div>
             <div className="col-2">
-              <p>User</p>
+              <p onClick={() => sortHandler('userName')}>User</p>
             </div>
             <div className="col-2">
-              <p>Created At</p>
+              <p onClick={() => sortHandler('date_created')}>Created At</p>
             </div>
             <div className="col-2">
-              <p>Last Modified</p>
+              <p onClick={() => sortHandler('last_modified')}>Last Modified</p>
             </div>
           </div>
 

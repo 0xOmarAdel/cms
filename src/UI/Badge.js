@@ -2,7 +2,7 @@ import React from 'react'
 
 const Badge = (props) => {
   return (
-    <span className={`badge ${props.className}`}>{props.text}</span>
+    <span className={`badge ${props.className}`} onClick={props.onClick ? props.onClick : () => {}}>{props.text}</span>
   )
 }
 

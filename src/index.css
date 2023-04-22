@@ -309,25 +309,25 @@ textarea {
 .admin-page-content {
   background-color: #f2f5f7;
   min-height: 100vh;
-  padding: 50px 30px;
+  padding: 50px 30px 0;
   transition: margin-left 1.2s;
 }
 
 @media (min-width: 576px){
   .admin-page-content {
-    padding: 60px 40px;
+    padding: 60px 40px 0;
   }
 }
 
 @media (min-width: 768px){
   .admin-page-content {
-    padding: 75px 70px;
+    padding: 75px 70px 0;
   }
 }
 
 @media (min-width: 992px){
   .admin-page-content {
-    padding: 90px 100px;
+    padding: 90px 100px 0;
   }
 }
 
@@ -350,6 +350,10 @@ textarea {
   letter-spacing: 0.7px;
   font-weight: 600;
   color: var(--color-text);
+}
+
+.admin-page-content .table-heading p {
+  cursor: pointer;
 }
 
 .admin-page-content .table-row {
@@ -396,7 +400,8 @@ textarea {
   background-color: #0056b3;
   opacity: 0.6;
   color: white;
-  padding: 5px 10px;
+  letter-spacing: 1px;
+  padding: 7px 15px;
   border-radius: 15px;
   transition: 0.5s;
   cursor: pointer;

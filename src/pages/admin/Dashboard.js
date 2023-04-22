@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './Dashboard.css'
+import { Chart } from '../../UI/Chart'
 
 const Dashboard = () => {
   const cards = [
@@ -14,12 +15,6 @@ const Dashboard = () => {
       title: 'Admins',
       number: 50
     },
-    {
-      icon: 'fa-solid fa-user-shield',
-      title: 'Moderators',
-      number: 50
-    },
-    
     {
       icon: 'fa-solid fa-list',
       title: 'Categories',
@@ -40,7 +35,7 @@ const Dashboard = () => {
 
           {
             cards.map((card, index) => (
-              <div className='col-2' key={index}>
+              <div className='col' key={index}>
                 <div className='card'>
                   <i className={card.icon}></i>
                   <p className='card-title'>{card.title}</p>
@@ -49,7 +44,14 @@ const Dashboard = () => {
               </div>
             ))
           }
-
+        </div>
+        <div className='row mt-5'>
+          <div className='col'>
+            <Chart label='Complaints' />
+          </div>
+          <div className='col'>
+            <Chart label='Users' />
+          </div>
         </div>
       </div>
     </div>
