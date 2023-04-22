@@ -5,7 +5,6 @@ import AdminRootLayout from "./pages/admin/AdminRoot";
 
 import ErrorPage from "./pages/Error";
 
-import HomePage from "./pages/Home";
 import FAQPage from "./pages/FAQ";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
@@ -27,8 +26,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: '/home', element: <HomePage /> },
+      { index: true, element: <LogIn /> },
       { 
         path: '/faq',
         children: [
