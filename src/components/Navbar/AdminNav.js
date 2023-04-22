@@ -32,11 +32,6 @@ const Sidebar = (props) => {
       path: 'complaints',
       name: 'Complaints',
       icon: 'fa-solid fa-envelope'
-    },
-    {
-      path: 'log',
-      name: 'Audit Log',
-      icon: 'fa-solid fa-circle-info'
     }
   ]
 

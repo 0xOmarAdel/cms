@@ -58,8 +58,7 @@ const router = createBrowserRouter([
           { path: 'categories', element: <Categories /> },
           { path: 'complaints', element: <Complaints /> },
           { path: 'complaints/:page', element: <Complaints /> },
-          { path: 'complaint/:id', element: <AdminComplaint /> },
-          { path: 'log', element: <Dashboard /> },
+          { path: 'complaint/:id', element: <AdminComplaint /> }
         ]
       }
     ]

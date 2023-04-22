@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PaginationHandler from "../../UI/PaginationHandler";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DateFormatter from "../../UI/DateFormatter";
 
 import dummyData from "../../dummy-data.json";
@@ -85,7 +85,7 @@ const Complaints = () => {
               <p>ID</p>
             </div>
             <div className="col-3">
-              <p>Title</p>
+              <p onClick={() => sortHandler('title')}>Title</p>
             </div>
             <div className="col-2">
               <p>Category</p>
