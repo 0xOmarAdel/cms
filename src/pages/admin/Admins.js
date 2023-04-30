@@ -1,102 +1,38 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Button from '../../UI/Button'
-import Input from '../../UI/Input'
-import DateFormatter from '../../UI/DateFormatter';
-
-import dummyData from '../../dummy-data.json'
+import useHTTP from '../../hooks/useHttp';
+import Table from '../../components/Table';
 
 const Admins = () => {
   const [admins, setAdmins] = useState([]);
+  const [sortBy, setSortBy] = useState('id');
+  const { isLoading, error, sendRequest: getAdmins } = useHTTP();
 
-  const getAdmins = useCallback(async () => {
-    const response = await fetch('http://localhost:80/cms-api/admins.php');
-
-    const data = await response.json();
-  
-    setAdmins(data);
-  }, []);
+  const sortHandler = (value) => { setSortBy(value); };
 
   useEffect(() => {
-    getAdmins();
+    getAdmins(
+      { url: "http://localhost:80/cms-api/admins.php" },
+      (data) => {
+        setAdmins(data.map(element => ({...element, id: parseInt(element.id)})));
+      }
+    );
   }, [getAdmins]);
 
+  const table = [
+    { colSize: 2, label: 'ID', value: 'id'},
+    { colSize: 3, label: 'Name', value: 'name'},
+    { colSize: 3, label: 'Email', value: 'email'},
+    { colSize: 2, label: 'Phone', value: 'phone'},
+    { colSize: 2, label: 'Created At', value: 'created_at', isDate: true }
+  ]
+
   return (
-    <>
-      <div className='row'>
-        <div className='col-12'>
-          <h1 className='mb-4'>Admins</h1>
-          <div className='table-heading row d-none d-lg-flex py-3'>
-            <div className='col-1'>
-              <p>ID</p>
-            </div>
-            <div className='col-2'>
-              <p>Name</p>
-            </div>
-            <div className='col-3'>
-              <p>Email</p>
-            </div>
-            <div className='col-2'>
-              <p>Rank</p>
-            </div>
-            <div className='col-2'>
-              <p>Created</p>
-            </div>
-            <div className='col-2'>
-              <p>Added By</p>
-            </div>
-          </div>
-
-          {
-            dummyData.admins.map((admin) => (
-              <div className='table-row py-3' key={admin.id}>
-                <div className='row'>
-                  <div className='d-none d-lg-block col-1'>
-                    <p>{admin.id}</p>
-                  </div>
-                  <div className='d-none d-lg-block col-2'>
-                    <p>{admin.name}</p>
-                  </div>
-                  <div className='d-none d-lg-block col-3'>
-                    <p>{admin.email}</p>
-                  </div>
-                  <div className='d-none d-lg-block col-2'>
-                    <p>{admin.rank}</p>
-                  </div>
-                  <div className='d-none d-lg-block col-2'>
-                    <p>
-                      <DateFormatter date={admin.createdAt} />
-                    </p>
-                  </div>
-                  <div className='d-none d-lg-block col-2'>
-                    <p>{admin.addedBy}</p>
-                  </div>
-                  
-                  <div className='d-block d-lg-none col-12'>
-                    <p>ID: {admin.id}</p>
-                  </div>
-                  <div className='d-block d-lg-none col-12'>
-                    <p>Name: {admin.name}</p>
-                  </div>
-                  <div className='d-block d-lg-none col-12'>
-                    <p>Rank: {admin.rank}</p>
-                  </div>
-                  <div className='d-block d-lg-none col-12'>
-                    <p>Added By: {admin.addedBy}</p>
-                  </div>
-                  <div className='d-block d-lg-none col-12'>
-                    <p>Email: {admin.email}</p>
-                  </div>
-                  <div className='d-block d-lg-none col-12'>
-                    <p>Created At: <DateFormatter date={admin.createdAt} /></p>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-
-        </div>
-      </div>
-    </>
+    <Table
+      title='Admins' table={table} elements={admins} pagination={false}
+      isLoading={isLoading} error={error}
+      search={false} filteredArray={admins}
+      sortBy={sortBy} sortHandler={sortHandler}
+    />
   )
 }
 

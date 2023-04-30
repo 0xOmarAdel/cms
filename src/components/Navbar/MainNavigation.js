@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import classes from "./MainNavigation.module.css";
 import { FaBars, FaRegWindowMinimize } from "react-icons/fa";
 import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
 const MainNavigation = () => {
   const linksContainerRef = useRef(null);
@@ -27,26 +27,53 @@ const MainNavigation = () => {
     { path: "/signup", text: "Sign Up" },
   ];
 
+  const navLinks2 = [
+    { path: "/faq", text: "FAQ" },
+    { path: "/my-complaints", text: "My Complaints" },
+    { path: "/create-complaint", text: "Create Complaint" },
+  ];
+
+  const navigate = useNavigate();
+
+  const ctx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    ctx.onLogout();
+    navigate('/login')
+  };
+
   return (
     <nav className="grad">
       <div className="nav-center">
         <div className="nav-header">
-          <h2>Demo</h2>
+          <h2>CMS</h2>
           <button className="nav-toggle" onClick={toggleLinks}>
             {showLinks ? <FaRegWindowMinimize /> : <FaBars />}
           </button>
         </div>
+          <div
+            className="links-container"
+            ref={linksContainerRef}
+            style={linkStyles}
+          >
+            <ul className="links" ref={linksRef}>
+              {
+                !ctx.isLoggedIn ?
+                  navLinks.map((navLink, index) => (
+                    <NavbarLink key={index} path={navLink.path} text={navLink.text} />
+                  ))
+                :
+                  <>
+                    {
+                      navLinks2.map((navLink, index) => (
+                        <NavbarLink key={index} path={navLink.path} text={navLink.text} />
+                      ))
+                    }
 
-        <div
-          className="links-container"
-          ref={linksContainerRef}
-          style={linkStyles}
-        >
-          <ul className="links" ref={linksRef}>
-            {navLinks.map((navLink, index) => (
-              <NavbarLink key={index} path={navLink.path} text={navLink.text} />
-            ))}
-          </ul>
+                    <li><a onClick={logoutHandler} style={{cursor: 'pointer'}}>Logout</a></li>
+                  </>
+              }
+            </ul>
         </div>
       </div>
     </nav>

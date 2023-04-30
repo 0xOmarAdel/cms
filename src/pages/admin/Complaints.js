@@ -1,176 +1,61 @@
 import React, { useCallback, useEffect, useState } from "react";
-import PaginationHandler from "../../UI/PaginationHandler";
-import { Link, useParams } from "react-router-dom";
-import DateFormatter from "../../UI/DateFormatter";
-
-import dummyData from "../../dummy-data.json";
-import Badge from "../../UI/Badge";
 import useSearch from "../../hooks/useSearch";
 import useHttp from "../../hooks/useHttp";
-import SearchBar from "../../UI/SearchBar";
-import SelectBar from "../../UI/SelectBar";
-import dynamicSort from "../../utils/dynamicSort";
-import Loading from "../../UI/Loading";
+import Table from "../../components/Table";
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
   const [sortBy, setSortBy] = useState('id');
   const { isLoading, error, sendRequest: getComplaints } = useHttp();
-  const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch();
-  const dataHandler = useCallback(
-    (data) => {
-      setComplaints(data);
-      setOriginalArray(data);
-    },
-    [setOriginalArray]
-  );
+  const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch('title');
+  const [resultAfterFiler, setResultAfterFiler] = useState(filteredArray);
+  const [activeFilter, setActiveFilter] = useState();
 
-  const searchHandler = (value) => { filterArray("title", value); };
+  const searchHandler = (value) => { 
+    filterArray(value);
+    setActiveFilter(null);
+  };
   const sortHandler = (value) => { setSortBy(value); };
   const filterHandler = (property, value) => { 
-    const result = filteredArray.filter(element => element[property] === value);
-
-    console.log(filteredArray)
+    setResultAfterFiler(filteredArray.filter(element => element[property] === value));
+    setActiveFilter(value);
   }
 
   useEffect(() => {
     getComplaints(
       { url: "http://localhost:80/cms-api/complaints.php" },
-      dataHandler
+      (data) => {
+        setComplaints(data.map(element => ({...element, id: parseInt(element.id)})));
+        setOriginalArray(data.map(element => ({...element, id: parseInt(element.id)})));
+      }
     );
-  }, [getComplaints, dataHandler]);
+  }, [getComplaints]);
 
-  let { page: currentPage } = useParams();
-  const elementsPerPage = 10;
-  const start = (currentPage - 1) * elementsPerPage;
-  const end = start + elementsPerPage;
+  useEffect(() => {
+    setResultAfterFiler(filteredArray)
+  }, [filteredArray])
+  
+  const table = [
+    { colSize: 1, label: 'ID', value: 'id'},
+    { colSize: 3, label: 'Title', value: 'title'},
+    { colSize: 2, label: 'Category', value: 'categoryName'},
+    { colSize: 2, label: 'User', value: 'userName'},
+    { colSize: 2, label: 'Created At', value: 'date_created', isDate: true },
+    { colSize: 2, label: 'Status', value: 'status', isStatus: true }
+  ];
 
-  if (dummyData.complaints.length === 0) {
-    return (
-      <div className="row">
-        <div className="col-12">
-          <h1 className="mb-4">Complaints</h1>
-          <p className="error-message">Found 0 records.</p>
-        </div>
-      </div>
-    );
-  };
-
-  if (isLoading) { return <Loading />; };
-  if (error) { return error; };
-
+  const badges = [
+    { label: 'Pending', attr: 'status', value: '1' },
+    { label: 'Closed', attr: 'status', value: '2' }
+  ];
+  
   return (
-    <>
-      <div className="row">
-        <div className="col-12">
-          <h1 className="mb-4">Complaints</h1>
-          <div className="mb-3">
-            <div className="row">
-              <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
-                <SearchBar value={inputValue} onChange={(e) => searchHandler(e.target.value)} />
-              </div>
-              <div className="col-auto d-flex align-items-center">
-                <ul className=" d-flex">
-                  <li>
-                    <Badge className="me-3" text="Pending" onClick={() => filterHandler('title', 'idk man')} />
-                  </li>
-                  <li>
-                    <Badge text="Closed" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="table-heading row d-none d-lg-flex py-3">
-            <div className="col-1">
-              <p onClick={() => sortHandler('id')}>ID</p>
-            </div>
-            <div className="col-3">
-              <p onClick={() => sortHandler('title')}>Title</p>
-            </div>
-            <div className="col-2">
-              <p onClick={() => sortHandler('categoryName')}>Category</p>
-            </div>
-            <div className="col-2">
-              <p onClick={() => sortHandler('userName')}>User</p>
-            </div>
-            <div className="col-2">
-              <p onClick={() => sortHandler('date_created')}>Created At</p>
-            </div>
-            <div className="col-2">
-              <p onClick={() => sortHandler('last_modified')}>Last Modified</p>
-            </div>
-          </div>
-
-          {filteredArray.sort(dynamicSort(sortBy))
-            .slice(start, end)
-            .map((complaint) => (
-              <div key={complaint.id} className="table-row py-3">
-                <Link to={`/admin/complaint/${complaint.id}`}>
-                  <div className="row">
-                    <div className="d-none d-lg-block col-1">
-                      <p>{complaint.id}</p>
-                    </div>
-                    <div className="d-none d-lg-block col-3">
-                      <p>{complaint.title}</p>
-                    </div>
-                    <div className="d-none d-lg-block col-2">
-                      <p>{complaint.categoryName}</p>
-                    </div>
-                    <div className="d-none d-lg-block col-2">
-                      <p>{complaint.userName}</p>
-                    </div>
-                    <div className="d-none d-lg-block col-2">
-                      <p>
-                        <DateFormatter date={complaint.date_created} />
-                      </p>
-                    </div>
-                    <div className="d-none d-lg-block col-2">
-                      <p>
-                        <DateFormatter date={complaint.last_modified} />
-                      </p>
-                    </div>
-
-                    <div className="d-block d-lg-none col-12">
-                      <p>ID: {complaint.id}</p>
-                    </div>
-                    <div className="d-block d-lg-none col-12">
-                      <p>Title: {complaint.title}</p>
-                    </div>
-                    <div className="d-block d-lg-none col-12">
-                      <p>Category Name: {complaint.categoryName}</p>
-                    </div>
-                    <div className="d-block d-lg-none col-12">
-                      <p>User: {complaint.userName}</p>
-                    </div>
-                    <div className="d-block d-lg-none col-12">
-                      <p>
-                        Date Created:{" "}
-                        <DateFormatter date={complaint.date_created} />
-                      </p>
-                    </div>
-                    <div className="d-block d-lg-none col-12">
-                      <p>
-                        Last Updated:{" "}
-                        <DateFormatter date={complaint.last_modified} />
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-          ))}
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12">
-          <PaginationHandler
-            currentPage={currentPage}
-            elementsPerPage={elementsPerPage}
-            dataLength={filteredArray.length}
-          />
-        </div>
-      </div>
-    </>
+    <Table 
+      title='Complaints' searchInputValue={inputValue} searchHandler={searchHandler} elementsPerPage={10} pagination={true}
+      sortBy={sortBy} sortHandler={sortHandler}
+      filterHandler={filterHandler} filteredArray={resultAfterFiler} badges={badges} activeFilter={activeFilter} search={true} 
+      isLoading={isLoading} error={error} elements={complaints} linkTo='/admin/complaint/' table={table}
+    />
   );
 };
 

@@ -183,43 +183,10 @@
   letter-spacing: 1.6px;
 }
 
-footer h4, footer h5 {
-  font-size: 20px;
-}
-
-footer p {
+footer .copyright p {
   line-height: 1.8;
-  font-size: 16px;
+  font-size: 18px;
   color: #565656;
-}
-
-footer .links ul li a {
-  color: #565656;
-  font-weight: 500;
-  font-size: 17px;
-  transition: all 0.6s;
-}
-
-footer .links ul li a:hover {
-  color: #056dbb !important;
-  opacity: 1;
-}
-
-footer .links ul li {
-  font-size: 16px;
-  line-height: 1.8;
-  letter-spacing: .8px;
-  opacity: 0.7;
-}
-
-footer .copyright ul li {
-  display: inline-block;
-}
-
-footer .copyright ul li a i {
-  font-size: 30px;
-  position: relative;
-  left: -5px;
 }
 
 .main {
@@ -228,6 +195,19 @@ footer .copyright ul li a i {
   position: relative;
   z-index: 1;
   margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+@media (min-width: 800px){
+  .main {
+    padding-top: 100px;
+  }
+}
+
+@media (min-width: 992px){
+  .main {
+    padding-top: 80px;
+  }
 }
 
 .main:after {
@@ -270,7 +250,6 @@ footer .copyright ul li a i {
 .form-control:focus {
   border-color: #056dbb75;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem #056dbb75;
 }
 
 .form-control:disabled {
@@ -374,6 +353,11 @@ textarea {
   border-bottom: 1px solid #11111152;
 }
 
+.admin-page-content .table-heading svg {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
 .search-input::before {
   font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -410,4 +394,19 @@ textarea {
 .badge:hover,
 .badge.active {
   opacity: 1;
+}
+
+.error-text {
+  color: #b40e0e;
+  line-height: 2;
+}
+
+.invalid  {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid:focus {
+  border-color: #b40e0e;
+  background-color: #fbe8d2;
 }

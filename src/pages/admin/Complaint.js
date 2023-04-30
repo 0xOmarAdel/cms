@@ -1,87 +1,116 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Button from '../../UI/Button';
 import ScrollableDiv from '../../UI/ScrollableDiv';
 
 import classes from '../Complaint.module.css'
 import DateFormatter from '../../UI/DateFormatter';
-import {StatusValue} from '../../UI/StatusFormatter';
+import StatusFormatter from '../../UI/StatusFormatter';
+import useInput from '../../hooks/useInput';
+import useHTTP from '../../hooks/useHttp';
 
 const Complaint = () => {
   const { id } = useParams();
 
   const [complaint, setComplaint] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState('');
 
-  const getComplaint = useCallback(async () => {
-    const response = await fetch(
-      'http://localhost:80/cms-api/getComplaintDetails.php', 
-      {
+  const { isLoading, error, sendRequest: getComplaint } = useHTTP();
+  const { isLoading: messagesIsLoading, error: messagesHasError, sendRequest: getMessages } = useHTTP();
+  const { isLoading: sendingMessagesIsLoading, error: sendingMessagesHasError, sendRequest: sendMessage } = useHTTP();
+  const { isLoading: closeComplaintIsLoading, error: closeComplaintHasError, sendRequest: closeComplaint } = useHTTP();
+
+  const {
+    value: enteredMessage,
+    valueIsValid: enteredMessageIsValid,
+    hasError: messageInputHasError,
+    valueChangeHandler: messageInputChangeHandler,
+    inputBlurHandler: messageInputBlurHandler,
+    reset: resetMessageInput
+  } = useInput(value => value.trim() !== '');
+
+  const formIsValid = enteredMessageIsValid;
+
+  const messageInputClasses = messageInputHasError ? 'form-control invalid' : 'form-control';
+
+  const getComplaintHandler = useCallback(() => {
+    getComplaint(
+      { 
+        url: "http://localhost:80/cms-api/getComplaintDetails.php",
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(id),
-      }
+        body: id
+      },
+      (data) => {setComplaint(data);}
     );
+  }, [getComplaint, id]);
 
-    const data = await response.json();
-  
-    setComplaint(data);
-  }, [id]);
+  useEffect(() => {
+    getComplaintHandler()
+  }, [getComplaintHandler]);
 
-  const getMessages = useCallback(async () => {
-    const response = await fetch(
-      'http://localhost:80/cms-api/getComplaintMessages.php', 
-      {
+  const getMessagesHandler = useCallback(() => {
+    getMessages(
+      { 
+        url: "http://localhost:80/cms-api/getComplaintMessages.php",
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(id),
+        body: id
+      },
+      (data) => {
+        setMessages(data);
       }
     );
+  }, [getMessages, id]);
 
-    const data = await response.json();
+  useEffect(() => {
+    getMessagesHandler()
+  }, [getMessagesHandler]);
   
-    setMessages(data);
-  }, [id]);
-
-  useEffect(() => {
-    getComplaint();
-  }, [getComplaint]);
-
-  useEffect(() => {
-    getMessages();
-  }, [getMessages]);
-
-  const changeHandler = (event) => {
-    const msg = event.target.value;
-    
-    setMessage(msg);
-  };
-
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      'http://localhost:80/cms-api/submitMessage.php', 
+    if(!formIsValid){ return; }
+
+    sendMessage(
       {
+        url: 'http://localhost:80/cms-api/submitMessage.php', 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({message, complaintId: parseInt(id), from: 1}),
+        body: {message: enteredMessage, complaintId: parseInt(id), from: 1},
+      },
+      (data) => {
+        if(data.status === 1){
+          getMessagesHandler();
+        }
       }
-    );
+    )
 
-    const data = await response.json();
-
-    if(data.status === 1){
-      getMessages();
-    }
+    resetMessageInput();
   }
+
+  const closeComplaintHandler = useCallback(async () => {
+    closeComplaint(
+      {
+        url: 'http://localhost:80/cms-api/closeComplaint.php', 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: id
+      },
+      (data) => {
+        if (data.status === 1) {
+          getComplaintHandler();
+        };
+      }
+    )
+  }, [closeComplaint, getComplaintHandler, id]);
 
   return (
     <div className={`row ${classes.complaint}`}>
@@ -107,15 +136,23 @@ const Complaint = () => {
           </ScrollableDiv>
         </div>
         <form>
-        <div className='row'>
-          <div className='col-11 p-0'>
-            <textarea className="form-control" placeholder='Message' style={{ height: '20px !important' }} onChange={changeHandler} />
+          <div className='row'>
+            <div className='col-11 p-0'>
+              <textarea 
+                className={messageInputClasses} 
+                placeholder='Message' 
+                style={{ height: '20px !important' }} 
+                onChange={messageInputChangeHandler} 
+                onBlur={messageInputBlurHandler} 
+                value={enteredMessage} 
+              />
+              {messageInputHasError && ( <p className='error-text mt-2'>Message must not be empty.</p> )}
+            </div>
+            <div className='col-1 mt-1 pe-0'>
+              <i className={`fa-solid fa-location-arrow ${classes.send}`} onClick={sendMessageHandler}></i>
+            </div>
           </div>
-          <div className='col-1 mt-1 pe-0'>
-            <i className={`fa-solid fa-location-arrow ${classes.send}`} onClick={sendMessageHandler}></i>
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
       <div className='col-sm-12 col-lg-4 ps-5'>
         <h2 className='mb-4'>Complaint Details</h2>
@@ -133,10 +170,15 @@ const Complaint = () => {
             <p>Created At: <DateFormatter date={complaint.date_created} /></p>
           </li>
           <li>
-            <p>Last Updated: <DateFormatter date={complaint.last_modified} /></p>
-          </li>
-          <li>
-            <p>Status: <StatusValue status={complaint.status} /> <i className="fa-solid fa-lock"></i></p>
+            <p>
+              Status: <StatusFormatter status={complaint.status} /> 
+              {
+                complaint.status === '2' ? 
+                  <i className="fa-solid fa-lock ms-2"></i> 
+                : 
+                  <i className="fa-solid fa-lock-open ms-2" onClick={closeComplaintHandler}></i>
+              }
+            </p>
           </li>
         </ul>
         <h2  className='mb-4'>User Details</h2>

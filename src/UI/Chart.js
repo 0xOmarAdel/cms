@@ -22,6 +22,16 @@ ChartJS.register(
 
 export function Chart(props) {
   const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let result = [];
+
+  for (const [, value] of Object.entries(labels)) {
+    for (var x in props.data) {
+      if (value === props.data[x].month) {
+        result.push(parseInt(props.data[x].total));
+      }
+    }
+    result.push(0);
+  }
 
   const options = {
     responsive: true,
@@ -37,7 +47,7 @@ export function Chart(props) {
     datasets: [
       {
         label: props.label,
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        data: result,
         backgroundColor: '#0056b3',
       }
     ],

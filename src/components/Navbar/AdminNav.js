@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import Button from "../../UI/Button";
 import "./AdminNav.css";
 
-import React, { useState } from 'react';
-
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import AuthContext from "../../store/admin-auth-context";
 
 const Sidebar = (props) => {
+  const adminName= localStorage.getItem('adminName');
+
   const menuItem = [
     {
       path: 'dashboard',
@@ -33,7 +33,16 @@ const Sidebar = (props) => {
       name: 'Complaints',
       icon: 'fa-solid fa-envelope'
     }
-  ]
+  ];
+
+  const navigate = useNavigate();
+
+  const ctx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    ctx.onLogout();
+    navigate('/admin/login')
+  };
 
   return (
     <div className={props.menuIsOpened ? 'sidebar sidebar-opened' : 'sidebar'}>
@@ -52,14 +61,13 @@ const Sidebar = (props) => {
             </div>
             <div className={'d-flex align-items-center pe-0'}>
               <div>
-                <p className='admin-name mb-2'>Omar Mohamed</p>
+                <p className='admin-name mb-2'>{adminName}</p>
                 <p className='admin-role'>Administrator</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <ul>
         {
           menuItem.map((item, index) => (
@@ -71,8 +79,14 @@ const Sidebar = (props) => {
             </li>
           ))
         }
-      </ul>
 
+        <li className='mt-1' style={{cursor: 'pointer'}} onClick={logoutHandler}>
+          <a className='link d-flex align-items-center'>
+            <i className='fa-solid fa-arrow-up-right-from-square'></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
     </div>
   );
 };

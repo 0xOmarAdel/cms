@@ -5,6 +5,8 @@ import Button from '../UI/Button'
 import InputWithIcon from '../UI/InputWithIcon'
 import ShapeBottom from '../UI/ShapeBottom'
 import AuthContext from '../store/auth-context'
+import useHTTP from '../hooks/useHttp'
+import useInput from '../hooks/useInput'
 
 const SignUp = () => {
   const introTitle = 'Create an account!';
@@ -21,92 +23,158 @@ const SignUp = () => {
   
   }, [ctx])
 
-  const [inputs, setInputs] = useState({});
+  const { isLoading, error, sendRequest: userSignup } = useHTTP();
 
-  const changeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    
-    setInputs(values => ({ ...values, [name]: value }));
-  };
+  const {
+    value: enteredName,
+    valueIsValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameInputChangeHandler,
+    inputBlurHandler: nameInputBlurHandler,
+    reset: resetNameInput
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: enteredNationalId,
+    valueIsValid: enteredNationalIdIsValid,
+    hasError: nationalIdInputHasError,
+    valueChangeHandler: nationalIdInputChangeHandler,
+    inputBlurHandler: nationalIdInputBlurHandler,
+    reset: resetNationalIdInput
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: enteredEmail,
+    valueIsValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailInputChangeHandler,
+    inputBlurHandler: emailInputBlurHandler,
+    reset: resetEmailInput
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: enteredPhone,
+    valueIsValid: enteredPhoneIsValid,
+    hasError: phoneInputHasError,
+    valueChangeHandler: phoneInputChangeHandler,
+    inputBlurHandler: phoneInputBlurHandler,
+    reset: resetPhoneInput
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: enteredPassword,
+    valueIsValid: enteredPasswordIsValid,
+    hasError: passwordInputHasError,
+    valueChangeHandler: passwordInputChangeHandler,
+    inputBlurHandler: passwordInputBlurHandler,
+    reset: resetPasswordInput
+  } = useInput(value => value.trim() !== '');
+
+  const nameInputClasses = nameInputHasError ? 'py-4 invalid' : 'py-4';
+  const nationalIdInputClasses = nationalIdInputHasError ? 'py-4 invalid' : 'py-4';
+  const emailInputClasses = emailInputHasError ? 'py-4 invalid' : 'py-4';
+  const phoneInputClasses = phoneInputHasError ? 'py-4 invalid' : 'py-4';
+  const passwordInputClasses = passwordInputHasError ? 'py-4 invalid' : 'py-4';
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const response = await fetch(
-      'http://localhost:80/cms-api/signup.php', 
+    userSignup(
       {
+        url: 'http://localhost:80/cms-api/signup.php',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(inputs),
-      }
-    );
-
-    const data = await response.json();
-
-    console.log(data);
-
+        body: {
+          name: enteredName,
+          nationalId: enteredNationalId,
+          email: enteredEmail,
+          phone: enteredPhone,
+          password: enteredPassword
+        }
+      },
+      (data) => {  }
+    )
   };
 
   return (
     <div className='main d-flex align-items-center'>
       <div className='container h-100'>
-        <div className='row align-items-center h-100'>
+        <div className='row align-items-center h-100 m-3 m-sm-0'>
           <div className='col-sm-12 col-lg-7 mb-4 mb-lg-0'>
             <Intro title={introTitle} text={introText} />
           </div>
           <div className='col-sm-12 col-lg-5'>
-            <div className="form p-5 pb-4 m-5 me-0">
+            <div className="form p-5 pb-4 m-0 m-lg-5 me-lg-0">
               <p className="text-center font-weight-bold mb-4">Sign Up</p>
+              {error && <p className="error-text mb-3 text-center">An error occurred!</p>}
               <form onSubmit={submitHandler}>
                 <InputWithIcon
                   iconClasses='fas fa-user fa-fw'
-                  inputClasses='py-4'
+                  inputClasses={nameInputClasses}
                   type='text'
                   id='name'
                   name='name'
                   placeholder='Name'
-                  onChange={changeHandler}
+                  value={enteredName}
+                  onChange={nameInputChangeHandler}
+                  onBlur={nameInputBlurHandler}
                 />
+                {nameInputHasError && ( <p className='error-text mt-2'>Enter a valid name.</p> )}
                 <InputWithIcon
+                  divClasses='mt-4'
                   iconClasses='fas fa-id-card fa-fw'
-                  inputClasses='py-4'
+                  inputClasses={nationalIdInputClasses}
                   type='text'
                   id='nationalId'
                   name='nationalId'
                   placeholder='National ID'
-                  onChange={changeHandler}
+                  value={enteredNationalId}
+                  onChange={nationalIdInputChangeHandler}
+                  onBlur={nationalIdInputBlurHandler}
                 />
+                {nationalIdInputHasError && ( <p className='error-text mt-2'>Enter a valid national id.</p> )}
                 <InputWithIcon
+                  divClasses='mt-4'
                   iconClasses='fas fa-envelope-open fa-fw'
-                  inputClasses='py-4'
+                  inputClasses={emailInputClasses}
                   type='text'
                   id='email'
                   name='email'
                   placeholder='Email'
-                  onChange={changeHandler}
+                  value={enteredEmail}
+                  onChange={emailInputChangeHandler}
+                  onBlur={emailInputBlurHandler}
                 />
+                {emailInputHasError && ( <p className='error-text mt-2'>Enter a valid email.</p> )}
                 <InputWithIcon
+                  divClasses='mt-4'
                   iconClasses='fa-solid fa-phone fa-fw'
-                  inputClasses='py-4'
+                  inputClasses={phoneInputClasses}
                   type='text'
                   id='phone'
                   name='phone'
                   placeholder='Phone'
-                  onChange={changeHandler}
+                  value={enteredPhone}
+                  onChange={phoneInputChangeHandler}
+                  onBlur={phoneInputBlurHandler}
                 />
+                {phoneInputHasError && ( <p className='error-text mt-2'>Enter a valid phone number.</p> )}
                 <InputWithIcon
+                  divClasses='mt-4'
                   iconClasses='fas fa-key fa-fw'
-                  inputClasses='py-4'
+                  inputClasses={passwordInputClasses}
                   type='password'
                   id='password'
                   name='password'
                   placeholder='Password'
-                  onChange={changeHandler}
+                  value={enteredPassword}
+                  onChange={passwordInputChangeHandler}
+                  onBlur={passwordInputBlurHandler}
                 />
-                <Button type='submit' text='Sign Up' className='full-width mt-5' style={{fontSize: '16px'}} />
+                {passwordInputHasError && ( <p className='error-text'>Enter a valid password.</p> )}
+                <Button type='submit' text='Sign Up' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading} />
                 <hr className='mt-5 mb-4' />
                 <p className="text-center text-muted">Already have an account? <Link to="/login" className='text-primary'>Log In</Link></p>
               </form>

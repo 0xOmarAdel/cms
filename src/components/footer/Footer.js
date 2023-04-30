@@ -1,16 +1,19 @@
 import React from 'react'
-import Copyright from './Copyright'
-import Links from './Links'
-import Newsletter from './Newsletter'
 
 const Footer = () => {
+  const icons = [
+    {icon: 'fab fa-facebook-square fa-fw', url: '#'},
+    {icon: 'fab fa-google-plus-g fa-fw', url: '#'},
+    {icon: 'fab fa-twitter fa-fw', url: '#'},
+  ];
+
   return (
     <footer className='pb-4'>
       <div className="container">
-        <div className="row">
-          <Copyright />
-          <Links />
-          <Newsletter />
+        <div className="row text-center">
+          <div className="copyright col-12">
+            <p>© 2023 CMS All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

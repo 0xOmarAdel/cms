@@ -19,6 +19,7 @@ import Complaints from "./pages/admin/Complaints";
 import AdminComplaint from "./pages/admin/Complaint";
 import Categories from "./pages/admin/Categories";
 import AdminLogIn from "./pages/admin/LogIn";
+import AdminPage from "./pages/admin/AdminPage";
 
 const router = createBrowserRouter([
   {
@@ -40,15 +41,15 @@ const router = createBrowserRouter([
       { path: '/my-complaints', element: <MyComplaints /> },
       { path: '/my-complaints/:page', element: <MyComplaints /> },
       { path: '/complaint/:complaintId', element: <Complaint /> },
-
     ],
   },
   {
     path: '/admin',
+    element: <AdminRootLayout />,
     children: [
       { path: 'login', element: <AdminLogIn /> },
       {
-        element: <AdminRootLayout />,
+        element: <AdminPage />,
         children: [
           { index: true, element: <Dashboard /> },
           { path: 'dashboard', element: <Dashboard /> },

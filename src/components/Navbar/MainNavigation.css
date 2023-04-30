@@ -19,6 +19,8 @@
 
 .nav-header h2 {
   color: var(--white);
+  font-size: 40px;
+  letter-spacing: 5px;
 }
 
 .nav-toggle {
@@ -41,6 +43,7 @@
 }
 
 .grad {
+  position: static;
   background: linear-gradient(to right, #090979, #0072ff) border-box;
 }
 
@@ -52,6 +55,7 @@
   display: block;
   padding: 0.6rem 1.2rem;
   transition: var(--transition);
+  font-size: 20px;
 }
 
 .links-container .links a:hover {
@@ -67,6 +71,12 @@
 }
 
 @media screen and (min-width: 800px) {
+  .grad{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    background: none;
+  }
   .nav-toggle {
     display: none;
   }
@@ -86,7 +96,7 @@
   }
   .links-container .links {
     display: flex;
-    gap: .6rem;
+    gap: 1rem;
   }
   .links-container .links a {
     padding: 0;

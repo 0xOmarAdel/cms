@@ -1,57 +1,67 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import Alert from '../UI/Alert'
 import Hero from '../UI/Hero'
-import Pagination from '../UI/Pagination'
-
 import classes from './MyComplaints.module.css'
-import AuthContext from '../store/auth-context'
 import PaginationHandler from '../UI/PaginationHandler'
+import useHTTP from '../hooks/useHttp'
+import Loading from '../UI/Loading'
+import StatusFormatter from '../UI/StatusFormatter'
+import DateFormatter from '../UI/DateFormatter'
 
 const MyComplaints = () => {
-  const ctx = useContext(AuthContext);
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    console.log(ctx.isLoggedIn)
-  }, [ctx.isLoggedIn])
-
   const [userComplaints, setUserComplaints] = useState([]);
+  const { isLoading, error, sendRequest: getCategories } = useHTTP();
 
-  const getUserComplaints = useCallback(async () => {
-    const response = await fetch(
-      'http://localhost:80/cms-api/getUserComplaints.php', 
-      {
+  const dataHandler = useCallback(
+    (data) => {
+      setUserComplaints(data);
+    },
+    []
+  );
+
+  useEffect(() => {
+    getCategories(
+      { 
+        url: "http://localhost:80/cms-api/getUserComplaints.php",
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(localStorage.getItem('nationalId')),
-      }
+        body: localStorage.getItem('id')
+      },
+      dataHandler
     );
-
-    const data = await response.json();
-    console.log(data)
-  
-    setUserComplaints(data);
-  }, []);
-
-  useEffect(() => {
-    getUserComplaints();
-  }, [getUserComplaints]);
+  }, [getCategories, dataHandler]);
 
   let { page: currentPage } = useParams();
-
   const elementsPerPage = 10;
-  const pagesNumber = Math.ceil(userComplaints.length / elementsPerPage) === 0 ? 1 : Math.ceil(userComplaints.length / elementsPerPage);
-
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
 
+  if (isLoading) { 
+    return (
+      <>
+        <Hero title='My Complaints' />
+        <section className='complaints text-center'>
+          <Loading />
+        </section>
+      </>
+    ); 
+  };
+  if (error) { return (
+    <>
+      <Hero title='My Complaints' />
+      <section className='complaints text-center'>
+        {error}
+      </section>
+    </>
+  ); 
+};
   return (
     <>
       <Hero title='My Complaints' />
-      <section className='complaints'>
+      <section className='complaints px-3 px-sm-0'>
         <div className='container'>
           <div className='row'>
             <Alert path='/create-complaint' icon>Need help? create a new complaint from here.</Alert>
@@ -69,14 +79,11 @@ const MyComplaints = () => {
                     <div className='col-2'>
                       <p className='complaint-category'>{complaint.categoryName}</p>
                     </div>
-                    <div className='col-2'>
-                      <p className='complaint-date-created'>{complaint.date_created}</p>
+                    <div className='col-3'>
+                      <p className='complaint-date-created'><DateFormatter date={complaint.date_created} /></p>
                     </div>
-                    <div className='col-2'>
-                      <p className='complaint-last-updated'>{complaint.last_modified}</p>
-                    </div>
-                    <div className='col-1 pe-0 text-right'>
-                      <p className='complaint-status'>{complaint.status}</p>
+                    <div className='col-2 pe-0 text-right'>
+                      <p className='complaint-status'><StatusFormatter status={complaint.status} /></p>
                     </div>
                   </div>
                 </Link>

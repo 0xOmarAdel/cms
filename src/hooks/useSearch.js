@@ -1,14 +1,15 @@
 import React, { useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 
-const useSearch = () => {
+const useSearch = (searchAttr) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredArray, setFilteredArray] = useState([])
 
   let originalArray;
   const setOriginalArray = useCallback((arr) => {
     originalArray = arr;
-    filterArray('title', searchParams.get('search'))
+    setFilteredArray(arr);
+    filterArray(searchParams.get('search'))
   }, [])
 
   const deleteSearchParam = useCallback(() => {
@@ -27,10 +28,10 @@ const useSearch = () => {
     setSearchParams({search: searchValue});
   }, [])
 
-  const filterArray = useCallback((attr, searchValue) => {
+  const filterArray = useCallback((searchValue) => {
     if(searchValue !== null) {
       setSearchParam(searchValue);
-      setFilteredArray(originalArray.filter(element => element[attr].includes(searchValue)))
+      setFilteredArray(originalArray.filter(element => element[searchAttr].includes(searchValue)))
     } else {
       setFilteredArray(originalArray)
     }

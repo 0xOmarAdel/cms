@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import Pagination from './Pagination'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 const PaginationHandler = ({currentPage, dataLength, elementsPerPage}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const pagesNumber =
     Math.ceil(dataLength / elementsPerPage) === 0
       ? 1
@@ -25,11 +27,21 @@ const PaginationHandler = ({currentPage, dataLength, elementsPerPage}) => {
     if (currentPage === undefined) {
       if (location.pathname.charAt(location.pathname.length - 1) !== '/') {
         navigate(location.pathname + '/1')
+        navigate({
+          pathname: location.pathname + '/1',
+          search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+        });
       } else {
-        navigate(path + '1');
+        navigate({
+          pathname: path + '1',
+          search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+        });
       }
     } else if (isNaN(currentPage) || !pages.includes(parseInt(currentPage))) {
-      navigate(path + '1');
+      navigate({
+        pathname: path + '1',
+        search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+      });
     }
   })
 

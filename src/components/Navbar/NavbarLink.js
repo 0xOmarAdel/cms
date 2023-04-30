@@ -6,7 +6,7 @@ const NavbarLink = (props) => {
     <li>
       <NavLink
         to={props.path}
-        className={({ isActive }) => (isActive ? "active-link" : "")}
+        className={({ isActive }) => (isActive ? "active" : "")}
       >
         {props.text}
       </NavLink>

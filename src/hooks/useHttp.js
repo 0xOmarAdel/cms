@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const useHTTP = () => {
   const [isLoading, setIsLoading] = useState(false);

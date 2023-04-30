@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogout: () => {},
-  onLogin: (id) => {}
+  onLogin: (adminName) => {}
 });
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem('id');
+    const storedUserLoggedInInformation = localStorage.getItem('adminName');
 
     if (storedUserLoggedInInformation) {
       setIsLoggedIn(true);
+    } else {
+      navigate('/admin/login');
     }
-  }, []);
+  }, [navigate]);
 
   const logoutHandler = () => {
-    localStorage.removeItem('id');
+    localStorage.removeItem('adminName');
     setIsLoggedIn(false);
   };
 
-  const loginHandler = (id) => {
-    localStorage.setItem('id', id);
+  const loginHandler = (adminName) => {
+    localStorage.setItem('adminName', adminName);
     setIsLoggedIn(true);
   };
 
