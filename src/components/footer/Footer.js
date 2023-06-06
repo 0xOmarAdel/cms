@@ -11,8 +11,8 @@ const Footer = () => {
     <footer className='pb-4'>
       <div className="container">
         <div className="row text-center">
-          <div className="copyright col-12">
-            <p>© 2023 CMS All rights reserved.</p>
+          <div className="col-12">
+            <p className='text-muted'>© 2023 CMS All rights reserved.</p>
           </div>
         </div>
       </div>

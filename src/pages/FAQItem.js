@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Alert from "../UI/Alert";
 import Hero from "../UI/Hero";
 
@@ -41,7 +41,19 @@ const FAQItem = () => {
     setActiveId(newActiveId);
   };
 
+  const navigate = useNavigate();
+
   const params = useParams();
+  
+  useEffect(() => {
+    const validItems = ['water', 'electricity', 'gas', 'garbage', 'traffic', 'roads', 'railways', 'rain', 'telephone', 'internet'];
+
+    if(!validItems.includes(params.item)){
+      navigate('/faq');
+    };
+  }, [params.item, navigate])
+  
+
   return (
     <>
       <Hero title="Frequently Asked Questions" />

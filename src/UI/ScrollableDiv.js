@@ -1,10 +1,15 @@
 import React from 'react'
 
-import classes from './ScrollableDiv.module.css'
+import "./ScrollableDiv.css";
 
 const ScrollableDiv = (props) => {
   return (
-    <div className={classes.scrollableDiv + ' ' + props.className} style={props.style}>{props.children}</div>
+    <div 
+      className={props.className ? 'scrollableDiv ' + props.className : 'scrollableDiv'} 
+      style={props.style ? props.style : ''}
+    >
+      {props.children}
+    </div>
   )
 }
 

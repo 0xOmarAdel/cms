@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom'
 
 import AdminNav from '../../components/Navbar/AdminNav'
 
+import './AdminPage.css'
+
 const AdminPage = () => {
   const [menuIsOpened, setMenuIsOpened] = useState(false);
 

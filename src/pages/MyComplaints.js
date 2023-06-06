@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Alert from '../UI/Alert'
 import Hero from '../UI/Hero'
 import classes from './MyComplaints.module.css'
@@ -20,7 +20,13 @@ const MyComplaints = () => {
     []
   );
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (!localStorage.getItem('id')) {
+      navigate('/login')
+    }
+
     getCategories(
       { 
         url: "http://localhost:80/cms-api/getUserComplaints.php",
@@ -32,7 +38,7 @@ const MyComplaints = () => {
       },
       dataHandler
     );
-  }, [getCategories, dataHandler]);
+  }, [navigate, getCategories, dataHandler]);
 
   let { page: currentPage } = useParams();
   const elementsPerPage = 10;

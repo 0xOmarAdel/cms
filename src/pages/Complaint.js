@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ScrollableDiv from '../UI/ScrollableDiv'
 import classes from './Complaint.module.css'
 import DateFormatter from '../UI/DateFormatter'
@@ -31,22 +31,6 @@ const Complaint = () => {
 
   const messageInputClasses = messageInputHasError ? 'form-control invalid' : 'form-control';
 
-  useEffect(() => {
-    getComplaint(
-      { 
-        url: "http://localhost:80/cms-api/getComplaintDetails.php",
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: complaintId
-      },
-      (data) => {
-        setComplaint(data);
-      }
-    );
-  }, [getComplaint, complaintId]);
-
   const getMessagesHandler = useCallback(() => {
     getMessages(
       { 
@@ -63,9 +47,29 @@ const Complaint = () => {
     );
   }, [getMessages, complaintId]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    getMessagesHandler()
-  }, [getMessagesHandler]);
+    if (!localStorage.getItem('id')) {
+      navigate('/login')
+    }
+    
+    getComplaint(
+      { 
+        url: "http://localhost:80/cms-api/getComplaintDetails.php",
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: complaintId
+      },
+      (data) => {
+        setComplaint(data);
+      }
+    );
+
+    getMessagesHandler();
+  }, [getComplaint, complaintId, getMessagesHandler]);
 
   const sendMessageHandler = async (e) => {
     e.preventDefault();
