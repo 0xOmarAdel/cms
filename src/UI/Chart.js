@@ -25,12 +25,13 @@ export function Chart(props) {
   let result = [];
 
   for (const [, value] of Object.entries(labels)) {
+    let val = 0;
     for (var x in props.data) {
       if (value === props.data[x].month) {
-        result.push(parseInt(props.data[x].total));
+        val = parseInt(props.data[x].total);
       }
     }
-    result.push(0);
+    result.push(val);
   }
 
   const options = {

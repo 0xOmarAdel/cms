@@ -49,6 +49,8 @@ const Complaint = () => {
 
   const navigate = useNavigate();
 
+  const userId = localStorage.getItem('id');
+
   useEffect(() => {
     if (!localStorage.getItem('id')) {
       navigate('/login')
@@ -61,9 +63,12 @@ const Complaint = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: complaintId
+        body: {userId, complaintId}
       },
       (data) => {
+        if (data.status === 0) {
+          navigate('/my-complaints')
+        }
         setComplaint(data);
       }
     );

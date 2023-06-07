@@ -12,6 +12,8 @@ const SignUp = () => {
   const introTitle = 'Create an account!';
   const introText = 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum.';
   
+  const [signupStatus, setSignupStatus] = useState(false);
+
   const ctx = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -76,6 +78,8 @@ const SignUp = () => {
   const phoneInputClasses = phoneInputHasError ? 'py-4 invalid' : 'py-4';
   const passwordInputClasses = passwordInputHasError ? 'py-4 invalid' : 'py-4';
 
+  const formIsValid = enteredNameIsValid && enteredNationalIdIsValid && enteredEmailIsValid && enteredPhoneIsValid && enteredPasswordIsValid;
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -94,7 +98,9 @@ const SignUp = () => {
           password: enteredPassword
         }
       },
-      (data) => {  }
+      (data) => { 
+        setSignupStatus(data.status);
+       }
     )
   };
 
@@ -109,6 +115,9 @@ const SignUp = () => {
             <div className="form p-5 pb-4 m-0 m-lg-5 me-lg-0">
               <p className="text-center font-weight-bold mb-4">Sign Up</p>
               {error && <p className="error-text mb-3 text-center">An error occurred!</p>}
+              {signupStatus == 1 && <p className="success-text mb-3 text-center">Account created successfully!</p>}
+              {signupStatus == 2 && <p className="error-text mb-3 text-center">National Id is already used!</p>}
+              {signupStatus == 3 && <p className="error-text mb-3 text-center">Email is already used!</p>}
               <form onSubmit={submitHandler}>
                 <InputWithIcon
                   iconClasses='fas fa-user fa-fw'
@@ -174,7 +183,7 @@ const SignUp = () => {
                   onBlur={passwordInputBlurHandler}
                 />
                 {passwordInputHasError && ( <p className='error-text'>Enter a valid password.</p> )}
-                <Button type='submit' text='Sign Up' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading} />
+                <Button type='submit' text='Sign Up' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading | !formIsValid} />
                 <hr className='mt-5 mb-4' />
                 <p className="text-center text-muted">Already have an account? <Link to="/login" className='text-primary'>Log In</Link></p>
               </form>

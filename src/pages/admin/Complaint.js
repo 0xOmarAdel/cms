@@ -35,12 +35,12 @@ const Complaint = () => {
   const getComplaintHandler = useCallback(() => {
     getComplaint(
       { 
-        url: "http://localhost:80/cms-api/getComplaintDetails.php",
+        url: "http://localhost:80/cms-api/getComplaintAndUserDeatils.php",
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: id
+        body: {complaintId: id}
       },
       (data) => {setComplaint(data);}
     );

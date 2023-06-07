@@ -120,7 +120,7 @@ const LogIn = () => {
                   onBlur={passwordInputBlurHandler}
                 />
                 {passwordInputHasError && ( <p className='error-text mt-2'>Password must not be empty.</p> )}
-                <Button type='submit' text='Log In' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading} />
+                <Button type='submit' text='Log In' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading | !formIsValid} />
                 <hr className='mt-5 mb-4' />
                 <p className="text-center text-muted">Don't have an account? <Link to="/signup" className='text-primary'>Sign Up</Link></p>
               </form>

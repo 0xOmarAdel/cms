@@ -92,7 +92,7 @@ const Login = () => {
             <input type="password" id="password" name="password" className={passwordInputClasses} value={enteredPassword} onChange={passwordInputChangeHandler} onBlur={passwordInputBlurHandler} />
             {passwordInputHasError && ( <p className='error-text mt-2'>Password must not be empty.</p> )}
           </div>
-          <button type="submit" disabled={isLoading}>Login</button>
+          <button type="submit" disabled={isLoading | !formIsValid}>Login</button>
         </form>
       </div>
     </div>
