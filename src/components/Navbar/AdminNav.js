@@ -55,7 +55,7 @@ const Sidebar = (props) => {
           <div className='admin-info d-flex justify-content-center m-auto'>
             <div className='admin-pic m-auto'>
               <img
-                src='https://avatarfiles.alphacoders.com/161/thumb-161432.png'
+                src='https://cdn-icons-png.flaticon.com/256/149/149071.png'
                 alt='Admin'
               />
             </div>
