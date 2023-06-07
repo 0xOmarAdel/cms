@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import classes from './Alert.module.css';
+import './Alert.css';
 
 const Alert = (props) => {
   return (
     <Link to={props.path} className={`d-block mb-4 p-0 ${props.className ? props.className : ''}`}>
-      <div className={classes.alert}>
+      <div className='alert'>
         <div className='row align-items-center'>
           {
             props.icon

@@ -3,17 +3,38 @@
   font-size: 16px;
   font-weight: 400;
 
-  --primary-color: blue;
+  --primary-color-1: #0072ff;
+  --primary-color-2: #0056b3;
+  --primary-color-3: #1055b6;
+  --primary-color-4: #025fe6;
+  --primary-color-5: #090979;
   --secondary-color: gray;
+  --error-color: #b40e0e;
+  --black-color: #111111;
+  --muted-color: #6c757d;
+
+  --background-color: #f2f5f7;
+  --border-color: #1111114f;
+
+  --body-bg-color: #fff;
+  --body-color-light: #8b939c;
+  --page-bg-color: #f2f5f7;
+  --body-color: #3d4954;
+  --card-content: #242526;
+  --sec-border: #ebedef;
+  --darknwhite: #e9ecef;
 }
 
 * {
+  margin:0;
+  padding:0;
+  text-decoration: none;
   box-sizing: border-box;
-  margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body::-webkit-scrollbar {
-  width: 0.7em;
+  width: 0.5em;
 }
 
 body::-webkit-scrollbar-track {
@@ -52,5 +73,6 @@ hr {
 }
 
 textarea {
+  height: 250px !important;
   resize: none;
 }

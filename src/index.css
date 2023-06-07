@@ -1,3 +1,48 @@
+.shadow {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px!important;
+}
+
+.w-90vw {
+  width: 90vw;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 6rem;
+  height: 6rem;
+  border: 5px solid var(--grey-400);
+  border-radius: 50%;
+  border-top-color: var(--primary-500);
+  animation: spinner 0.6s linear infinite;
+  margin: 0 auto;
+}
+
+.active-link {
+  color: #025fe6;
+}
+
+.menu-close {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  padding: 20px;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+
+.transparent {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  color: #fff;
+}
+
 .text-center {
   text-align: center;
 }
@@ -87,8 +132,7 @@
               linear-gradient(to right, #090979, #0072ff) border-box;
   border-radius: 15px;
   border: 3px solid transparent;
-  transition: all 2s ease-out;
-
+  transition: all 0.8s ease-out;
   position: relative;
   z-index: 2;
 }
@@ -99,7 +143,6 @@
   inset: 0; /* same as { top: 0; right: 0; bottom: 0; left: 0; } */
   background: linear-gradient(to right, #090979, #0072ff) border-box;
   border-radius: 10px;
-
   z-index: 1;
   opacity: 0;
   transition: opacity 0.5s linear;
@@ -117,6 +160,7 @@
 
 .faq-card:hover{
   cursor: pointer;
+  border-color: white;
 }
 
 .faq-card:hover > * {
@@ -137,47 +181,25 @@
   letter-spacing: 1.6px;
 }
 
-footer h4, footer h5 {
-  font-size: 22px;
-}
-
-footer p {
-  line-height: 1.8;
-  color: #565656;
-}
-
-footer .links ul li a {
-  color: #565656;
-  font-weight: 500;
-  font-size: 18px;
-  transition: all 0.6s;
-}
-
-footer .links ul li a:hover {
-  color: #056dbb !important;
-  opacity: 1;
-}
-
-footer .links ul li {
-  font-size: 16px;
-  line-height: 1.8;
-  letter-spacing: .8px;
-  opacity: 0.7;
-}
-
-footer .copyright ul li {
-  display: inline-block;
-}
-
-footer .copyright ul li a i {
-  font-size: 30px;
-}
-
 .main {
   min-height: 100vh !important;
   background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg) no-repeat scroll center center/cover;
   position: relative;
   z-index: 1;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+@media (min-width: 800px){
+  .main {
+    padding-top: 100px;
+  }
+}
+
+@media (min-width: 992px){
+  .main {
+    padding-top: 80px;
+  }
 }
 
 .main:after {
@@ -220,7 +242,10 @@ footer .copyright ul li a i {
 .form-control:focus {
   border-color: #056dbb75;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem #056dbb75;
+}
+
+.form-control:disabled {
+  background-color: #e7e7e7;
 }
 
 .input-group {
@@ -234,7 +259,7 @@ footer .copyright ul li a i {
   min-width: 0;
 }
 
-.form i {
+.input-group i {
   width: 45px !important;
   background-color: #e8ebee;
   padding: 15px 0;
@@ -248,6 +273,40 @@ footer .copyright ul li a i {
   box-shadow: 00 5px 10px #00000024;
 }
 
-textarea {
-  height: 250px !important;
+@media screen and (max-width: 992px) {
+  .pd {
+    margin-bottom: 10px;
+  }  
+}
+
+.badge {
+  background-color: #0056b3;
+  opacity: 0.6;
+  color: white;
+  letter-spacing: 1px;
+  padding: 7px 15px;
+  border-radius: 15px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.badge:hover,
+.badge.active {
+  opacity: 1;
+}
+
+.error-text {
+  color: var(--error-color);
+  line-height: 2;
+  font-size: 16px !important;
+}
+
+.invalid {
+  border: 1px solid var(--error-color);
+  background-color: #fddddd;
+}
+
+.invalid:focus {
+  border-color: var(--error-color);
+  background-color: #fbe8d2;
 }
