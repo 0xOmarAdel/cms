@@ -301,6 +301,12 @@
   font-size: 16px !important;
 }
 
+.success-text {
+  color: #4a9b4f;
+  line-height: 2;
+  font-size: 16px !important;
+}
+
 .invalid {
   border: 1px solid var(--error-color);
   background-color: #fddddd;
