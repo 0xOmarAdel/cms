@@ -15,7 +15,7 @@ const Login = () => {
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
     reset: resetEmailInput
-  } = useInput(value => value.includes('@'));
+  } = useInput(value => value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/));
 
   const {
     value: enteredPassword,
@@ -24,7 +24,7 @@ const Login = () => {
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
     reset: resetPasswordInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 25);
 
   const emailInputClasses = emailInputHasError ? 'invalid' : '';
   const passwordInputClasses = passwordInputHasError ? 'invalid' : '';
@@ -90,7 +90,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" className={passwordInputClasses} value={enteredPassword} onChange={passwordInputChangeHandler} onBlur={passwordInputBlurHandler} />
-            {passwordInputHasError && ( <p className='error-text mt-2'>Password must not be empty.</p> )}
+            {passwordInputHasError && ( <p className='error-text mt-2'>Enter a valid password.</p> )}
           </div>
           <button type="submit" disabled={isLoading | !formIsValid}>Login</button>
         </form>
