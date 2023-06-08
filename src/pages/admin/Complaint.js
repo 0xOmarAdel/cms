@@ -173,7 +173,7 @@ const Complaint = () => {
             <p>
               Status: <StatusFormatter status={complaint.status} /> 
               {
-                complaint.status === '2' ? 
+                complaint.status === '1' ? 
                   <i className="fa-solid fa-lock ms-2"></i> 
                 : 
                   <i className="fa-solid fa-lock-open ms-2" onClick={closeComplaintHandler}></i>

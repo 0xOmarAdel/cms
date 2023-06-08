@@ -81,7 +81,7 @@ const CreateComplaint = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: {title: enteredTitle, message: enteredMessage, categoryId, userId, status: 1}
+        body: {title: enteredTitle, message: enteredMessage, categoryId, userId}
       },
       (data) => {
         if(data.status === 1){

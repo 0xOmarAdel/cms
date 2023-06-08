@@ -4,10 +4,8 @@ const StatusFormatter = ({status}) => {
   let st;
 
   if (status === '0') {
-    st = 'Opened'
-  } else if (status === '1') {
     st = 'Pending'
-  } else {
+  } else if (status === '1') {
     st = 'Closed'
   }
 
