@@ -34,7 +34,7 @@ const SignUp = () => {
     valueChangeHandler: nameInputChangeHandler,
     inputBlurHandler: nameInputBlurHandler,
     reset: resetNameInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 4 && value.trim().length <= 25);
 
   const {
     value: enteredNationalId,
@@ -43,7 +43,7 @@ const SignUp = () => {
     valueChangeHandler: nationalIdInputChangeHandler,
     inputBlurHandler: nationalIdInputBlurHandler,
     reset: resetNationalIdInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length === 14);
 
   const {
     value: enteredEmail,
@@ -52,7 +52,7 @@ const SignUp = () => {
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
     reset: resetEmailInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/));
 
   const {
     value: enteredPhone,
@@ -61,7 +61,7 @@ const SignUp = () => {
     valueChangeHandler: phoneInputChangeHandler,
     inputBlurHandler: phoneInputBlurHandler,
     reset: resetPhoneInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length === 11);
 
   const {
     value: enteredPassword,
@@ -70,7 +70,7 @@ const SignUp = () => {
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
     reset: resetPasswordInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 25);
 
   const nameInputClasses = nameInputHasError ? 'py-4 invalid' : 'py-4';
   const nationalIdInputClasses = nationalIdInputHasError ? 'py-4 invalid' : 'py-4';
@@ -100,6 +100,14 @@ const SignUp = () => {
       },
       (data) => { 
         setSignupStatus(data.status);
+
+        if(data.status === 1) {
+          resetNameInput();
+          resetNationalIdInput();
+          resetEmailInput();
+          resetPhoneInput();
+          resetPasswordInput();
+        }
        }
     )
   };
@@ -130,7 +138,7 @@ const SignUp = () => {
                   onChange={nameInputChangeHandler}
                   onBlur={nameInputBlurHandler}
                 />
-                {nameInputHasError && ( <p className='error-text mt-2'>Enter a valid name.</p> )}
+                {nameInputHasError && ( <p className='error-text mt-2'>Name must be [4, 25] characters.</p> )}
                 <InputWithIcon
                   divClasses='mt-4'
                   iconClasses='fas fa-id-card fa-fw'
@@ -182,7 +190,7 @@ const SignUp = () => {
                   onChange={passwordInputChangeHandler}
                   onBlur={passwordInputBlurHandler}
                 />
-                {passwordInputHasError && ( <p className='error-text'>Enter a valid password.</p> )}
+                {passwordInputHasError && ( <p className='error-text'>Password must be [10, 25] characters.</p> )}
                 <Button type='submit' text='Sign Up' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading | !formIsValid} />
                 <hr className='mt-5 mb-4' />
                 <p className="text-center text-muted">Already have an account? <Link to="/login" className='text-primary'>Log In</Link></p>

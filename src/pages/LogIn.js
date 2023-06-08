@@ -21,7 +21,7 @@ const LogIn = () => {
     valueChangeHandler: nationalIdInputChangeHandler,
     inputBlurHandler: nationalIdInputBlurHandler,
     reset: resetNationalIdInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length === 14);
 
   const {
     value: enteredPassword,
@@ -30,7 +30,7 @@ const LogIn = () => {
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
     reset: resetPasswordInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 25);
 
   const nationalIdInputClasses = nationalIdInputHasError ? 'py-4 invalid' : 'py-4';
   const passwordInputClasses = passwordInputHasError ? 'py-4 invalid' : 'py-4';
@@ -119,7 +119,7 @@ const LogIn = () => {
                   onChange={passwordInputChangeHandler}
                   onBlur={passwordInputBlurHandler}
                 />
-                {passwordInputHasError && ( <p className='error-text mt-2'>Password must not be empty.</p> )}
+                {passwordInputHasError && ( <p className='error-text mt-2'>Enter a valid password.</p> )}
                 <Button type='submit' text='Log In' className='full-width mt-4' style={{fontSize: '16px'}} disabled={isLoading | !formIsValid} />
                 <hr className='mt-5 mb-4' />
                 <p className="text-center text-muted">Don't have an account? <Link to="/signup" className='text-primary'>Sign Up</Link></p>
