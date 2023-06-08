@@ -16,6 +16,7 @@
   color: rgb(0 0 0 / 84%);
   line-height: 21px;
   letter-spacing: 1.5px;
+  word-break: break-all;
 }
 
 .complaint .message.sent {

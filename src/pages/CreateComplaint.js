@@ -21,7 +21,7 @@ const CreateComplaint = () => {
     valueChangeHandler: titleInputChangeHandler,
     inputBlurHandler: titleInputBlurHandler,
     reset: resetTitleInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 50);
 
   const {
     value: enteredCategory,
@@ -39,7 +39,7 @@ const CreateComplaint = () => {
     valueChangeHandler: messageInputChangeHandler,
     inputBlurHandler: messageInputBlurHandler,
     reset: resetMessageInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 50);
 
   const formIsValid = enteredMessageIsValid && enteredTitleIsValid;
 
@@ -83,7 +83,11 @@ const CreateComplaint = () => {
         },
         body: {title: enteredTitle, message: enteredMessage, categoryId, userId, status: 1}
       },
-      () => {navigate('/my-complaints');}
+      (data) => {
+        if(data.status === 1){
+          navigate('/my-complaints');
+        }
+      }
     )
   };
 
@@ -106,7 +110,7 @@ const CreateComplaint = () => {
                       onBlur={titleInputBlurHandler} 
                       value={enteredTitle}
                     />
-                    {titleInputHasError && ( <p className='error-text mt-2'>Title must not be empty.</p> )}
+                    {titleInputHasError && ( <p className='error-text mt-2'>Title must not be [10, 50] characters.</p> )}
                   </div>
                   <div className='col-6  mb-4'>
                     <select
@@ -129,7 +133,7 @@ const CreateComplaint = () => {
                       onBlur={messageInputBlurHandler} 
                       value={enteredMessage}
                     />
-                    {messageInputHasError && ( <p className='error-text mt-2'>Message must not be empty.</p> )}
+                    {messageInputHasError && ( <p className='error-text mt-2'>Message must be at least 50 characterss.</p> )}
                   </div>
                   <Button text='Cancel' className='me-4' onClick={() => { navigate('/my-complaints'); }} />
                   <Button text='Submit' disabled={submitComplaintIsLoading} />

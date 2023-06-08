@@ -26,7 +26,7 @@ const Complaint = () => {
     valueChangeHandler: messageInputChangeHandler,
     inputBlurHandler: messageInputBlurHandler,
     reset: resetMessageInput
-  } = useInput(value => value.trim() !== '');
+  } = useInput(value => value.trim().length >= 10);
 
   const formIsValid = enteredMessageIsValid;
 
@@ -146,7 +146,7 @@ const Complaint = () => {
                 onBlur={messageInputBlurHandler} 
                 value={enteredMessage} 
               />
-              {messageInputHasError && ( <p className='error-text mt-2'>Message must not be empty.</p> )}
+              {messageInputHasError && ( <p className='error-text mt-2'>Message must be at least 10 characters.</p> )}
             </div>
             <div className='col-1 mt-1 pe-0'>
               <i className={`fa-solid fa-location-arrow ${classes.send}`} onClick={sendMessageHandler}></i>
