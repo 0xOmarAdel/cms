@@ -8,7 +8,7 @@
 
   if (strlen($title) >= 10 && strlen($title) <= 50 && strlen($message) >= 50) {
     $sql = 'INSERT INTO complaint(title, categoryId, userId, status) 
-          VALUES(:title, :categoryId, :userId, :status)';
+            VALUES(:title, :categoryId, :userId, :status)';
           
     $stmt = $conn->prepare($sql);
 
@@ -22,7 +22,7 @@
       $id = $conn->lastInsertId();
 
       $sql2 = 'INSERT INTO message(complaintId, message.from, text) 
-              VALUES(:complaintId, :from, :text)';
+               VALUES(:complaintId, :from, :text)';
             
       $stmt2 = $conn->prepare($sql2);
 

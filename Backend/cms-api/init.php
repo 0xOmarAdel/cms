@@ -50,11 +50,11 @@
     "INSERT INTO `user` (`id`, `nationalId`, `name`, `email`, `phone`, `password`, `created_at`) VALUES (25, '30409930109999', 'Thomas Shelby', 'tommy@peakyblinders.com', '01083726128', '" . password_hash('30409930109999', PASSWORD_DEFAULT) . "' , current_timestamp());",
     "INSERT INTO `user` (`id`, `nationalId`, `name`, `email`, `phone`, `password`, `created_at`) VALUES (26, '30409930009999', 'Saul Goodman', 'saulgoodman@albuquerque.com', '01083726128', '" . password_hash('30409930009999', PASSWORD_DEFAULT) . "' , current_timestamp());",
 
-    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (1, 'Lorem ipsum dolor sit amet', '5', '1', '0', current_timestamp(), NULL);",
-    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (2, 'Cursus vitae congue mauris rhoncus', '1', '1', '0', current_timestamp(), NULL);",
-    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (3, 'Praesent semper feugiat nibh sed', '1', '1', '0', current_timestamp(), NULL);",
-    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (4, 'Posuere ac ut consequat semper', '5', '1', '0', current_timestamp(), NULL);",
-    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (5, 'Arcu cursus euismod quis viverra', '6', '1', '0', current_timestamp(), NULL);",
+    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (1, 'Lorem ipsum dolor sit amet', '5', '1', '1', current_timestamp(), NULL);",
+    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (2, 'Cursus vitae congue mauris rhoncus', '1', '1', '1', current_timestamp(), NULL);",
+    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (3, 'Praesent semper feugiat nibh sed', '1', '1', '1', current_timestamp(), NULL);",
+    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (4, 'Posuere ac ut consequat semper', '5', '1', '1', current_timestamp(), NULL);",
+    "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (5, 'Arcu cursus euismod quis viverra', '6', '1', '1', current_timestamp(), NULL);",
     "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (6, 'Mauris cursus mattis molestie', '7', '1', '0', current_timestamp(), NULL);",
     "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (7, 'Venenatis a condimentum vitae', '1', '1', '0', current_timestamp(), NULL);",
     "INSERT INTO `complaint` (`id`, `title`, `categoryId`, `userId`, `status`, `date_created`, `date_closed`) VALUES (8, 'Neque gravida in fermentum', '3', '1', '0', current_timestamp(), NULL);",
@@ -81,6 +81,12 @@
     "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (13, 13, '0', 'Ultrices neque ornare aenean euismod. Quis blandit turpis cursus in. Tristique et egestas quis ipsum suspendisse ultrices gravida. Donec adipiscing tristique risus nec.', current_timestamp());",
     "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (14, 14, '0', 'Varius duis at consectetur lorem. Et malesuada fames ac turpis egestas sed tempus urna. Tempus imperdiet nulla malesuada pellentesque elit.', current_timestamp());",
     "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (15, 15, '0', 'Purus semper eget duis at tellus at urna condimentum. Amet porttitor eget dolor morbi non arcu. Odio aenean sed adipiscing diam donec. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat in.', current_timestamp());",
+
+    "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (16, 1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor magna eget est lorem. Nisi scelerisque eu ultrices vitae auctor eu augue.', current_timestamp());",
+    "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (17, 2, 1, 'Gravida rutrum quisque non tellus orci ac auctor augue. Mauris pharetra et ultrices neque. Amet nisl purus in mollis.', current_timestamp());",
+    "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (18, 3, 1, 'Justo nec ultrices dui sapien eget mi proin. Sed felis eget velit aliquet sagittis id. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Eget lorem dolor sed viverra ipsum.', current_timestamp());",
+    "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (19, 4, 1, 'Justo nec ultrices dui sapien eget mi proin. Sed felis eget velit aliquet sagittis id. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Eget lorem dolor sed viverra ipsum.', current_timestamp());",
+    "INSERT INTO `message` (`id`, `complaintId`, `from`, `text`, `date`) VALUES (20, 5, 1, 'Fermentum iaculis eu non diam phasellus. Molestie ac feugiat sed lectus vestibulum mattis. Pellentesque diam volutpat commodo sed egestas egestas fringilla.', current_timestamp());",
   );
 
   $executedQueries = 0;
