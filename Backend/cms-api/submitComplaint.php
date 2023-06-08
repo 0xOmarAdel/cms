@@ -15,7 +15,7 @@
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':categoryId', $data->categoryId, PDO::PARAM_INT);
     $stmt->bindParam(':userId', $data->userId, PDO::PARAM_INT);
-    $stmt->bindParam(':status', $data->status, PDO::PARAM_INT);
+    $stmt->bindValue(':status', 0, PDO::PARAM_INT);
 
 
     if($stmt->execute()){

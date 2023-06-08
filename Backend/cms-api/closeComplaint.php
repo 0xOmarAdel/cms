@@ -4,7 +4,7 @@
   $id = json_decode(file_get_contents('php://input'));
 
   $sql = 'UPDATE complaint
-          SET status = 2,
+          SET status = 1,
               date_closed = current_timestamp()
           WHERE id = :id';
 

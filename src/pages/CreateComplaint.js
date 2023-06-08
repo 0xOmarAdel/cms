@@ -72,8 +72,6 @@ const CreateComplaint = () => {
     const userId = localStorage.getItem('id');
     const categoryId = enteredCategory ? parseInt(enteredCategory) : 1;
 
-    console.log({title: enteredTitle, message: enteredMessage, categoryId, userId, status: 1})
-
     submitComplaint(
       {
         url: 'http://localhost:80/cms-api/submitComplaint.php',
