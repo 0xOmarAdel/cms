@@ -66,7 +66,7 @@ const Complaint = () => {
         body: {userId, complaintId}
       },
       (data) => {
-        if (data.status === 0) {
+        if (!data.title) {
           navigate('/my-complaints')
         }
         setComplaint(data);
