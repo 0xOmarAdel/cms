@@ -139,10 +139,10 @@ const Complaint = () => {
 
                     {
                       messages.map((message) => (
-                        <div className={message.from === '1'? 'col-7 p-0' : 'col-7 p-0 ms-auto'} key={message.id}>
-                          <div className={message.from === '0'? 'd-flex align-items-end' : 'd-flex align-items-start'} style={{flexDirection: 'column'}}>
-                            <p className={message.from === '0'? classes.message + ' ' + classes.sent + ' mb-1' : classes.message + ' mb-1'}>{message.text}</p>
-                            <p className={message.from === '0'? classes.date + ' ' + classes.sent + ' mb-3' : classes.date + ' mb-3'}>
+                        <div className={parseInt(message.from) === '1'? 'col-7 p-0' : 'col-7 p-0 ms-auto'} key={message.id}>
+                          <div className={parseInt(message.from) === '0'? 'd-flex align-items-end' : 'd-flex align-items-start'} style={{flexDirection: 'column'}}>
+                            <p className={parseInt(message.from) === '0'? classes.message + ' ' + classes.sent + ' mb-1' : classes.message + ' mb-1'}>{message.text}</p>
+                            <p className={parseInt(message.from) === '0'? classes.date + ' ' + classes.sent + ' mb-3' : classes.date + ' mb-3'}>
                               <DateFormatter date={message.date} />  
                             </p>
                           </div>
