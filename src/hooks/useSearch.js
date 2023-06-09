@@ -31,7 +31,7 @@ const useSearch = (searchAttr) => {
   const filterArray = useCallback((searchValue) => {
     if(searchValue !== null) {
       setSearchParam(searchValue);
-      setFilteredArray(originalArray.filter(element => element[searchAttr].includes(searchValue)))
+      setFilteredArray(originalArray.filter(element => element[searchAttr].toLowerCase().includes(searchValue.toLowerCase())))
     } else {
       setFilteredArray(originalArray)
     }

@@ -7,7 +7,7 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [sortBy, setSortBy] = useState('id');
   const { isLoading, error, sendRequest: getUsers } = useHTTP();
-  const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch('email');
+  const { setOriginalArray, filterArray, filteredArray, inputValue } = useSearch('name');
   
   const searchHandler = (value) => { filterArray(value); };
   const sortHandler = (value) => { setSortBy(value); };
