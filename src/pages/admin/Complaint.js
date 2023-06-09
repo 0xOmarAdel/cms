@@ -121,10 +121,10 @@ const Complaint = () => {
 
               {
                 messages.map((message) => (
-                  <div className={parseInt(message.from) === '0'? 'col-7 p-0' : 'col-7 p-0 ms-auto'} key={message.id}>
-                    <div className={parseInt(message.from) === '1'? 'd-flex align-items-end' : 'd-flex align-items-start'} style={{flexDirection: 'column'}}>
-                      <p className={parseInt(message.from) === '1'? classes.message + ' ' + classes.sent + ' mb-1' : classes.message + ' mb-1'}>{message.text}</p>
-                      <p className={parseInt(message.from) === '1'? classes.date + ' ' + classes.sent + ' mb-3' : classes.date + ' mb-3'}>
+                  <div className={parseInt(message.from) === 0? 'col-7 p-0' : 'col-7 p-0 ms-auto'} key={message.id}>
+                    <div className={parseInt(message.from) === 1? 'd-flex align-items-end' : 'd-flex align-items-start'} style={{flexDirection: 'column'}}>
+                      <p className={parseInt(message.from) === 1? classes.message + ' ' + classes.sent + ' mb-1' : classes.message + ' mb-1'}>{message.text}</p>
+                      <p className={parseInt(message.from) === 1? classes.date + ' ' + classes.sent + ' mb-3' : classes.date + ' mb-3'}>
                         <DateFormatter date={message.date} />  
                       </p>
                     </div>
@@ -173,7 +173,7 @@ const Complaint = () => {
             <p>
               Status: <StatusFormatter status={complaint.status} /> 
               {
-                complaint.status === '1' ? 
+                parseInt(complaint.status) === 1 ? 
                   <i className="fa-solid fa-lock ms-2"></i> 
                 : 
                   <i className="fa-solid fa-lock-open ms-2" onClick={closeComplaintHandler}></i>

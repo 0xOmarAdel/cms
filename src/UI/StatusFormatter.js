@@ -3,9 +3,9 @@ import React from 'react'
 const StatusFormatter = ({status}) => {
   let st;
 
-  if (parseInt(status) === '0') {
+  if (parseInt(status) === 0) {
     st = 'Pending'
-  } else if (parseInt(status) === '1') {
+  } else if (parseInt(status) === 1) {
     st = 'Closed'
   }
   return st;
