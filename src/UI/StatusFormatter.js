@@ -8,6 +8,8 @@ const StatusFormatter = ({status}) => {
   } else if (status === '1') {
     st = 'Closed'
   }
+  console.log(status);
+  console.log(st);
 
   return st;
 
