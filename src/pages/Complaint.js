@@ -125,7 +125,7 @@ const Complaint = () => {
                   <p>Status: <StatusFormatter status={complaint.status} /></p>
                 </li>
                 {
-                  parseInt(complaint.status) === 2 &&
+                  parseInt(complaint.status) === 1 &&
                   <li>
                     <p>Closed At: <DateFormatter date={complaint.date_closed} /></p>
                   </li>

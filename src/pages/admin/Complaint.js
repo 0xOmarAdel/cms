@@ -180,6 +180,12 @@ const Complaint = () => {
               }
             </p>
           </li>
+          {
+            parseInt(complaint.status) === 1 &&
+            <li>
+              <p>Closed At: <DateFormatter date={complaint.date_closed} /></p>
+            </li>
+          }
         </ul>
         <h2  className='mb-4'>User Details</h2>
         <ul>
