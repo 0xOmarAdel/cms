@@ -45,8 +45,8 @@ const Complaints = () => {
   ];
 
   const badges = [
-    { label: 'Pending', attr: 'status', value: '0' },
-    { label: 'Closed', attr: 'status', value: '1' }
+    { label: 'Pending', attr: 'status', value: 0 },
+    { label: 'Closed', attr: 'status', value: 1 }
   ];
   
   return (
