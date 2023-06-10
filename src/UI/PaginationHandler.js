@@ -24,23 +24,25 @@ const PaginationHandler = ({currentPage, dataLength, elementsPerPage}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const searchValue = searchParams.get('search');
+
     if (currentPage === undefined) {
       if (location.pathname.charAt(location.pathname.length - 1) !== '/') {
         navigate(location.pathname + '/1')
         navigate({
           pathname: location.pathname + '/1',
-          search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+          search: searchValue ? `search=${searchValue}` : '',
         });
       } else {
         navigate({
           pathname: path + '1',
-          search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+          search: searchValue ? `search=${searchValue}` : '',
         });
       }
     } else if (isNaN(currentPage) || !pages.includes(parseInt(currentPage))) {
       navigate({
         pathname: path + '1',
-        search: searchParams.get('search') ? `search=${searchParams.get('search')}` : '',
+        search: searchValue ? `search=${searchValue}` : '',
       });
     }
   })

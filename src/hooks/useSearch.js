@@ -18,7 +18,6 @@ const useSearch = (searchAttr) => {
   }, [])
 
   const setSearchParam = useCallback((searchValue) => {
-
     if (searchValue === '') {
       deleteSearchParam();
       setFilteredArray(originalArray)

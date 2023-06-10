@@ -9,7 +9,6 @@ const SearchBar = (props) => {
         id="search" 
         placeholder="Search..." 
         className={props.className ? 'search-input ' + props.className : 'search-input'}
-        value={props.value}
         onChange={(e) => props.onChange(e)}
       />
       <div className="search-icon-container">
