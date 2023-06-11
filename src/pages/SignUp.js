@@ -61,7 +61,7 @@ const SignUp = () => {
     valueChangeHandler: phoneInputChangeHandler,
     inputBlurHandler: phoneInputBlurHandler,
     reset: resetPhoneInput
-  } = useInput(value => value.trim().length === 11);
+  } = useInput(value => value.trim().match(/^01\d{9}$/));
 
   const {
     value: enteredPassword,
@@ -123,9 +123,9 @@ const SignUp = () => {
             <div className="form p-5 pb-4 m-0 m-lg-5 me-lg-0">
               <p className="text-center font-weight-bold mb-4">Sign Up</p>
               {error && <p className="error-text mb-3 text-center">An error occurred!</p>}
-              {signupStatus == 1 && <p className="success-text mb-3 text-center">Account created successfully!</p>}
-              {signupStatus == 2 && <p className="error-text mb-3 text-center">National Id is already used!</p>}
-              {signupStatus == 3 && <p className="error-text mb-3 text-center">Email is already used!</p>}
+              {signupStatus === 1 && <p className="success-text mb-3 text-center">Account created successfully!</p>}
+              {signupStatus === 2 && <p className="error-text mb-3 text-center">National Id is already used!</p>}
+              {signupStatus === 3 && <p className="error-text mb-3 text-center">Email is already used!</p>}
               <form onSubmit={submitHandler}>
                 <InputWithIcon
                   iconClasses='fas fa-user fa-fw'
