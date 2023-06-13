@@ -4,6 +4,8 @@ import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AuthContext from "../../store/admin-auth-context";
 
+import adminPic from '../../imgs/admin.png';
+
 const Sidebar = (props) => {
   const adminName= localStorage.getItem('adminName');
 
@@ -55,7 +57,7 @@ const Sidebar = (props) => {
           <div className='admin-info d-flex justify-content-center m-auto'>
             <div className='admin-pic m-auto'>
               <img
-                src='https://cdn-icons-png.flaticon.com/256/149/149071.png'
+                src={adminPic}
                 alt='Admin'
               />
             </div>
