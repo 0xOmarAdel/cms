@@ -3,9 +3,10 @@ const {
   createCategory,
   getAllCategories,
 } = require("../controllers/categoryController");
+const authenticateUser = require("../middleware/authenticateUser");
 const checkPermissions = require("../utils/checkPermissions");
 
-router.post("/", checkPermissions, createCategory);
+router.post("/", authenticateUser, checkPermissions, createCategory);
 router.get("/", getAllCategories);
 
 module.exports = router;
