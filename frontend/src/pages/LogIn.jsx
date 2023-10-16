@@ -77,7 +77,7 @@ const LogIn = () => {
                   onBlur={emailInputBlurHandler}
                 />
                 {emailInputHasError && (
-                  <p className="error-text mt-2">Enter a valid national id.</p>
+                  <p className="error-text mt-2">Enter a valid email.</p>
                 )}
                 <InputWithIcon
                   divClasses="mt-4"
