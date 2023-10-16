@@ -14,8 +14,10 @@ const Login = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
-    reset: resetEmailInput
-  } = useInput(value => value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/));
+    reset: resetEmailInput,
+  } = useInput((value) =>
+    value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/)
+  );
 
   const {
     value: enteredPassword,
@@ -23,11 +25,13 @@ const Login = () => {
     hasError: passwordInputHasError,
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
-    reset: resetPasswordInput
-  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 25);
+    reset: resetPasswordInput,
+  } = useInput(
+    (value) => value.trim().length >= 10 && value.trim().length <= 25
+  );
 
-  const emailInputClasses = emailInputHasError ? 'invalid' : '';
-  const passwordInputClasses = passwordInputHasError ? 'invalid' : '';
+  const emailInputClasses = emailInputHasError ? "invalid" : "";
+  const passwordInputClasses = passwordInputHasError ? "invalid" : "";
 
   const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
@@ -36,16 +40,18 @@ const Login = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    if(!formIsValid){ return; }
+    if (!formIsValid) {
+      return;
+    }
 
     adminLogin(
       {
-        url: 'http://localhost:80/cms-api/adminLogin.php', 
-        method: 'POST',
+        url: "http://localhost:80/cms-api/adminLogin.php",
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: {email: enteredEmail, password: enteredPassword}
+        body: { email: enteredEmail, password: enteredPassword },
       },
       dataHandler
     );
@@ -60,7 +66,7 @@ const Login = () => {
 
   const dataHandler = useCallback(
     (data) => {
-      if (data.status === 1){
+      if (data.status === 1) {
         ctx.onLogin(data.adminName);
       } else {
         setLoginFailed(true);
@@ -70,29 +76,57 @@ const Login = () => {
   );
 
   useEffect(() => {
-    if(ctx.isLoggedIn){
-      navigate('/admin/dashboard')
+    if (ctx.isLoggedIn) {
+      navigate("/admin/dashboard");
     }
-  })
+  });
 
   return (
     <div className="form-container">
       <div className="login-form">
         <h2>Admin Login</h2>
-        {error && <p className="error-text mb-3 text-center">An error occurred!</p>}
-        {loginFailed && <p className="error-text mb-3 text-center">Invalid email or password!</p>}
+        {error && (
+          <p className="error-text mb-3 text-center">An error occurred!</p>
+        )}
+        {loginFailed && (
+          <p className="error-text mb-3 text-center">
+            Invalid email or password!
+          </p>
+        )}
         <form onSubmit={submitHandler}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="text" id="email" name="email" className={emailInputClasses} value={enteredEmail} onChange={emailInputChangeHandler} onBlur={emailInputBlurHandler} />
-            {emailInputHasError && ( <p className='error-text mt-2'>Enter a valid email.</p> )}
+            <input
+              type="text"
+              id="email"
+              name="email"
+              className={emailInputClasses}
+              value={enteredEmail}
+              onChange={emailInputChangeHandler}
+              onBlur={emailInputBlurHandler}
+            />
+            {emailInputHasError && (
+              <p className="error-text mt-2">Enter a valid email.</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" className={passwordInputClasses} value={enteredPassword} onChange={passwordInputChangeHandler} onBlur={passwordInputBlurHandler} />
-            {passwordInputHasError && ( <p className='error-text mt-2'>Enter a valid password.</p> )}
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className={passwordInputClasses}
+              value={enteredPassword}
+              onChange={passwordInputChangeHandler}
+              onBlur={passwordInputBlurHandler}
+            />
+            {passwordInputHasError && (
+              <p className="error-text mt-2">Enter a valid password.</p>
+            )}
           </div>
-          <button type="submit" disabled={isLoading | !formIsValid}>Login</button>
+          <button type="submit" disabled={isLoading | !formIsValid}>
+            Login
+          </button>
         </form>
       </div>
     </div>

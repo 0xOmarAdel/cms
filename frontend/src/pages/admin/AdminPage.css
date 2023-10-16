@@ -6,19 +6,19 @@
   transition: margin-left 1.2s;
 }
 
-@media (min-width: 576px){
+@media (min-width: 576px) {
   .admin-page-content {
     padding: 60px 40px 0;
   }
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .admin-page-content {
     padding: 75px 70px 0;
   }
 }
 
-@media (min-width: 992px){
+@media (min-width: 992px) {
   .admin-page-content {
     padding: 90px 100px 0;
   }
@@ -44,7 +44,7 @@
   overflow-wrap: break-word;
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
   .admin-page-content .table-row {
     font-size: 17px;
   }

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogout: () => {},
-  onLogin: (adminName) => {}
+  onLogin: (adminName) => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -13,22 +13,22 @@ export const AuthContextProvider = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem('adminName');
+    const storedUserLoggedInInformation = localStorage.getItem("adminName");
 
     if (storedUserLoggedInInformation) {
       setIsLoggedIn(true);
     } else {
-      navigate('/admin/login');
+      navigate("/admin/login");
     }
   }, [navigate]);
 
   const logoutHandler = () => {
-    localStorage.removeItem('adminName');
+    localStorage.removeItem("adminName");
     setIsLoggedIn(false);
   };
 
   const loginHandler = (adminName) => {
-    localStorage.setItem('adminName', adminName);
+    localStorage.setItem("adminName", adminName);
     setIsLoggedIn(true);
   };
 

@@ -26,8 +26,8 @@
 }
 
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   text-decoration: none;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
@@ -43,7 +43,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-track:hover {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -69,7 +69,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 textarea {

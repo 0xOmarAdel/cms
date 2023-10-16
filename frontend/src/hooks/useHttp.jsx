@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from "react";
 
 const useHTTP = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,22 +9,20 @@ const useHTTP = () => {
     setError(null);
 
     try {
-      const response = await fetch(
-        requestConfig.url, {
-          method: requestConfig.method ? requestConfig.method : 'GET',
-          headers: requestConfig.headers ? requestConfig.headers : {},
-          body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
-        }
-      );
+      const response = await fetch(requestConfig.url, {
+        method: requestConfig.method ? requestConfig.method : "GET",
+        headers: requestConfig.headers ? requestConfig.headers : {},
+        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+      });
 
-      if(!response.ok){
-        throw new Error('Request failed!')
+      if (!response.ok) {
+        throw new Error("Request failed!");
       }
 
       const data = await response.json();
       applyData(data);
     } catch (err) {
-      setError(err.message || 'Something went wrong!');
+      setError(err.message || "Something went wrong!");
     }
 
     setIsLoading(false);
@@ -33,8 +31,8 @@ const useHTTP = () => {
   return {
     isLoading,
     error,
-    sendRequest
-  }
+    sendRequest,
+  };
 };
 
-export default useHTTP
+export default useHTTP;

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const Button = (props) => {
   return (
-    <button 
-      className={`btn-primary ${props.className}`} 
+    <button
+      className={`btn-primary ${props.className}`}
       style={props.style}
       type={props.type}
       onClick={props.onClick ? () => props.onClick() : () => {}}
@@ -12,7 +12,7 @@ const Button = (props) => {
       {props.text}
       {props.children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

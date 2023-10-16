@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import ScrollableDiv from '../UI/ScrollableDiv'
-import classes from './Complaint.module.css'
-import DateFormatter from '../UI/DateFormatter'
-import StatusFormatter from '../UI/StatusFormatter'
-import useInput from '../hooks/useInput'
-import useHTTP from '../hooks/useHttp'
-import Hero from '../UI/Hero'
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ScrollableDiv from "../UI/ScrollableDiv";
+import classes from "./Complaint.module.css";
+import DateFormatter from "../UI/DateFormatter";
+import StatusFormatter from "../UI/StatusFormatter";
+import useInput from "../hooks/useInput";
+import useHTTP from "../hooks/useHttp";
+import Hero from "../UI/Hero";
 
 const Complaint = () => {
   const { complaintId } = useParams();
@@ -14,9 +14,21 @@ const Complaint = () => {
   const [complaint, setComplaint] = useState([]);
   const [messages, setMessages] = useState([]);
 
-  const { isLoading: complaintDetailsIsLoading, error: complaintDetailsHasError, sendRequest: getComplaint } = useHTTP();
-  const { isLoading: messagesIsLoading, error: messagesHasError, sendRequest: getMessages } = useHTTP();
-  const { isLoading: sendingMessagesIsLoading, error: sendingMessagesHasError, sendRequest: sendMessage } = useHTTP();
+  const {
+    isLoading: complaintDetailsIsLoading,
+    error: complaintDetailsHasError,
+    sendRequest: getComplaint,
+  } = useHTTP();
+  const {
+    isLoading: messagesIsLoading,
+    error: messagesHasError,
+    sendRequest: getMessages,
+  } = useHTTP();
+  const {
+    isLoading: sendingMessagesIsLoading,
+    error: sendingMessagesHasError,
+    sendRequest: sendMessage,
+  } = useHTTP();
 
   const {
     value: enteredMessage,
@@ -24,22 +36,24 @@ const Complaint = () => {
     hasError: messageInputHasError,
     valueChangeHandler: messageInputChangeHandler,
     inputBlurHandler: messageInputBlurHandler,
-    reset: resetMessageInput
-  } = useInput(value => value.trim().length >= 10);
+    reset: resetMessageInput,
+  } = useInput((value) => value.trim().length >= 10);
 
   const formIsValid = enteredMessageIsValid;
 
-  const messageInputClasses = messageInputHasError ? 'form-control invalid' : 'form-control';
+  const messageInputClasses = messageInputHasError
+    ? "form-control invalid"
+    : "form-control";
 
   const getMessagesHandler = useCallback(() => {
     getMessages(
-      { 
+      {
         url: "http://localhost:80/cms-api/getComplaintMessages.php",
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: complaintId
+        body: complaintId,
       },
       (data) => {
         setMessages(data);
@@ -49,25 +63,25 @@ const Complaint = () => {
 
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem('id');
+  const userId = localStorage.getItem("id");
 
   useEffect(() => {
-    if (!localStorage.getItem('id')) {
-      navigate('/login')
+    if (!localStorage.getItem("id")) {
+      navigate("/login");
     }
-    
+
     getComplaint(
-      { 
+      {
         url: "http://localhost:80/cms-api/getComplaintDetails.php",
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: {userId, complaintId}
+        body: { userId, complaintId },
       },
       (data) => {
         if (!data.title) {
-          navigate('/my-complaints')
+          navigate("/my-complaints");
         }
         setComplaint(data);
       }
@@ -79,35 +93,41 @@ const Complaint = () => {
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
-    if(!formIsValid){ return; }
+    if (!formIsValid) {
+      return;
+    }
 
     sendMessage(
       {
-        url: 'http://localhost:80/cms-api/submitMessage.php', 
-        method: 'POST',
+        url: "http://localhost:80/cms-api/submitMessage.php",
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: {message: enteredMessage, complaintId: parseInt(complaintId), from: 0},
+        body: {
+          message: enteredMessage,
+          complaintId: parseInt(complaintId),
+          from: 0,
+        },
       },
       (data) => {
-        if(data.status === 1){
+        if (data.status === 1) {
           getMessagesHandler();
         }
       }
-    )
+    );
 
     resetMessageInput();
-  }
+  };
 
   return (
     <>
       <Hero title={complaint.title} />
       <section className={classes.complaint}>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-12 col-lg-4 mb-5 mb-lg-0 ps-lg-5'>
-              <h2 className='mb-4'>Complaint Details</h2>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-lg-4 mb-5 mb-lg-0 ps-lg-5">
+              <h2 className="mb-4">Complaint Details</h2>
               <ul>
                 <li>
                   <p>ID: {complaintId}</p>
@@ -119,64 +139,103 @@ const Complaint = () => {
                   <p>Category: {complaint.categoryName}</p>
                 </li>
                 <li>
-                  <p>Created At: <DateFormatter date={complaint.date_created} /></p>
+                  <p>
+                    Created At: <DateFormatter date={complaint.date_created} />
+                  </p>
                 </li>
                 <li>
-                  <p>Status: <StatusFormatter status={complaint.status} /></p>
+                  <p>
+                    Status: <StatusFormatter status={complaint.status} />
+                  </p>
                 </li>
-                {
-                  parseInt(complaint.status) === 1 &&
+                {parseInt(complaint.status) === 1 && (
                   <li>
-                    <p>Closed At: <DateFormatter date={complaint.date_closed} /></p>
+                    <p>
+                      Closed At: <DateFormatter date={complaint.date_closed} />
+                    </p>
                   </li>
-                }
+                )}
               </ul>
             </div>
-            <div className='col-12 col-lg-8 order-lg-first'>
+            <div className="col-12 col-lg-8 order-lg-first">
               <div className={`${classes.messages} mb-4`}>
-                <ScrollableDiv className='d-flex align-items-end' style={{height: '550px'}}>
-                  <div className='row full-width' style={{ maxHeight: '100%' }}>
-
-                    {
-                      messages.map((message) => (
-                        <div className={parseInt(message.from) === 1? 'col-7 p-0' : 'col-7 p-0 ms-auto'} key={message.id}>
-                          <div className={parseInt(message.from) === 0? 'd-flex align-items-end' : 'd-flex align-items-start'} style={{flexDirection: 'column'}}>
-                            <p className={parseInt(message.from) === 0? classes.message + ' ' + classes.sent + ' mb-1' : classes.message + ' mb-1'}>{message.text}</p>
-                            <p className={parseInt(message.from) === 0? classes.date + ' ' + classes.sent + ' mb-3' : classes.date + ' mb-3'}>
-                              <DateFormatter date={message.date} />  
-                            </p>
-                          </div>
+                <ScrollableDiv
+                  className="d-flex align-items-end"
+                  style={{ height: "550px" }}
+                >
+                  <div className="row full-width" style={{ maxHeight: "100%" }}>
+                    {messages.map((message) => (
+                      <div
+                        className={
+                          parseInt(message.from) === 1
+                            ? "col-7 p-0"
+                            : "col-7 p-0 ms-auto"
+                        }
+                        key={message.id}
+                      >
+                        <div
+                          className={
+                            parseInt(message.from) === 0
+                              ? "d-flex align-items-end"
+                              : "d-flex align-items-start"
+                          }
+                          style={{ flexDirection: "column" }}
+                        >
+                          <p
+                            className={
+                              parseInt(message.from) === 0
+                                ? classes.message + " " + classes.sent + " mb-1"
+                                : classes.message + " mb-1"
+                            }
+                          >
+                            {message.text}
+                          </p>
+                          <p
+                            className={
+                              parseInt(message.from) === 0
+                                ? classes.date + " " + classes.sent + " mb-3"
+                                : classes.date + " mb-3"
+                            }
+                          >
+                            <DateFormatter date={message.date} />
+                          </p>
                         </div>
-                      ))
-                    }
-                    
+                      </div>
+                    ))}
                   </div>
                 </ScrollableDiv>
               </div>
               <form>
-                  <div className='row'>
-                    <div className='col-11 p-0'>
-                      <textarea 
-                        className={messageInputClasses} 
-                        placeholder='Message' 
-                        style={{ height: '20px !important' }} 
-                        onChange={messageInputChangeHandler} 
-                        onBlur={messageInputBlurHandler} 
-                        value={enteredMessage} 
-                      />
-                      {messageInputHasError && ( <p className='error-text mt-2'>Message must be at least 10 characters.</p> )}
-                    </div>
-                    <div className='col-1 mt-1 pe-0'>
-                      <i className={`fa-solid fa-location-arrow ${classes.send}`} onClick={sendMessageHandler}></i>
-                    </div>
+                <div className="row">
+                  <div className="col-11 p-0">
+                    <textarea
+                      className={messageInputClasses}
+                      placeholder="Message"
+                      style={{ height: "20px !important" }}
+                      onChange={messageInputChangeHandler}
+                      onBlur={messageInputBlurHandler}
+                      value={enteredMessage}
+                    />
+                    {messageInputHasError && (
+                      <p className="error-text mt-2">
+                        Message must be at least 10 characters.
+                      </p>
+                    )}
                   </div>
+                  <div className="col-1 mt-1 pe-0">
+                    <i
+                      className={`fa-solid fa-location-arrow ${classes.send}`}
+                      onClick={sendMessageHandler}
+                    ></i>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Complaint
+export default Complaint;

@@ -44,15 +44,25 @@ const FAQItem = () => {
   const navigate = useNavigate();
 
   const params = useParams();
-  
-  useEffect(() => {
-    const validItems = ['water', 'electricity', 'gas', 'garbage', 'traffic', 'roads', 'railways', 'rain', 'telephone', 'internet'];
 
-    if(!validItems.includes(params.item)){
-      navigate('/faq');
-    };
-  }, [params.item, navigate])
-  
+  useEffect(() => {
+    const validItems = [
+      "water",
+      "electricity",
+      "gas",
+      "garbage",
+      "traffic",
+      "roads",
+      "railways",
+      "rain",
+      "telephone",
+      "internet",
+    ];
+
+    if (!validItems.includes(params.item)) {
+      navigate("/faq");
+    }
+  }, [params.item, navigate]);
 
   return (
     <>

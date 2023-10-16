@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Alert from '../UI/Alert'
-import Button from '../UI/Button'
-import Hero from '../UI/Hero'
-import useHTTP from '../hooks/useHttp'
-import useInput from '../hooks/useInput'
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Alert from "../UI/Alert";
+import Button from "../UI/Button";
+import Hero from "../UI/Hero";
+import useHTTP from "../hooks/useHttp";
+import useInput from "../hooks/useInput";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -12,7 +12,11 @@ const CreateComplaint = () => {
   const [categories, setCategories] = useState([]);
 
   const { isLoading, error, sendRequest: getCategories } = useHTTP();
-  const { isLoading: submitComplaintIsLoading, error: submitComplaintHasError, sendRequest: submitComplaint } = useHTTP();
+  const {
+    isLoading: submitComplaintIsLoading,
+    error: submitComplaintHasError,
+    sendRequest: submitComplaint,
+  } = useHTTP();
 
   const {
     value: enteredTitle,
@@ -20,8 +24,10 @@ const CreateComplaint = () => {
     hasError: titleInputHasError,
     valueChangeHandler: titleInputChangeHandler,
     inputBlurHandler: titleInputBlurHandler,
-    reset: resetTitleInput
-  } = useInput(value => value.trim().length >= 10 && value.trim().length <= 50);
+    reset: resetTitleInput,
+  } = useInput(
+    (value) => value.trim().length >= 10 && value.trim().length <= 50
+  );
 
   const {
     value: enteredCategory,
@@ -29,8 +35,8 @@ const CreateComplaint = () => {
     hasError: categoryInputHasError,
     valueChangeHandler: categoryInputChangeHandler,
     inputBlurHandler: categoryInputBlurHandler,
-    reset: resetCategoryInput
-  } = useInput(value => value.trim() !== '');
+    reset: resetCategoryInput,
+  } = useInput((value) => value.trim() !== "");
 
   const {
     value: enteredMessage,
@@ -38,26 +44,27 @@ const CreateComplaint = () => {
     hasError: messageInputHasError,
     valueChangeHandler: messageInputChangeHandler,
     inputBlurHandler: messageInputBlurHandler,
-    reset: resetMessageInput
-  } = useInput(value => value.trim().length >= 50);
+    reset: resetMessageInput,
+  } = useInput((value) => value.trim().length >= 50);
 
   const formIsValid = enteredMessageIsValid && enteredTitleIsValid;
 
-  const titleInputClasses = titleInputHasError ? 'form-control invalid' : 'form-control';
-  const messageInputClasses = messageInputHasError ? 'form-control invalid' : 'form-control';
+  const titleInputClasses = titleInputHasError
+    ? "form-control invalid"
+    : "form-control";
+  const messageInputClasses = messageInputHasError
+    ? "form-control invalid"
+    : "form-control";
 
-  const dataHandler = useCallback(
-    (data) => {
-      setCategories(data);
-    },
-    []
-  );
+  const dataHandler = useCallback((data) => {
+    setCategories(data);
+  }, []);
 
   useEffect(() => {
-    if (!localStorage.getItem('id')) {
-      navigate('/login')
+    if (!localStorage.getItem("id")) {
+      navigate("/login");
     }
-    
+
     getCategories(
       { url: "http://localhost:80/cms-api/getCategories.php" },
       dataHandler
@@ -67,86 +74,120 @@ const CreateComplaint = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    if(!formIsValid){ return; }
+    if (!formIsValid) {
+      return;
+    }
 
-    const userId = localStorage.getItem('id');
+    const userId = localStorage.getItem("id");
     const categoryId = enteredCategory ? parseInt(enteredCategory) : 1;
 
     submitComplaint(
       {
-        url: 'http://localhost:80/cms-api/submitComplaint.php',
-        method: 'POST',
+        url: "http://localhost:80/cms-api/submitComplaint.php",
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: {title: enteredTitle, message: enteredMessage, categoryId, userId}
+        body: {
+          title: enteredTitle,
+          message: enteredMessage,
+          categoryId,
+          userId,
+        },
       },
       (data) => {
-        if(data.status === 1){
-          navigate('/my-complaints');
+        if (data.status === 1) {
+          navigate("/my-complaints");
         }
       }
-    )
+    );
   };
 
   return (
     <>
-      <Hero title='Create a New Complaint' />
+      <Hero title="Create a New Complaint" />
       <section>
-        <div className='container'>
-          <div className='row px-3 px-md-0'>
-            <div className='col-12 col-md-8 p-0 pe-md-5'>
+        <div className="container">
+          <div className="row px-3 px-md-0">
+            <div className="col-12 col-md-8 p-0 pe-md-5">
               <form onSubmit={submitHandler}>
-                <div className='row justify-content-center'>
-                  {submitComplaintHasError && <p className='error-text text-center mb-3'>An error occurred. Couldn't submit your complaint.<br />You will probably need to complain about that as well lmao.</p>}
-                  <div className='col-6 mb-4'>
-                    <input 
+                <div className="row justify-content-center">
+                  {submitComplaintHasError && (
+                    <p className="error-text text-center mb-3">
+                      An error occurred. Couldn't submit your complaint.
+                      <br />
+                      You will probably need to complain about that as well
+                      lmao.
+                    </p>
+                  )}
+                  <div className="col-6 mb-4">
+                    <input
                       className={titleInputClasses}
-                      name='title'
-                      placeholder='Title'
+                      name="title"
+                      placeholder="Title"
                       onChange={titleInputChangeHandler}
-                      onBlur={titleInputBlurHandler} 
+                      onBlur={titleInputBlurHandler}
                       value={enteredTitle}
                     />
-                    {titleInputHasError && ( <p className='error-text mt-2'>Title must not be [10, 50] characters.</p> )}
+                    {titleInputHasError && (
+                      <p className="error-text mt-2">
+                        Title must not be [10, 50] characters.
+                      </p>
+                    )}
                   </div>
-                  <div className='col-6  mb-4'>
+                  <div className="col-6  mb-4">
                     <select
                       className="form-control"
-                      name='categoryId'
+                      name="categoryId"
                       onChange={categoryInputChangeHandler}
-                      onBlur={categoryInputBlurHandler} 
+                      onBlur={categoryInputBlurHandler}
                       value={enteredCategory}
                     >
-                      {
-                        categories.map((category, index) => <option key={index} value={category.id}>{category.name}</option>)
-                      }
+                      {categories.map((category, index) => (
+                        <option key={index} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
-                  <div className='col-12 mb-4'>
-                    <textarea 
+                  <div className="col-12 mb-4">
+                    <textarea
                       className={messageInputClasses}
-                      placeholder='Message'
+                      placeholder="Message"
                       onChange={messageInputChangeHandler}
-                      onBlur={messageInputBlurHandler} 
+                      onBlur={messageInputBlurHandler}
                       value={enteredMessage}
                     />
-                    {messageInputHasError && ( <p className='error-text mt-2'>Message must be at least 50 characterss.</p> )}
+                    {messageInputHasError && (
+                      <p className="error-text mt-2">
+                        Message must be at least 50 characterss.
+                      </p>
+                    )}
                   </div>
-                  <Button text='Cancel' className='me-4' onClick={() => { navigate('/my-complaints'); }} />
-                  <Button text='Submit' disabled={submitComplaintIsLoading} />
+                  <Button
+                    text="Cancel"
+                    className="me-4"
+                    onClick={() => {
+                      navigate("/my-complaints");
+                    }}
+                  />
+                  <Button text="Submit" disabled={submitComplaintIsLoading} />
                 </div>
               </form>
             </div>
-            <div className='col-4 d-none d-md-block'>
-              <Alert path='/FAQ' icon>Take a look at our FAQ page to quickly find your answers.</Alert>
-              <Alert path='/my-complaints' icon>View your previously created complaints from here.</Alert>
+            <div className="col-4 d-none d-md-block">
+              <Alert path="/FAQ" icon>
+                Take a look at our FAQ page to quickly find your answers.
+              </Alert>
+              <Alert path="/my-complaints" icon>
+                View your previously created complaints from here.
+              </Alert>
             </div>
           </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default CreateComplaint
+export default CreateComplaint;

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Input = (props) => {
-  return (
-    <input {...props} className={`form-control ${props.className}`} />
-  )
-}
+  return <input {...props} className={`form-control ${props.className}`} />;
+};
 
-export default Input
+export default Input;

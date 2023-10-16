@@ -23,53 +23,51 @@ import AdminPage from "./pages/admin/AdminPage";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <LogIn /> },
-      { 
-        path: '/faq',
+      {
+        path: "/faq",
         children: [
-          { index: true, element: <FAQPage />},
-          { path: ':item', element: <FAQItem /> }
-        ]
+          { index: true, element: <FAQPage /> },
+          { path: ":item", element: <FAQItem /> },
+        ],
       },
-      { path: '/login', element: <LogIn /> },
-      { path: '/signup', element: <SignUp /> },
-      { path: '/create-complaint', element: <CreateComplaint /> },
-      { path: '/my-complaints', element: <MyComplaints /> },
-      { path: '/my-complaints/:page', element: <MyComplaints /> },
-      { path: '/complaint/:complaintId', element: <Complaint /> },
+      { path: "/login", element: <LogIn /> },
+      { path: "/signup", element: <SignUp /> },
+      { path: "/create-complaint", element: <CreateComplaint /> },
+      { path: "/my-complaints", element: <MyComplaints /> },
+      { path: "/my-complaints/:page", element: <MyComplaints /> },
+      { path: "/complaint/:complaintId", element: <Complaint /> },
     ],
   },
   {
-    path: '/admin',
+    path: "/admin",
     element: <AdminRootLayout />,
     children: [
-      { path: 'login', element: <AdminLogIn /> },
+      { path: "login", element: <AdminLogIn /> },
       {
         element: <AdminPage />,
         children: [
           { index: true, element: <Dashboard /> },
-          { path: 'dashboard', element: <Dashboard /> },
-          { path: 'admins', element: <Admins /> },
-          { path: 'users', element: <Users /> },
-          { path: 'users/:page', element: <Users /> },
-          { path: 'categories', element: <Categories /> },
-          { path: 'complaints', element: <Complaints /> },
-          { path: 'complaints/:page', element: <Complaints /> },
-          { path: 'complaint/:id', element: <AdminComplaint /> }
-        ]
-      }
-    ]
-  }
+          { path: "dashboard", element: <Dashboard /> },
+          { path: "admins", element: <Admins /> },
+          { path: "users", element: <Users /> },
+          { path: "users/:page", element: <Users /> },
+          { path: "categories", element: <Categories /> },
+          { path: "complaints", element: <Complaints /> },
+          { path: "complaints/:page", element: <Complaints /> },
+          { path: "complaint/:id", element: <AdminComplaint /> },
+        ],
+      },
+    ],
+  },
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

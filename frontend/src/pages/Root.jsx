@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
-import Footer from '../components/footer/Footer';
+import { Outlet } from "react-router-dom";
+import Footer from "../components/footer/Footer";
 
-import MainNavigation from '../components/Navbar/MainNavigation';
-import { AuthContextProvider } from '../store/auth-context';
+import MainNavigation from "../components/Navbar/MainNavigation";
+import { AuthContextProvider } from "../store/auth-context";
 
 const RootLayout = () => {
   return (

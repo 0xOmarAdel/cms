@@ -22,14 +22,14 @@
   font-size: 25px;
   position: relative;
   top: 3px;
-  color: #0462db
+  color: #0462db;
 }
 
 .complaint-name {
   font-size: 20px;
 }
 
-.complaint p.complaint-date-created, 
+.complaint p.complaint-date-created,
 .complaint p.complaint-last-updated {
   font-size: 15px;
 }

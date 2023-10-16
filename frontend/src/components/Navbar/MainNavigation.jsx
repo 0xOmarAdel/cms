@@ -39,7 +39,7 @@ const MainNavigation = () => {
 
   const logoutHandler = () => {
     ctx.onLogout();
-    navigate('/login')
+    navigate("/login");
   };
 
   return (
@@ -51,29 +51,38 @@ const MainNavigation = () => {
             {showLinks ? <FaRegWindowMinimize /> : <FaBars />}
           </button>
         </div>
-          <div
-            className="links-container"
-            ref={linksContainerRef}
-            style={linkStyles}
-          >
-            <ul className="links" ref={linksRef}>
-              {
-                !ctx.isLoggedIn ?
-                  navLinks.map((navLink, index) => (
-                    <NavbarLink key={index} path={navLink.path} text={navLink.text} />
-                  ))
-                :
-                  <>
-                    {
-                      navLinks2.map((navLink, index) => (
-                        <NavbarLink key={index} path={navLink.path} text={navLink.text} />
-                      ))
-                    }
+        <div
+          className="links-container"
+          ref={linksContainerRef}
+          style={linkStyles}
+        >
+          <ul className="links" ref={linksRef}>
+            {!ctx.isLoggedIn ? (
+              navLinks.map((navLink, index) => (
+                <NavbarLink
+                  key={index}
+                  path={navLink.path}
+                  text={navLink.text}
+                />
+              ))
+            ) : (
+              <>
+                {navLinks2.map((navLink, index) => (
+                  <NavbarLink
+                    key={index}
+                    path={navLink.path}
+                    text={navLink.text}
+                  />
+                ))}
 
-                    <li><a onClick={logoutHandler} style={{cursor: 'pointer'}}>Logout</a></li>
-                  </>
-              }
-            </ul>
+                <li>
+                  <a onClick={logoutHandler} style={{ cursor: "pointer" }}>
+                    Logout
+                  </a>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
     </nav>
