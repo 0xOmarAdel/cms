@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -21,7 +20,20 @@ ChartJS.register(
 );
 
 export function Chart(props) {
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   let result = [];
 
   for (const [, value] of Object.entries(labels)) {
@@ -38,19 +50,19 @@ export function Chart(props) {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
-      }
+        position: "top",
+      },
     },
   };
-  
+
   const data = {
     labels,
     datasets: [
       {
         label: props.label,
         data: result,
-        backgroundColor: '#0056b3',
-      }
+        backgroundColor: "#0056b3",
+      },
     ],
   };
 
