@@ -57,7 +57,7 @@ const SignUp = () => {
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
   } = useInput(
-    (value) => value.trim().length >= 10 && value.trim().length <= 25
+    (value) => value.trim().length >= 6 && value.trim().length <= 25
   );
 
   const firstNameInputClasses = firstNameInputHasError
@@ -179,7 +179,7 @@ const SignUp = () => {
                 />
                 {passwordInputHasError && (
                   <p className="error-text">
-                    Password must be [10, 25] characters.
+                    Password must be [6, 25] characters.
                   </p>
                 )}
                 <Button
