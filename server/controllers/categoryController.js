@@ -3,8 +3,7 @@ const { checkPermissions } = require("../utils");
 
 const createCategory = async (req, res) => {
   try {
-    checkPermissions(req.user, req.user.userId);
-
+    checkPermissions(req.user, req.user._id);
     const { name } = req.body;
 
     const category = new Category({
@@ -27,7 +26,26 @@ const getAllCategories = async (req, res) => {
   }
 };
 
+const deleteCategory = async (req, res) => {
+  try {
+    checkPermissions(req.user, req.user._id);
+
+    const deletedCategory = await Category.findByIdAndRemove(
+      req.params.categoryId
+    );
+
+    if (!deletedCategory) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.json({ message: "Category deleted successfully" });
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createCategory,
   getAllCategories,
+  deleteCategory,
 };
