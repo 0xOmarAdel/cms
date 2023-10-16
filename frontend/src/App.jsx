@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import RootLayout from "./pages/Root";
 import AdminRootLayout from "./pages/admin/AdminRoot";
@@ -20,54 +20,57 @@ import AdminComplaint from "./pages/admin/Complaint";
 import Categories from "./pages/admin/Categories";
 import AdminLogIn from "./pages/admin/LogIn";
 import AdminPage from "./pages/admin/AdminPage";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <LogIn /> },
-      {
-        path: "/faq",
-        children: [
-          { index: true, element: <FAQPage /> },
-          { path: ":item", element: <FAQItem /> },
-        ],
-      },
-      { path: "/login", element: <LogIn /> },
-      { path: "/signup", element: <SignUp /> },
-      { path: "/create-complaint", element: <CreateComplaint /> },
-      { path: "/my-complaints", element: <MyComplaints /> },
-      { path: "/my-complaints/:page", element: <MyComplaints /> },
-      { path: "/complaint/:complaintId", element: <Complaint /> },
-    ],
-  },
-  {
-    path: "/admin",
-    element: <AdminRootLayout />,
-    children: [
-      { path: "login", element: <AdminLogIn /> },
-      {
-        element: <AdminPage />,
-        children: [
-          { index: true, element: <Dashboard /> },
-          { path: "dashboard", element: <Dashboard /> },
-          { path: "admins", element: <Admins /> },
-          { path: "users", element: <Users /> },
-          { path: "users/:page", element: <Users /> },
-          { path: "categories", element: <Categories /> },
-          { path: "complaints", element: <Complaints /> },
-          { path: "complaints/:page", element: <Complaints /> },
-          { path: "complaint/:id", element: <AdminComplaint /> },
-        ],
-      },
-    ],
-  },
-]);
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { selectUser, setUser } from "./store/slices/authSlice";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  const [isLoading, setIsLoading] = useState(true);
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+  const localToken = localStorage.getItem("token");
+  useEffect(() => {
+    if (!localToken) {
+      setIsLoading(false);
+      return;
+    }
+    const fetchToken = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/v1/validateToken",
+          {
+            token: localToken,
+          }
+        );
+        console.log(response);
+        dispatch(setUser(response.data.userData));
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoading(false);
+    };
+    fetchToken();
+  }, [dispatch, localToken]);
+
+  if (isLoading) return;
+
+  return (
+    <Routes>
+      <Route path="*" element={<ErrorPage />} />
+      <Route path="/" element={<RootLayout />}>
+        <Route
+          path="/login"
+          element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
+        />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/create-complaint" element={<CreateComplaint />} />
+        <Route path="/my-complaints/:page" element={<MyComplaints />} />
+        <Route path="/complaint/:complaintId" element={<Complaint />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
