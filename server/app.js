@@ -10,6 +10,10 @@ const jwt = require("jsonwebtoken");
 const CustomError = require("./errors/index");
 var cron = require("node-cron");
 const axios = require("axios");
+const authenticateUser = require("./middleware/authenticateUser");
+const User = require("./models/User");
+
+const authRouter = require("./routes/authRoutes");
 
 const app = express();
 
@@ -20,8 +24,6 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "*" }));
-const authenticateUser = require("./middleware/authenticateUser");
-const User = require("./models/User");
 
 app.get("/", (req, res) => {
   const responseData = {
@@ -49,7 +51,6 @@ app.get("/", (req, res) => {
 //       console.error(`Error sending request to ${serverUrl}: ${error.message}`);
 //     });
 // });
-
 app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
   const userData = req.user;
   if (!userData) {
@@ -57,6 +58,8 @@ app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
   }
   res.status(200).json({ userData });
 });
+
+app.use("/api/v1/auth", authRouter);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
