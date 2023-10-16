@@ -61,6 +61,10 @@ const App = () => {
       <Route path="*" element={<ErrorPage />} />
       <Route path="/" element={<RootLayout />}>
         <Route
+          index={true}
+          element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
+        />
+        <Route
           path="/login"
           element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
         />
