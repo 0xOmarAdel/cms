@@ -1,7 +1,7 @@
 const Category = require("../models/Category");
 const { checkPermissions } = require("../utils");
 
-createCategory = async (req, res) => {
+const createCategory = async (req, res) => {
   try {
     checkPermissions(req.user, req.user.userId);
 
@@ -18,7 +18,7 @@ createCategory = async (req, res) => {
   }
 };
 
-getAllCategories = async (req, res) => {
+const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.find();
     res.status(200).json(categories);
