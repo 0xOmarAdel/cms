@@ -60,10 +60,10 @@ const SignUp = () => {
     (value) => value.trim().length >= 10 && value.trim().length <= 25
   );
 
-  const firstNameInputClasses = firstNameInputHasError ? "py-4 invalid" : "py-4";
-  const lastNameInputClasses = lastNameInputHasError
+  const firstNameInputClasses = firstNameInputHasError
     ? "py-4 invalid"
     : "py-4";
+  const lastNameInputClasses = lastNameInputHasError ? "py-4 invalid" : "py-4";
   const emailInputClasses = emailInputHasError ? "py-4 invalid" : "py-4";
   const phoneInputClasses = phoneInputHasError ? "py-4 invalid" : "py-4";
   const passwordInputClasses = passwordInputHasError ? "py-4 invalid" : "py-4";
@@ -106,9 +106,9 @@ const SignUp = () => {
                   iconClasses="fas fa-user fa-fw"
                   inputClasses={firstNameInputClasses}
                   type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
                   value={enteredFirstName}
                   onChange={firstNameInputChangeHandler}
                   onBlur={firstNameInputBlurHandler}
@@ -123,8 +123,8 @@ const SignUp = () => {
                   iconClasses="fas fa-id-card fa-fw"
                   inputClasses={lastNameInputClasses}
                   type="text"
-                  id="nationalId"
-                  name="nationalId"
+                  id="lastName"
+                  name="lastName"
                   placeholder="Last Name"
                   value={enteredLastName}
                   onChange={lastNameInputChangeHandler}
