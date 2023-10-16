@@ -20,10 +20,6 @@ const MyComplaints = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("id")) {
-      navigate("/login");
-    }
-
     getCategories(
       {
         url: "http://localhost:80/cms-api/getUserComplaints.php",
