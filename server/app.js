@@ -14,6 +14,7 @@ const authenticateUser = require("./middleware/authenticateUser");
 const User = require("./models/User");
 
 const authRouter = require("./routes/authRoutes");
+const categoryRouter = require("./routes/categoryRoutes");
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use("/api/v1/validateToken", authenticateUser, async (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/categories", categoryRouter);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
