@@ -47,6 +47,7 @@ const getAllComplaints = async (req, res) => {
         "name"
       );
     }
+
     const modifiedComplaints = complaints.map((complaint) => ({
       _id: complaint._id,
       title: complaint.title,
@@ -57,7 +58,10 @@ const getAllComplaints = async (req, res) => {
       user: complaint.user,
     }));
 
-    res.status(200).json(modifiedComplaints);
+    res.status(200).json({
+      count: modifiedComplaints.length,
+      complaints: modifiedComplaints,
+    });
   } catch (error) {
     res.status(500).json({ message: "Unable to fetch complaints" });
   }
@@ -103,8 +107,32 @@ const getComplaintById = async (req, res) => {
   }
 };
 
+const getComplaintsPerMonth = async (req, res) => {
+  try {
+    const complaintsPerMonth = await Complaint.aggregate([
+      {
+        $group: {
+          _id: {
+            year: { $year: "$date_created" },
+            month: { $month: "$date_created" },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 },
+      },
+    ]);
+
+    res.status(200).json(complaintsPerMonth);
+  } catch (error) {
+    res.status(500).json({ error: "Unable to fetch complaints per month" });
+  }
+};
+
 module.exports = {
   createComplaint,
   getAllComplaints,
   getComplaintById,
+  getComplaintsPerMonth,
 };
