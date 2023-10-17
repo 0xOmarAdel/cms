@@ -15,10 +15,11 @@ const createComplaint = async (req, res) => {
     const savedComplaint = await complaint.save();
 
     const lastInsertedComplaintId = savedComplaint._id;
+    const from = req.user.role === "admin" ? "1" : "0";
 
     const message = new Message({
       complaintId: lastInsertedComplaintId,
-      from: user,
+      from,
       text,
     });
 
