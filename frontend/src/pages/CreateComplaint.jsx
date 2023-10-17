@@ -69,15 +69,19 @@ const CreateComplaint = () => {
     if (!formIsValid) {
       return;
     }
+
+    console.log(
+      enteredTitle,
+      enteredCategory || categories[0]._id,
+      enteredMessage
+    );
     await axios({
       method: "POST",
       url: "http://localhost:5000/api/v1/complaints",
       data: {
         title: enteredTitle,
-        category: enteredCategory
-          ? parseInt(enteredCategory)
-          : categories[0]._id,
-        message: enteredMessage,
+        category: enteredCategory || categories[0]._id,
+        text: enteredMessage,
       },
     });
   };
