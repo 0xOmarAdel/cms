@@ -44,7 +44,6 @@ const App = () => {
             token: localToken,
           }
         );
-        console.log(response);
         dispatch(setUser(response.data.userData));
       } catch (error) {
         console.error(error);
@@ -74,7 +73,10 @@ const App = () => {
           path="/login"
           element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
         />
-        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/signup"
+          element={!user ? <SignUp /> : <Navigate to="/my-complaints/1" />}
+        />
         <Route
           path="/create-complaint"
           element={!user ? <Navigate to="/login" /> : <CreateComplaint />}
@@ -87,6 +89,10 @@ const App = () => {
           path="/complaint/:complaintId"
           element={!user ? <Navigate to="/login" /> : <Complaint />}
         />
+        <Route path="/faq">
+          <Route index={true} element={<FAQPage />} />
+          <Route path=":item" element={<FAQItem />} />
+        </Route>
       </Route>
     </Routes>
   );
