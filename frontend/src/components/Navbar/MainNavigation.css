@@ -16,7 +16,7 @@
   padding: 1rem;
 }
 
-.nav-header h2 {
+.nav-header .name {
   color: var(--white);
   font-size: 40px;
   letter-spacing: 5px;
