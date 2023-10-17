@@ -99,7 +99,7 @@ const App = () => {
           path="login"
           element={!user ? <AdminLogIn /> : <Navigate to="/admin/dashboard" />}
         />
-        <Route element={<AdminPage />}>
+        <Route element={user ? <AdminPage /> : <Navigate to="/admin/login" />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="admins" element={<Admins />} />
           <Route path="users/:page?" element={<Users />} />
