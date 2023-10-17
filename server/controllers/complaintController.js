@@ -130,9 +130,44 @@ const getComplaintsPerMonth = async (req, res) => {
   }
 };
 
+const closeComplaint = async (req, res) => {
+  const { complaintId } = req.params;
+
+  try {
+    const complaint = await Complaint.findById(complaintId);
+
+    if (!complaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+
+    if (
+      complaint.user.toString() !== req.user._id.toString() ||
+      req.user.role !== "admin"
+    ) {
+      return res.status(403).json({
+        message: "You do not have permission to close this complaint",
+      });
+    }
+
+    if (complaint.status === 0) {
+      return res.status(400).json({ message: "Complaint is already closed" });
+    }
+
+    complaint.date_closed = new Date();
+    complaint.status = 0;
+
+    await complaint.save();
+
+    res.status(200).json({ message: "Complaint closed successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Unable to close the complaint" });
+  }
+};
+
 module.exports = {
   createComplaint,
   getAllComplaints,
   getComplaintById,
   getComplaintsPerMonth,
+  closeComplaint,
 };
