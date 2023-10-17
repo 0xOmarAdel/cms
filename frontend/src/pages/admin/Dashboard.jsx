@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import "./Dashboard.css";
 import { Chart } from "../../UI/Chart";
@@ -12,6 +12,8 @@ const Dashboard = () => {
     { icon: "fa-solid fa-envelope" },
     { icon: "fa-solid fa-list" },
   ];
+
+  console.log('first')
 
   const [totalComplaints, setTotalComplaints] = useState([]);
   const {

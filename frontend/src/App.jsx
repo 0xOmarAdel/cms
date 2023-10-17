@@ -95,7 +95,10 @@ const App = () => {
         </Route>
       </Route>
       <Route path="/admin" element={<AdminRootLayout />}>
-        <Route path="login" element={<AdminLogIn />} />
+        <Route
+          path="login"
+          element={!user ? <AdminLogIn /> : <Navigate to="/admin/dashboard" />}
+        />
         <Route element={<AdminPage />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="admins" element={<Admins />} />

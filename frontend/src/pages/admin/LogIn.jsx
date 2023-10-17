@@ -1,13 +1,9 @@
-import { useCallback, useContext, useEffect, useState } from "react";
 import "./LogIn.css";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../../store/admin-auth-context";
-import useHTTP from "../../hooks/useHttp";
 import useInput from "../../hooks/useInput";
+import { login } from "../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
 
-const Login = () => {
-  const [loginFailed, setLoginFailed] = useState(false);
-
+const AdminLogIn = () => {
   const {
     value: enteredEmail,
     valueIsValid: enteredEmailIsValid,
@@ -35,7 +31,7 @@ const Login = () => {
 
   const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
-  const { isLoading, error, sendRequest: adminLogin } = useHTTP();
+  const dispatch = useDispatch();
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -44,55 +40,21 @@ const Login = () => {
       return;
     }
 
-    adminLogin(
-      {
-        url: "http://localhost:80/cms-api/adminLogin.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: { email: enteredEmail, password: enteredPassword },
-      },
-      dataHandler
+    dispatch(
+      login({
+        email: enteredEmail,
+        password: enteredPassword,
+      })
     );
 
     resetEmailInput();
     resetPasswordInput();
   };
 
-  const ctx = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  const dataHandler = useCallback(
-    (data) => {
-      if (data.status === 1) {
-        ctx.onLogin(data.adminName);
-      } else {
-        setLoginFailed(true);
-      }
-    },
-    [ctx]
-  );
-
-  useEffect(() => {
-    if (ctx.isLoggedIn) {
-      navigate("/admin/dashboard");
-    }
-  });
-
   return (
     <div className="form-container">
       <div className="login-form">
         <h2>Admin Login</h2>
-        {error && (
-          <p className="error-text mb-3 text-center">An error occurred!</p>
-        )}
-        {loginFailed && (
-          <p className="error-text mb-3 text-center">
-            Invalid email or password!
-          </p>
-        )}
         <form onSubmit={submitHandler}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -124,7 +86,7 @@ const Login = () => {
               <p className="error-text mt-2">Enter a valid password.</p>
             )}
           </div>
-          <button type="submit" disabled={isLoading | !formIsValid}>
+          <button type="submit" disabled={!formIsValid}>
             Login
           </button>
         </form>
@@ -132,4 +94,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default AdminLogIn;
