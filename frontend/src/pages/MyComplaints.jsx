@@ -54,7 +54,7 @@ const MyComplaints = () => {
               key={complaint.id}
               className={`${classes.complaint} mb-3 text-muted`}
             >
-              <Link to={`/complaint/${complaint.id}`}>
+              <Link to={`/complaint/${complaint._id}`}>
                 <div className="row align-items-center">
                   <div className="col-5 ps-0 text-left">
                     <i className="fa-regular fa-envelope pe-3"></i>
