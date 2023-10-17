@@ -47,8 +47,17 @@ const getAllComplaints = async (req, res) => {
         "name"
       );
     }
+    const modifiedComplaints = complaints.map((complaint) => ({
+      _id: complaint._id,
+      title: complaint.title,
+      category: complaint.category.name,
+      status: complaint.status,
+      date_created: complaint.date_created,
+      date_closed: complaint.date_closed,
+      user: complaint.user,
+    }));
 
-    res.status(200).json(complaints);
+    res.status(200).json(modifiedComplaints);
   } catch (error) {
     res.status(500).json({ message: "Unable to fetch complaints" });
   }
