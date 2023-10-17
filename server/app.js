@@ -17,6 +17,7 @@ const authRouter = require("./routes/authRoutes");
 const categoryRouter = require("./routes/categoryRoutes");
 const complaintRouter = require("./routes/complaintRoutes");
 const messageRouter = require("./routes/messageRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/complaints", complaintRouter);
 app.use("/api/v1/messages", messageRouter);
+app.use("/api/v1/", userRouter);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
