@@ -59,10 +59,10 @@ const getComplaintById = async (req, res) => {
     const userId = req.user._id;
     const userRole = req.user.role;
 
-    const complaint = await Complaint.findById(complaintId).populate(
-      "category",
-      "name"
-    );
+    const complaint = await Complaint.findById(complaintId).populate({
+      path: "category",
+      select: "name",
+    });
 
     if (!complaint) {
       return res.status(404).json({ message: "Complaint not found" });
@@ -77,7 +77,18 @@ const getComplaintById = async (req, res) => {
       });
     }
 
-    res.status(200).json(complaint);
+    const categoryName = complaint.category.name;
+
+    const modifiedComplaint = {
+      _id: complaint._id,
+      title: complaint.title,
+      category: categoryName,
+      status: complaint.status,
+      date_created: complaint.date_created,
+      date_closed: complaint.date_closed,
+    };
+
+    res.status(200).json(modifiedComplaint);
   } catch (error) {
     res.status(500).json({ message: "Unable to fetch the complaint" });
   }
