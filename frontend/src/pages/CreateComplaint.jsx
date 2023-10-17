@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 import Hero from "../UI/Hero";
 import useHTTP from "../hooks/useHttp";
 import useInput from "../hooks/useInput";
+import axios from "axios";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -68,30 +69,17 @@ const CreateComplaint = () => {
     if (!formIsValid) {
       return;
     }
-
-    const userId = localStorage.getItem("id");
-    const categoryId = enteredCategory ? parseInt(enteredCategory) : 1;
-
-    submitComplaint(
-      {
-        url: "http://localhost:80/cms-api/submitComplaint.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          title: enteredTitle,
-          message: enteredMessage,
-          categoryId,
-          userId,
-        },
+    await axios({
+      method: "POST",
+      url: "http://localhost:5000/api/v1/complaints",
+      data: {
+        title: enteredTitle,
+        category: enteredCategory
+          ? parseInt(enteredCategory)
+          : categories[0]._id,
+        message: enteredMessage,
       },
-      (data) => {
-        if (data.status === 1) {
-          navigate("/my-complaints");
-        }
-      }
-    );
+    });
   };
 
   return (
@@ -135,7 +123,7 @@ const CreateComplaint = () => {
                       value={enteredCategory}
                     >
                       {categories.map((category, index) => (
-                        <option key={index} value={category.id}>
+                        <option key={index} value={category._id}>
                           {category.name}
                         </option>
                       ))}
