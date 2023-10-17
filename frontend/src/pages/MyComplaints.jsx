@@ -1,37 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Alert from "../UI/Alert";
 import Hero from "../UI/Hero";
 import classes from "./MyComplaints.module.css";
 import PaginationHandler from "../UI/PaginationHandler";
-import useHTTP from "../hooks/useHttp";
 import Loading from "../UI/Loading";
 import StatusFormatter from "../UI/StatusFormatter";
 import DateFormatter from "../UI/DateFormatter";
+import useAxios from "../hooks/useAxios";
 
 const MyComplaints = () => {
-  const [userComplaints, setUserComplaints] = useState([]);
-  const { isLoading, error, sendRequest: getCategories } = useHTTP();
-
-  const dataHandler = useCallback((data) => {
-    setUserComplaints(data);
-  }, []);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getCategories(
-      {
-        url: "http://localhost:80/cms-api/getUserComplaints.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: localStorage.getItem("id"),
-      },
-      dataHandler
-    );
-  }, [navigate, getCategories, dataHandler]);
+  const {
+    data: userComplaints,
+    loading: isLoading,
+    error,
+  } = useAxios("http://localhost:5000/api/v1/complaints", "GET");
 
   let { page: currentPage } = useParams();
   const elementsPerPage = 10;
@@ -67,7 +49,7 @@ const MyComplaints = () => {
             </Alert>
           </div>
 
-          {userComplaints.slice(start, end).map((complaint) => (
+          {userComplaints?.slice(start, end).map((complaint) => (
             <div
               key={complaint.id}
               className={`${classes.complaint} mb-3 text-muted`}
