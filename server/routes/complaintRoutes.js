@@ -4,11 +4,12 @@ const {
   getAllComplaints,
   getComplaintById,
 } = require("../controllers/complaintController");
+const authenticateUser = require("../middleware/authenticateUser");
 
-router.post("/", createComplaint);
+router.post("/", authenticateUser, createComplaint);
 
-router.get("/", getAllComplaints);
+router.get("/", authenticateUser, getAllComplaints);
 
-router.get("/:id", getComplaintById);
+router.get("/:id", authenticateUser, getComplaintById);
 
 module.exports = router;
