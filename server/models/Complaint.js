@@ -5,12 +5,12 @@ const complaintSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  categoryId: {
+  category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
     required: true,
   },
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
