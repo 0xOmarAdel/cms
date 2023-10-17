@@ -27,7 +27,7 @@ const Login = () => {
     inputBlurHandler: passwordInputBlurHandler,
     reset: resetPasswordInput,
   } = useInput(
-    (value) => value.trim().length >= 10 && value.trim().length <= 25
+    (value) => value.trim().length >= 6 && value.trim().length <= 25
   );
 
   const emailInputClasses = emailInputHasError ? "invalid" : "";
