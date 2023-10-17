@@ -13,7 +13,7 @@ const Dashboard = () => {
     { icon: "fa-solid fa-list" },
   ];
 
-  console.log('first')
+  console.log("first");
 
   const [totalComplaints, setTotalComplaints] = useState([]);
   const {
@@ -66,11 +66,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     getTotalComplaints(
-      { url: "http://localhost:80/cms-api/complaintsPerMonth.php" },
+      { url: "http://localhost:5000/api/v1/complaints/complaints-per-month" },
       totalComplaintsHandler
     );
     getTotalUsers(
-      { url: "http://localhost:80/cms-api/usersPerMonth.php" },
+      { url: "http://localhost:5000/api/v1/users/users-per-month" },
       totalUsersHandler
     );
     getTotalNumbers(
