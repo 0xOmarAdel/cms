@@ -4,6 +4,8 @@ import NavbarLink from "./NavbarLink";
 import { useState, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import { selectUser, setUser } from "../../store/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const MainNavigation = () => {
   const linksContainerRef = useRef(null);
@@ -36,11 +38,14 @@ const MainNavigation = () => {
   const navigate = useNavigate();
 
   const ctx = useContext(AuthContext);
-
+  const dispatch = useDispatch();
   const logoutHandler = () => {
-    ctx.onLogout();
+    dispatch(setUser(null));
+    localStorage.removeItem("token");
     navigate("/login");
   };
+
+  const user = useSelector(selectUser);
 
   return (
     <nav className="grad">
@@ -59,7 +64,7 @@ const MainNavigation = () => {
           style={linkStyles}
         >
           <ul className="links" ref={linksRef}>
-            {!ctx.isLoggedIn ? (
+            {!user ? (
               navLinks.map((navLink, index) => (
                 <NavbarLink
                   key={index}
