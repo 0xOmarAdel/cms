@@ -67,9 +67,9 @@ const MyComplaints = () => {
             )}
           </div>
 
-          {userComplaints?.slice(start, end).map((complaint) => (
+          {userComplaints?.complaints.slice(start, end).map((complaint) => (
             <div
-              key={complaint.id}
+              key={complaint._id}
               className={`${classes.complaint} mb-3 text-muted`}
             >
               <Link to={`/complaint/${complaint._id}`}>
