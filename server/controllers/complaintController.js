@@ -1,8 +1,9 @@
 const Complaint = require("../models/Complaint");
+const Message = require("../models/Message");
 
 const createComplaint = async (req, res) => {
   try {
-    const { title, category } = req.body;
+    const { title, category, text } = req.body;
     const user = req.user._id;
 
     const complaint = new Complaint({
@@ -12,9 +13,19 @@ const createComplaint = async (req, res) => {
     });
 
     const savedComplaint = await complaint.save();
-    res.json(savedComplaint);
+
+    const lastInsertedComplaintId = savedComplaint._id;
+
+    const message = new Message({
+      complaintId: lastInsertedComplaintId,
+      from: user,
+      text,
+    });
+
+    const savedMessage = await message.save();
+    res.json({ complaint: savedComplaint, message: savedMessage });
   } catch (error) {
-    res.status(400).json({ message: "Unable to create a complaint" });
+    res.status(400).json({ error: "Unable to create a complaint and message" });
   }
 };
 
@@ -61,11 +72,9 @@ const getComplaintById = async (req, res) => {
       complaint.user.toString() !== userId.toString() &&
       userRole !== "admin"
     ) {
-      return res
-        .status(401)
-        .json({
-          message: "You do not have permission to access this complaint",
-        });
+      return res.status(401).json({
+        message: "You do not have permission to access this complaint",
+      });
     }
 
     res.status(200).json(complaint);
