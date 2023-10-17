@@ -1,12 +1,16 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const {
   createMessage,
   getMessagesByComplaintId,
 } = require("../controllers/messageController");
+const authenticateUser = require("../middleware/authenticateUser");
 
-router.post("/", createMessage);
+router.post("/", authenticateUser, createMessage);
 
-router.get("/complaint/:complaintId", getMessagesByComplaintId);
+router.get(
+  "/complaint/:complaintId",
+  authenticateUser,
+  getMessagesByComplaintId
+);
 
 module.exports = router;
