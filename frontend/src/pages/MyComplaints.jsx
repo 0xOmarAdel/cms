@@ -7,6 +7,8 @@ import Loading from "../UI/Loading";
 import StatusFormatter from "../UI/StatusFormatter";
 import DateFormatter from "../UI/DateFormatter";
 import useAxios from "../hooks/useAxios";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/slices/authSlice";
 
 const MyComplaints = () => {
   const {
@@ -20,10 +22,16 @@ const MyComplaints = () => {
   const start = (currentPage - 1) * elementsPerPage;
   const end = start + elementsPerPage;
 
+  const user = useSelector(selectUser);
+
   if (isLoading) {
     return (
       <>
-        <Hero title="My Complaints" />
+        <Hero
+          title={
+            user.role === "admin" ? "All User's Complaints" : "My Complaints"
+          }
+        />
         <section className="complaints text-center">
           <Loading />
         </section>
@@ -33,20 +41,30 @@ const MyComplaints = () => {
   if (error) {
     return (
       <>
-        <Hero title="My Complaints" />
+        <Hero
+          title={
+            user.role === "admin" ? "All User's Complaints" : "My Complaints"
+          }
+        />
         <section className="complaints text-center">{error}</section>
       </>
     );
   }
   return (
     <>
-      <Hero title="My Complaints" />
+      <Hero
+        title={
+          user.role === "admin" ? "All User's Complaints" : "My Complaints"
+        }
+      />
       <section className="complaints px-3 px-sm-0">
         <div className="container">
           <div className="row">
-            <Alert path="/create-complaint" icon>
-              Need help? create a new complaint from here.
-            </Alert>
+            {user.role === "user" && (
+              <Alert path="/create-complaint" icon>
+                Need help? create a new complaint from here.
+              </Alert>
+            )}
           </div>
 
           {userComplaints?.slice(start, end).map((complaint) => (
