@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "../UI/Alert";
 import Button from "../UI/Button";
@@ -24,18 +24,14 @@ const CreateComplaint = () => {
     hasError: titleInputHasError,
     valueChangeHandler: titleInputChangeHandler,
     inputBlurHandler: titleInputBlurHandler,
-    reset: resetTitleInput,
   } = useInput(
     (value) => value.trim().length >= 10 && value.trim().length <= 50
   );
 
   const {
     value: enteredCategory,
-    valueIsValid: enteredCategoryIsValid,
-    hasError: categoryInputHasError,
     valueChangeHandler: categoryInputChangeHandler,
     inputBlurHandler: categoryInputBlurHandler,
-    reset: resetCategoryInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -44,7 +40,6 @@ const CreateComplaint = () => {
     hasError: messageInputHasError,
     valueChangeHandler: messageInputChangeHandler,
     inputBlurHandler: messageInputBlurHandler,
-    reset: resetMessageInput,
   } = useInput((value) => value.trim().length >= 50);
 
   const formIsValid = enteredMessageIsValid && enteredTitleIsValid;
@@ -61,9 +56,8 @@ const CreateComplaint = () => {
   }, []);
 
   useEffect(() => {
-
     getCategories(
-      { url: "http://localhost:80/cms-api/getCategories.php" },
+      { url: "http://localhost:5000/api/v1/categories" },
       dataHandler
     );
   }, [getCategories, dataHandler]);
@@ -157,7 +151,7 @@ const CreateComplaint = () => {
                     />
                     {messageInputHasError && (
                       <p className="error-text mt-2">
-                        Message must be at least 50 characterss.
+                        Message must be at least 50 characters.
                       </p>
                     )}
                   </div>
