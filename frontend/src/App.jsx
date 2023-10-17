@@ -89,6 +89,10 @@ const App = () => {
           path="/complaint/:complaintId"
           element={!user ? <Navigate to="/login" /> : <Complaint />}
         />
+        <Route path="/faq">
+          <Route index={true} element={<FAQPage />} />
+          <Route path=":item" element={<FAQItem />} />
+        </Route>
       </Route>
     </Routes>
   );
