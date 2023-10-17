@@ -63,9 +63,7 @@ const MyComplaints = () => {
                     </p>
                   </div>
                   <div className="col-2">
-                    <p className="complaint-category">
-                      {complaint.categoryName}
-                    </p>
+                    <p className="complaint-category">{complaint.category}</p>
                   </div>
                   <div className="col-3">
                     <p className="complaint-date-created">
