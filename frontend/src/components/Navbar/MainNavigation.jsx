@@ -1,9 +1,8 @@
 import { FaBars, FaRegWindowMinimize } from "react-icons/fa";
 import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../store/auth-context";
 import { selectUser, setUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -37,7 +36,6 @@ const MainNavigation = () => {
 
   const navigate = useNavigate();
 
-  const ctx = useContext(AuthContext);
   const dispatch = useDispatch();
   const logoutHandler = () => {
     dispatch(setUser(null));
@@ -72,22 +70,28 @@ const MainNavigation = () => {
                   text={navLink.text}
                 />
               ))
-            ) : (
+            ) : user.role === "admin" ? (
+              // Render links for admin
               <>
-                {navLinks2.map((navLink, index) => (
-                  <NavbarLink
-                    key={index}
-                    path={navLink.path}
-                    text={navLink.text}
-                  />
-                ))}
-
-                <li>
-                  <a onClick={logoutHandler} style={{ cursor: "pointer" }}>
-                    Logout
-                  </a>
-                </li>
+                <NavbarLink path="/dashboard" text="Dashboard" />
+                <NavbarLink path="/faq" text="FAQ" />
               </>
+            ) : (
+              // Render links for user
+              navLinks2.map((navLink, index) => (
+                <NavbarLink
+                  key={index}
+                  path={navLink.path}
+                  text={navLink.text}
+                />
+              ))
+            )}
+            {user && (
+              <li>
+                <a onClick={logoutHandler} style={{ cursor: "pointer" }}>
+                  Logout
+                </a>
+              </li>
             )}
           </ul>
         </div>
