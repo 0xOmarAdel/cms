@@ -6,6 +6,7 @@ import StatusFormatter from "../UI/StatusFormatter";
 import useInput from "../hooks/useInput";
 import Hero from "../UI/Hero";
 import useAxios from "../hooks/useAxios";
+import axios from 'axios';
 
 const Complaint = () => {
   const { complaintId } = useParams();
@@ -48,6 +49,15 @@ const Complaint = () => {
     if (!formIsValid) {
       return;
     }
+
+    await axios({
+      method: "POST",
+      url: "http://localhost:5000/api/v1/messages",
+      data: {
+        complaintId,
+        text: enteredMessage,
+      },
+    });
 
     resetMessageInput();
   };
