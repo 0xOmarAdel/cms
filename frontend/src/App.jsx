@@ -44,7 +44,6 @@ const App = () => {
             token: localToken,
           }
         );
-        console.log(response);
         dispatch(setUser(response.data.userData));
       } catch (error) {
         console.error(error);
