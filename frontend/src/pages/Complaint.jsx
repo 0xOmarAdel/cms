@@ -68,7 +68,7 @@ const Complaint = () => {
                   <p>Title: {complaint.title}</p>
                 </li>
                 <li>
-                  <p>Category: {complaint.categoryName}</p>
+                  <p>Category: {complaint.category}</p>
                 </li>
                 <li>
                   <p>
