@@ -80,7 +80,6 @@ const getComplaintById = async (req, res) => {
     const categoryName = complaint.category.name;
 
     const modifiedComplaint = {
-      _id: complaint._id,
       title: complaint.title,
       category: categoryName,
       status: complaint.status,
