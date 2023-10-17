@@ -3,7 +3,7 @@ const Message = require("../models/Message");
 const createMessage = async (req, res) => {
   try {
     const { complaintId, text } = req.body;
-    const from = req.user._id;
+    const from = req.user.role === "admin" ? "1" : "0";
 
     const message = new Message({
       complaintId,
