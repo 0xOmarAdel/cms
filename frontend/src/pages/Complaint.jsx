@@ -1,34 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ScrollableDiv from "../UI/ScrollableDiv";
 import classes from "./Complaint.module.css";
 import DateFormatter from "../UI/DateFormatter";
 import StatusFormatter from "../UI/StatusFormatter";
 import useInput from "../hooks/useInput";
-import useHTTP from "../hooks/useHttp";
 import Hero from "../UI/Hero";
+import useAxios from "../hooks/useAxios";
 
 const Complaint = () => {
   const { complaintId } = useParams();
-
-  const [complaint, setComplaint] = useState([]);
-  const [messages, setMessages] = useState([]);
-
-  const {
-    isLoading: complaintDetailsIsLoading,
-    error: complaintDetailsHasError,
-    sendRequest: getComplaint,
-  } = useHTTP();
-  const {
-    isLoading: messagesIsLoading,
-    error: messagesHasError,
-    sendRequest: getMessages,
-  } = useHTTP();
-  const {
-    isLoading: sendingMessagesIsLoading,
-    error: sendingMessagesHasError,
-    sendRequest: sendMessage,
-  } = useHTTP();
 
   const {
     value: enteredMessage,
@@ -45,50 +25,22 @@ const Complaint = () => {
     ? "form-control invalid"
     : "form-control";
 
-  const getMessagesHandler = useCallback(() => {
-    getMessages(
-      {
-        url: "http://localhost:80/cms-api/getComplaintMessages.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: complaintId,
-      },
-      (data) => {
-        setMessages(data);
-      }
-    );
-  }, [getMessages, complaintId]);
+  const {
+    data: complaint,
+    loading: isLoading,
+    error,
+  } = useAxios(`http://localhost:5000/api/v1/complaints/${complaintId}`, "GET");
 
-  const navigate = useNavigate();
+  const {
+    data: messages,
+    loading: messagesIsLoading,
+    error: messagesHasError,
+  } = useAxios(
+    `http://localhost:5000/api/v1/messages/complaint/${complaintId}`,
+    "GET"
+  );
 
-  const userId = localStorage.getItem("id");
-
-  useEffect(() => {
-    if (!localStorage.getItem("id")) {
-      navigate("/login");
-    }
-
-    getComplaint(
-      {
-        url: "http://localhost:80/cms-api/getComplaintDetails.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: { userId, complaintId },
-      },
-      (data) => {
-        if (!data.title) {
-          navigate("/my-complaints");
-        }
-        setComplaint(data);
-      }
-    );
-
-    getMessagesHandler();
-  }, [getComplaint, complaintId, getMessagesHandler]);
+  if (isLoading || messagesIsLoading) return;
 
   const sendMessageHandler = async (e) => {
     e.preventDefault();
@@ -96,26 +48,6 @@ const Complaint = () => {
     if (!formIsValid) {
       return;
     }
-
-    sendMessage(
-      {
-        url: "http://localhost:80/cms-api/submitMessage.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          message: enteredMessage,
-          complaintId: parseInt(complaintId),
-          from: 0,
-        },
-      },
-      (data) => {
-        if (data.status === 1) {
-          getMessagesHandler();
-        }
-      }
-    );
 
     resetMessageInput();
   };
@@ -148,7 +80,7 @@ const Complaint = () => {
                     Status: <StatusFormatter status={complaint.status} />
                   </p>
                 </li>
-                {parseInt(complaint.status) === 1 && (
+                {parseInt(complaint.status) === 0 && (
                   <li>
                     <p>
                       Closed At: <DateFormatter date={complaint.date_closed} />
