@@ -62,7 +62,13 @@ const App = () => {
       <Route path="/" element={<RootLayout />}>
         <Route
           index={true}
-          element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
+          element={
+            !user ? (
+              <Navigate to="/login" />
+            ) : (
+              <Navigate to="/my-complaints/1" />
+            )
+          }
         />
         <Route
           path="/login"
@@ -70,7 +76,10 @@ const App = () => {
         />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create-complaint" element={<CreateComplaint />} />
-        <Route path="/my-complaints/:page" element={<MyComplaints />} />
+        <Route
+          path="/my-complaints/:page"
+          element={!user ? <Navigate to="/login" /> : <MyComplaints />}
+        />
         <Route path="/complaint/:complaintId" element={<Complaint />} />
       </Route>
     </Routes>
