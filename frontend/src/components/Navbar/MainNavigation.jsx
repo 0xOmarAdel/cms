@@ -2,7 +2,7 @@ import { FaBars, FaRegWindowMinimize } from "react-icons/fa";
 import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
 import { useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 
 const MainNavigation = () => {
@@ -46,7 +46,9 @@ const MainNavigation = () => {
     <nav className="grad">
       <div className="nav-center">
         <div className="nav-header">
-          <h2>CMS</h2>
+          <Link to="/" className="name">
+            CMS
+          </Link>
           <button className="nav-toggle" onClick={toggleLinks}>
             {showLinks ? <FaRegWindowMinimize /> : <FaBars />}
           </button>
