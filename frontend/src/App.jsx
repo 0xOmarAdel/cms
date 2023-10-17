@@ -94,6 +94,18 @@ const App = () => {
           <Route path=":item" element={<FAQItem />} />
         </Route>
       </Route>
+      <Route path="/admin" element={<AdminRootLayout />}>
+        <Route path="login" element={<AdminLogIn />} />
+        <Route element={<AdminPage />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="admins" element={<Admins />} />
+          <Route path="users/:page?" element={<Users />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="complaints/:page" element={<Complaints />} />
+          <Route path="complaint/:id" element={<AdminComplaint />} />
+        </Route>
+      </Route>
     </Routes>
   );
 };
