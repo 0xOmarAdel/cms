@@ -75,12 +75,18 @@ const App = () => {
           element={!user ? <LogIn /> : <Navigate to="/my-complaints/1" />}
         />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/create-complaint" element={<CreateComplaint />} />
         <Route
-          path="/my-complaints/:page"
+          path="/create-complaint"
+          element={!user ? <Navigate to="/login" /> : <CreateComplaint />}
+        />
+        <Route
+          path="/my-complaints/:page?"
           element={!user ? <Navigate to="/login" /> : <MyComplaints />}
         />
-        <Route path="/complaint/:complaintId" element={<Complaint />} />
+        <Route
+          path="/complaint/:complaintId"
+          element={!user ? <Navigate to="/login" /> : <Complaint />}
+        />
       </Route>
     </Routes>
   );

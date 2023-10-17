@@ -61,9 +61,6 @@ const CreateComplaint = () => {
   }, []);
 
   useEffect(() => {
-    if (!localStorage.getItem("id")) {
-      navigate("/login");
-    }
 
     getCategories(
       { url: "http://localhost:80/cms-api/getCategories.php" },
