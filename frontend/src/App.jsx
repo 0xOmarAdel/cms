@@ -101,8 +101,7 @@ const App = () => {
           <Route path="admins" element={<Admins />} />
           <Route path="users/:page?" element={<Users />} />
           <Route path="categories" element={<Categories />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="complaints/:page" element={<Complaints />} />
+          <Route path="complaints/:page?" element={<Complaints />} />
           <Route path="complaint/:id" element={<AdminComplaint />} />
         </Route>
       </Route>
