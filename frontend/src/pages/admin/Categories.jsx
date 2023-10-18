@@ -4,7 +4,7 @@ import Table from "../../components/Table";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [sortBy, setSortBy] = useState("_id");
+  const [sortBy, setSortBy] = useState("id");
   const { isLoading, error, sendRequest: getCategories } = useHTTP();
 
   const sortHandler = (value) => {
