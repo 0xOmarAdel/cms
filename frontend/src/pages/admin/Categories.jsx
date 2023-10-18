@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useHTTP from "../../hooks/useHttp";
 import Table from "../../components/Table";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [sortBy, setSortBy] = useState("id");
+  const [sortBy, setSortBy] = useState("_id");
   const { isLoading, error, sendRequest: getCategories } = useHTTP();
 
   const sortHandler = (value) => {
@@ -13,11 +13,12 @@ const Categories = () => {
 
   useEffect(() => {
     getCategories(
-      { url: "http://localhost:80/cms-api/getCategories.php" },
+      { url: "http://localhost:5000/api/v1/categories" },
       (data) => {
+        console.log(data);
         setCategories(
           data.map((element) => ({
-            id: parseInt(element.id),
+            id: element._id,
             name: element.name,
             number: parseInt(element.number),
           }))
