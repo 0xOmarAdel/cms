@@ -22,7 +22,7 @@ const getAllCategories = async (req, res) => {
     const categories = await Category.find();
 
     const response = categories.map((category) => ({
-      id: category._id,
+      _id: category._id,
       name: category.name,
       number: categories.length,
     }));
