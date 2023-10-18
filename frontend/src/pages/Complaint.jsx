@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import ScrollableDiv from "../UI/ScrollableDiv";
-import classes from "./Complaint.module.css";
-import DateFormatter from "../UI/DateFormatter";
-import StatusFormatter from "../UI/StatusFormatter";
+import axios from "axios";
+import useAxios from "../hooks/useAxios";
 import useInput from "../hooks/useInput";
 import Hero from "../UI/Hero";
-import useAxios from "../hooks/useAxios";
-import axios from 'axios';
+import ScrollableDiv from "../UI/ScrollableDiv";
+import DateFormatter from "../UI/DateFormatter";
+import StatusFormatter from "../UI/StatusFormatter";
+import classes from "./Complaint.module.css";
+import Loading from "../UI/Loading";
+import Error from "../UI/Error";
 
 const Complaint = () => {
   const { complaintId } = useParams();
@@ -27,21 +29,19 @@ const Complaint = () => {
     : "form-control";
 
   const {
-    data: complaint,
-    loading: isLoading,
-    error,
+    data: complaintDetails,
+    loading: complaintDetailsLoading,
+    error: complaintDetailsError,
   } = useAxios(`http://localhost:5000/api/v1/complaints/${complaintId}`, "GET");
 
   const {
-    data: messages,
-    loading: messagesIsLoading,
-    error: messagesHasError,
+    data: complaintMessages,
+    loading: complaintMessagesLoading,
+    error: complaintMessagesError,
   } = useAxios(
     `http://localhost:5000/api/v1/messages/complaint/${complaintId}`,
     "GET"
   );
-
-  if (isLoading || messagesIsLoading) return;
 
   const sendMessageHandler = async (e) => {
     e.preventDefault();
@@ -62,9 +62,31 @@ const Complaint = () => {
     resetMessageInput();
   };
 
+  if (complaintDetailsLoading || complaintMessagesLoading) {
+    return (
+      <>
+        <Hero title="My Complaints" />
+        <section className="complaints text-center">
+          <Loading />
+        </section>
+      </>
+    );
+  }
+
+  if (complaintDetailsError || complaintMessagesError) {
+    return (
+      <>
+        <Hero title="My Complaints" />
+        <section className="complaints text-center">
+          <Error />
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
-      <Hero title={complaint.title} />
+      <Hero title={complaintDetails.title} />
       <section className={classes.complaint}>
         <div className="container">
           <div className="row">
@@ -75,25 +97,27 @@ const Complaint = () => {
                   <p>ID: {complaintId}</p>
                 </li>
                 <li>
-                  <p>Title: {complaint.title}</p>
+                  <p>Title: {complaintDetails.title}</p>
                 </li>
                 <li>
-                  <p>Category: {complaint.category}</p>
+                  <p>Category: {complaintDetails.category}</p>
                 </li>
                 <li>
                   <p>
-                    Created At: <DateFormatter date={complaint.date_created} />
+                    Created At:{" "}
+                    <DateFormatter date={complaintDetails.date_created} />
                   </p>
                 </li>
                 <li>
                   <p>
-                    Status: <StatusFormatter status={complaint.status} />
+                    Status: <StatusFormatter status={complaintDetails.status} />
                   </p>
                 </li>
-                {parseInt(complaint.status) === 0 && (
+                {parseInt(complaintDetails.status) === 0 && (
                   <li>
                     <p>
-                      Closed At: <DateFormatter date={complaint.date_closed} />
+                      Closed At:{" "}
+                      <DateFormatter date={complaintDetails.date_closed} />
                     </p>
                   </li>
                 )}
@@ -106,7 +130,7 @@ const Complaint = () => {
                   style={{ height: "550px" }}
                 >
                   <div className="row full-width" style={{ maxHeight: "100%" }}>
-                    {messages.map((message) => (
+                    {complaintMessages.map((message) => (
                       <div
                         className={
                           parseInt(message.from) === 1
