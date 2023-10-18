@@ -39,7 +39,7 @@ const SignUp = () => {
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
   } = useInput((value) =>
-    value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/)
+    value.trim().match(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
   );
 
   const {

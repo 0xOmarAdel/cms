@@ -19,7 +19,7 @@ const LogIn = () => {
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
   } = useInput((value) =>
-    value.trim().match(/^[\w\-\.]+@([\w-]+\.)+[\w\-]{2,4}$/)
+    value.trim().match(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
   );
 
   const {
@@ -103,7 +103,7 @@ const LogIn = () => {
                 />
                 <hr className="mt-5 mb-4" />
                 <p className="text-center text-muted">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?{" "}
                   <Link to="/signup" className="text-primary">
                     Sign Up
                   </Link>
