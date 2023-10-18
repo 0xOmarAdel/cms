@@ -21,7 +21,6 @@ const Users = () => {
     getUsers(
       { url: "http://localhost:5000/api/v1/users/all-users" },
       (data) => {
-        console.log(data);
         const newData = data.map((element) => ({
           id: element._id,
           name: element.firstName + " " + element.lastName,
