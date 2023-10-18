@@ -1,6 +1,6 @@
 import FAQCard from "../components/FAQCard";
+import { faqCards } from "../data/faqCards";
 import Hero from "../UI/Hero";
-import {faqCards} from '../data/faqCards';
 
 const FAQ = () => {
   return (

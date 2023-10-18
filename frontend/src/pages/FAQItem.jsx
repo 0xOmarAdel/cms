@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Alert from "../UI/Alert";
 import Hero from "../UI/Hero";
 
 import classes from "./FAQItem.module.css";
 import Questions from "./Questions";
+import { faq } from "../data/faq";
 
 const FAQItem = () => {
   const questions = [
@@ -46,20 +47,7 @@ const FAQItem = () => {
   const params = useParams();
 
   useEffect(() => {
-    const validItems = [
-      "water",
-      "electricity",
-      "gas",
-      "garbage",
-      "traffic",
-      "roads",
-      "railways",
-      "rain",
-      "telephone",
-      "internet",
-    ];
-
-    if (!validItems.includes(params.item)) {
+    if (!faq.includes(params.item)) {
       navigate("/faq");
     }
   }, [params.item, navigate]);
@@ -91,7 +79,8 @@ const FAQItem = () => {
             </div>
             <div className="col-4 d-none d-md-block">
               <Alert path="/create-complaint" icon>
-                Couldn't find your answer? Create a new complaint from here.
+                Couldn&apos;t find your answer? Create a new complaint from
+                here.
               </Alert>
               <Alert path="/my-complaints" icon>
                 View your previously created complaints from here.

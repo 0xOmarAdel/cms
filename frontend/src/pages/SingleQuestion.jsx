@@ -1,3 +1,4 @@
+import { FaPlus, FaXmark } from "react-icons/fa6";
 import "./Questions.css";
 
 const SingleQuestion = ({ id, title, answer, activeId, toggleQuestion }) => {
@@ -11,9 +12,9 @@ const SingleQuestion = ({ id, title, answer, activeId, toggleQuestion }) => {
         <h5>{title}</h5>
         <button className="question-btn">
           {isActive ? (
-            <i className="fa-solid fa-xmark fa-xl"></i>
+            <FaXmark />
           ) : (
-            <i className="fa-light fa-plus fa-2xl"></i>
+            <FaPlus />
           )}
         </button>
       </header>
