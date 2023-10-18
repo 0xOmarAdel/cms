@@ -58,10 +58,7 @@ const getAllComplaints = async (req, res) => {
       user: complaint.user,
     }));
 
-    res.status(200).json({
-      count: modifiedComplaints.length,
-      complaints: modifiedComplaints,
-    });
+    res.status(200).json(modifiedComplaints);
   } catch (error) {
     res.status(500).json({ message: "Unable to fetch complaints" });
   }

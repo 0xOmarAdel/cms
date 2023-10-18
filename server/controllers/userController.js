@@ -27,10 +27,7 @@ const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
 
-    res.status(200).json({
-      count: users.length,
-      users: users,
-    });
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch users" });
   }
@@ -40,10 +37,7 @@ const getAdminUsers = async (req, res) => {
   try {
     const adminUsers = await User.find({ role: "admin" }).select("-password");
 
-    res.status(200).json({
-      count: adminUsers.length,
-      adminUsers: adminUsers,
-    });
+    res.status(200).json(adminUsers);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch admin users" });
   }
