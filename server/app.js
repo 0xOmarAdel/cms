@@ -18,6 +18,7 @@ const categoryRouter = require("./routes/categoryRoutes");
 const complaintRouter = require("./routes/complaintRoutes");
 const messageRouter = require("./routes/messageRoutes");
 const userRouter = require("./routes/userRoutes");
+const { getTotalNumbers } = require("./controllers/totalNumbersController");
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/complaints", complaintRouter);
 app.use("/api/v1/messages", messageRouter);
 app.use("/api/v1/users", userRouter);
+app.get("/api/v1/total-numbers", getTotalNumbers);
 
 const port = process.env.PORT || 5000;
 const start = async () => {
