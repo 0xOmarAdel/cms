@@ -1,23 +1,22 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import useAxios from "../hooks/useAxios";
+import useInput from "../hooks/useInput";
+import Hero from "../UI/Hero";
 import Alert from "../UI/Alert";
 import Button from "../UI/Button";
-import Hero from "../UI/Hero";
-import useHTTP from "../hooks/useHttp";
-import useInput from "../hooks/useInput";
-import axios from "axios";
+import Loading from "../UI/Loading";
+import Error from "../UI/Error";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
 
-  const [categories, setCategories] = useState([]);
-
-  const { isLoading, error, sendRequest: getCategories } = useHTTP();
   const {
-    isLoading: submitComplaintIsLoading,
-    error: submitComplaintHasError,
-    sendRequest: submitComplaint,
-  } = useHTTP();
+    data: categories,
+    loading: categoriesLoading,
+    error: categoriesHasError,
+  } = useAxios("http://localhost:5000/api/v1/categories", "GET");
 
   const {
     value: enteredTitle,
@@ -52,16 +51,8 @@ const CreateComplaint = () => {
     ? "form-control invalid"
     : "form-control";
 
-  const dataHandler = useCallback((data) => {
-    setCategories(data);
-  }, []);
-
-  useEffect(() => {
-    getCategories(
-      { url: "http://localhost:5000/api/v1/categories" },
-      dataHandler
-    );
-  }, [getCategories, dataHandler]);
+  const [submitting, setSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -70,21 +61,46 @@ const CreateComplaint = () => {
       return;
     }
 
-    console.log(
-      enteredTitle,
-      enteredCategory || categories[0]._id,
-      enteredMessage
-    );
-    await axios({
-      method: "POST",
-      url: "http://localhost:5000/api/v1/complaints",
-      data: {
-        title: enteredTitle,
-        category: enteredCategory || categories[0]._id,
-        text: enteredMessage,
-      },
-    });
+    setSubmitting(true);
+
+    try {
+      await axios({
+        method: "POST",
+        url: "http://localhost:5000/api/v1/complaints",
+        data: {
+          title: enteredTitle,
+          category: enteredCategory || categories[0]._id,
+          text: enteredMessage,
+        },
+      });
+    } catch (error) {
+      setSubmittingError(true);
+    }
+
+    setSubmitting(false);
   };
+
+  if (categoriesLoading) {
+    return (
+      <>
+        <Hero title="My Complaints" />
+        <section className="complaints text-center">
+          <Loading />
+        </section>
+      </>
+    );
+  }
+
+  if (categoriesHasError) {
+    return (
+      <>
+        <Hero title="My Complaints" />
+        <section className="complaints text-center">
+          <Error />
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -95,9 +111,9 @@ const CreateComplaint = () => {
             <div className="col-12 col-md-8 p-0 pe-md-5">
               <form onSubmit={submitHandler}>
                 <div className="row justify-content-center">
-                  {submitComplaintHasError && (
+                  {submittingError && (
                     <p className="error-text text-center mb-3">
-                      An error occurred. Couldn't submit your complaint.
+                      An error occurred. Couldn&apos;t submit your complaint.
                       <br />
                       You will probably need to complain about that as well
                       lmao.
@@ -154,7 +170,7 @@ const CreateComplaint = () => {
                       navigate("/my-complaints");
                     }}
                   />
-                  <Button text="Submit" disabled={submitComplaintIsLoading} />
+                  <Button text="Submit" disabled={submitting} />
                 </div>
               </form>
             </div>
