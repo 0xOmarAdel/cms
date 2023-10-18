@@ -117,11 +117,31 @@ const getComplaintsPerMonth = async (req, res) => {
         },
       },
       {
-        $sort: { "_id.year": 1, "_id.month": 1 },
+        $sort: { "_id.year": -1, "_id.month": -1 },
       },
     ]);
 
-    res.status(200).json(complaintsPerMonth);
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const formattedResponse = complaintsPerMonth.map((item) => ({
+      total: item.count,
+      month: monthNames[item._id.month - 1],
+    }));
+
+    res.status(200).json(formattedResponse);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch complaints per month" });
   }
