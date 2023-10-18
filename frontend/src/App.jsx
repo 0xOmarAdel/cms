@@ -1,28 +1,29 @@
+import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { selectUser, setUser } from "./store/slices/userAuthSlice";
 
 import RootLayout from "./pages/Root";
 
 import ErrorPage from "./pages/Error";
 
 import FAQPage from "./pages/FAQ";
+import FAQItem from "./pages/FAQItem";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import MyComplaints from "./pages/MyComplaints";
 import CreateComplaint from "./pages/CreateComplaint";
 import Complaint from "./pages/Complaint";
-import FAQItem from "./pages/FAQItem";
+
+import AdminPage from "./pages/admin/AdminPage";
+import AdminLogIn from "./pages/admin/LogIn";
 import Dashboard from "./pages/admin/Dashboard";
 import Admins from "./pages/admin/Admins";
 import Users from "./pages/admin/Users";
 import Complaints from "./pages/admin/Complaints";
-import AdminComplaint from "./pages/admin/Complaint";
 import Categories from "./pages/admin/Categories";
-import AdminLogIn from "./pages/admin/LogIn";
-import AdminPage from "./pages/admin/AdminPage";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { selectUser, setUser } from "./store/slices/userAuthSlice";
+import AdminComplaint from "./pages/admin/Complaint";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
