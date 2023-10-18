@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import RootLayout from "./pages/Root";
-import AdminRootLayout from "./pages/admin/AdminRoot";
 
 import ErrorPage from "./pages/Error";
 
@@ -94,7 +93,7 @@ const App = () => {
           <Route path=":item" element={<FAQItem />} />
         </Route>
       </Route>
-      <Route path="/admin" element={<AdminRootLayout />}>
+      <Route path="/admin" >
         <Route
           path="login"
           element={!user ? <AdminLogIn /> : <Navigate to="/admin/dashboard" />}
