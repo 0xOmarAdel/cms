@@ -21,7 +21,13 @@ const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.find();
 
-    res.status(200).json(categories);
+    const response = categories.map((category) => ({
+      id: category._id,
+      name: category.name,
+      number: categories.length,
+    }));
+
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch categories" });
   }
