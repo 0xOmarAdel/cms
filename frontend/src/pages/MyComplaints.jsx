@@ -1,22 +1,17 @@
 import { Link, useParams } from "react-router-dom";
-import Alert from "../UI/Alert";
-import Hero from "../UI/Hero";
-import classes from "./MyComplaints.module.css";
-import PaginationHandler from "../UI/PaginationHandler";
-import Loading from "../UI/Loading";
-import StatusFormatter from "../UI/StatusFormatter";
-import DateFormatter from "../UI/DateFormatter";
-import useAxios from "../hooks/useAxios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/slices/userAuthSlice";
+import useAxios from "../hooks/useAxios";
+import Alert from "../UI/Alert";
+import Hero from "../UI/Hero";
+import PaginationHandler from "../UI/PaginationHandler";
+import StatusFormatter from "../UI/StatusFormatter";
+import DateFormatter from "../UI/DateFormatter";
+import Loading from "../UI/Loading";
+import Error from "../UI/Error";
+import classes from "./MyComplaints.module.css";
 
 const MyComplaints = () => {
-  const {
-    data: userComplaints,
-    loading: isLoading,
-    error,
-  } = useAxios("http://localhost:5000/api/v1/complaints", "GET");
-
   let { page: currentPage } = useParams();
   const elementsPerPage = 10;
   const start = (currentPage - 1) * elementsPerPage;
@@ -24,7 +19,13 @@ const MyComplaints = () => {
 
   const user = useSelector(selectUser);
 
-  if (isLoading) {
+  const {
+    data: userComplaints,
+    loading: userComplaintsLoading,
+    error: userComplaintsHasError,
+  } = useAxios("http://localhost:5000/api/v1/complaints", "GET");
+
+  if (userComplaintsLoading) {
     return (
       <>
         <Hero title="My Complaints" />
@@ -34,14 +35,18 @@ const MyComplaints = () => {
       </>
     );
   }
-  if (error) {
+
+  if (userComplaintsHasError) {
     return (
       <>
         <Hero title="My Complaints" />
-        <section className="complaints text-center">{error}</section>
+        <section className="complaints text-center">
+          <Error />
+        </section>
       </>
     );
   }
+
   return (
     <>
       <Hero title="My Complaints" />
