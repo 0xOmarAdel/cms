@@ -96,6 +96,8 @@ const Dashboard = () => {
     error: totalUsersHasError,
   } = useAxios("http://localhost:5000/api/v1/users/all-users", "GET");
 
+  console.log(totalUsers);
+
   return (
     <div className="admins">
       <h1 className="mb-5">Dashboard</h1>
@@ -111,14 +113,15 @@ const Dashboard = () => {
             </div>
           ))}
         </div> */}
-        <div className="row mt-5">
+
+        {/* <div className="row mt-5">
           <div className="col-12 col-xl-6">
             <Chart label="Complaints" data={totalComplaints?.count} />
           </div>
           <div className="col-12 col-xl-6">
             <Chart label="Users" data={totalUsers.count} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
