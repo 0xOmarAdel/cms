@@ -62,30 +62,21 @@ const MainNavigation = () => {
           style={linkStyles}
         >
           <ul className="links" ref={linksRef}>
-            {!user ? (
-              navLinks.map((navLink, index) => (
-                <NavbarLink
-                  key={index}
-                  path={navLink.path}
-                  text={navLink.text}
-                />
-              ))
-            ) : user.role === "admin" ? (
-              // Render links for admin
-              <>
-                <NavbarLink path="/dashboard" text="Dashboard" />
-                <NavbarLink path="/faq" text="FAQ" />
-              </>
-            ) : (
-              // Render links for user
-              navLinks2.map((navLink, index) => (
-                <NavbarLink
-                  key={index}
-                  path={navLink.path}
-                  text={navLink.text}
-                />
-              ))
-            )}
+            {!user
+              ? navLinks.map((navLink, index) => (
+                  <NavbarLink
+                    key={index}
+                    path={navLink.path}
+                    text={navLink.text}
+                  />
+                ))
+              : navLinks2.map((navLink, index) => (
+                  <NavbarLink
+                    key={index}
+                    path={navLink.path}
+                    text={navLink.text}
+                  />
+                ))}
             {user && (
               <li>
                 <a onClick={logoutHandler} style={{ cursor: "pointer" }}>
