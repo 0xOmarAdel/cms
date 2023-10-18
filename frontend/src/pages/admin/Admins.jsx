@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useHTTP from "../../hooks/useHttp";
 import Table from "../../components/Table";
 
@@ -12,11 +12,20 @@ const Admins = () => {
   };
 
   useEffect(() => {
-    getAdmins({ url: "http://localhost:80/cms-api/admins.php" }, (data) => {
-      setAdmins(
-        data.map((element) => ({ ...element, id: parseInt(element.id) }))
-      );
-    });
+    getAdmins(
+      { url: "http://localhost:5000/api/v1/users/all-admins" },
+      (data) => {
+        setAdmins(
+          data.map((element) => ({
+            id: element._id,
+            name: element.firstName + " " + element.lastName,
+            email: element.email,
+            phone: element.phone,
+            createdAt: element.createdAt,
+          }))
+        );
+      }
+    );
   }, [getAdmins]);
 
   const table = [
