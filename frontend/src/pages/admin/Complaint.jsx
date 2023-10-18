@@ -1,25 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ScrollableDiv from "../../UI/ScrollableDiv";
-
 import classes from "../Complaint.module.css";
 import DateFormatter from "../../UI/DateFormatter";
 import StatusFormatter from "../../UI/StatusFormatter";
 import useInput from "../../hooks/useInput";
 import useHTTP from "../../hooks/useHttp";
+import useAxios from "../../hooks/useAxios";
 
 const Complaint = () => {
   const { id } = useParams();
 
   const [complaint, setComplaint] = useState([]);
-  const [messages, setMessages] = useState([]);
 
   const { isLoading, error, sendRequest: getComplaint } = useHTTP();
+
   const {
-    isLoading: messagesIsLoading,
+    data: messages,
+    loading: messagesIsLoading,
     error: messagesHasError,
-    sendRequest: getMessages,
-  } = useHTTP();
+  } = useAxios(`http://localhost:5000/api/v1/messages/complaint/${id}`, "GET");
+
   const {
     isLoading: sendingMessagesIsLoading,
     error: sendingMessagesHasError,
@@ -66,26 +67,6 @@ const Complaint = () => {
     getComplaintHandler();
   }, [getComplaintHandler]);
 
-  const getMessagesHandler = useCallback(() => {
-    getMessages(
-      {
-        url: "http://localhost:80/cms-api/getComplaintMessages.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: id,
-      },
-      (data) => {
-        setMessages(data);
-      }
-    );
-  }, [getMessages, id]);
-
-  useEffect(() => {
-    getMessagesHandler();
-  }, [getMessagesHandler]);
-
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
@@ -102,11 +83,7 @@ const Complaint = () => {
         },
         body: { message: enteredMessage, complaintId: parseInt(id), from: 1 },
       },
-      (data) => {
-        if (data.status === 1) {
-          getMessagesHandler();
-        }
-      }
+      (data) => {}
     );
 
     resetMessageInput();
@@ -129,6 +106,8 @@ const Complaint = () => {
       }
     );
   }, [closeComplaint, getComplaintHandler, id]);
+
+  if (messagesIsLoading) return;
 
   return (
     <div className={`row ${classes.complaint}`}>
