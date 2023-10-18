@@ -1,8 +1,5 @@
 import "./AdminNav.css";
-
-import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import AuthContext from "../../store/admin-auth-context";
+import { NavLink } from "react-router-dom";
 
 import adminPic from "../../imgs/admin.png";
 
@@ -36,15 +33,6 @@ const Sidebar = (props) => {
       icon: "fa-solid fa-envelope",
     },
   ];
-
-  const navigate = useNavigate();
-
-  const ctx = useContext(AuthContext);
-
-  const logoutHandler = () => {
-    ctx.onLogout();
-    navigate("/admin/login");
-  };
 
   return (
     <div className={props.menuIsOpened ? "sidebar sidebar-opened" : "sidebar"}>
