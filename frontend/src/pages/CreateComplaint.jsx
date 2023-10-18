@@ -73,11 +73,13 @@ const CreateComplaint = () => {
           text: enteredMessage,
         },
       });
+
+      setSubmitting(false);
+      navigate("/my-complaints");
     } catch (error) {
+      setSubmitting(false);
       setSubmittingError(true);
     }
-
-    setSubmitting(false);
   };
 
   if (categoriesLoading) {
