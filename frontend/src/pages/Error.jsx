@@ -7,7 +7,7 @@ const ErrorPage = () => {
     <>
       <MainNavigation />
       <Hero title="an error occurred!">
-        <p>This page doesn't exist!</p>
+        <p>This page doesn&apos;t exist!</p>
       </Hero>
       <Footer />
     </>
