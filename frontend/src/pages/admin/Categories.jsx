@@ -1,48 +1,45 @@
 import { useEffect, useState } from "react";
-import useHTTP from "../../hooks/useHttp";
+import useAxios from "../../hooks/useAxios";
 import Table from "../../components/Table";
+import { categoriesPageGrid } from "../../data/pagesGrid";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]);
+
+  const {
+    data: categories,
+    loading: categoriesLoading,
+    error: categoriesHasError,
+  } = useAxios("http://localhost:5000/api/v1/categories", "GET");
+
   const [sortBy, setSortBy] = useState("id");
-  const { isLoading, error, sendRequest: getCategories } = useHTTP();
+
+  useEffect(() => {
+    if (categories) {
+      const newData = categories.map((element) => ({
+        id: element._id,
+        name: element.name,
+        number: parseInt(element.number),
+      }));
+
+      setCategoriesList(newData);
+    }
+  }, [categories]);
 
   const sortHandler = (value) => {
     setSortBy(value);
   };
 
-  useEffect(() => {
-    getCategories(
-      { url: "http://localhost:5000/api/v1/categories" },
-      (data) => {
-        console.log(data);
-        setCategories(
-          data.map((element) => ({
-            id: element._id,
-            name: element.name,
-            number: parseInt(element.number),
-          }))
-        );
-      }
-    );
-  }, [getCategories]);
-
-  const table = [
-    { colSize: 3, label: "ID", value: "id" },
-    { colSize: 5, label: "Title", value: "name" },
-    { colSize: 4, label: "Complaints", value: "number" },
-  ];
-
   return (
     <Table
       title="Categories"
-      table={table}
-      elements={categories}
+      table={categoriesPageGrid}
+      elements={categoriesList}
       pagination={false}
-      isLoading={isLoading}
-      error={error}
+      isLoading={categoriesLoading}
+      error={categoriesHasError}
       search={false}
-      filteredArray={categories}
+      filteredArray={categoriesList}
       sortBy={sortBy}
       sortHandler={sortHandler}
     />

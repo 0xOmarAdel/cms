@@ -1,4 +1,3 @@
-import React from "react";
 import SearchBar from "../UI/SearchBar";
 
 const NoRecords = ({ title, search, inputValue, searchHandler }) => {

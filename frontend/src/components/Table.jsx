@@ -1,13 +1,13 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 import SearchBar from "../UI/SearchBar";
 import Badge from "../UI/Badge";
 import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
-import dynamicSort from "../utils/dynamicSort";
-import NoRecords from "./NoRecords";
-import Loading from "../UI/Loading";
-import { useParams } from "react-router-dom";
 import PaginationHandler from "../UI/PaginationHandler";
+import Loading from "../UI/Loading";
+import Error from "../UI/Error";
+import NoRecords from "./NoRecords";
+import dynamicSort from "../utils/dynamicSort";
 
 const Table = (props) => {
   let { page: currentPage } = useParams();
@@ -18,13 +18,27 @@ const Table = (props) => {
   const end = currentPage ? start + elementsPerPage : props.elements?.length;
 
   if (props.isLoading) {
-    return <Loading />;
+    return (
+      <div className="row">
+        <div className="col-12">
+          <h1 className="mb-4">{props.title}</h1>
+          <Loading />
+        </div>
+      </div>
+    );
   }
   if (props.error) {
-    return props.error;
+    return (
+      <div className="row">
+        <div className="col-12">
+          <h1 className="mb-4">{props.title}</h1>
+          <Error />
+        </div>
+      </div>
+    );
   }
   if (props.elements.length === 0) {
-    return <NoRecords title="Complaints" />;
+    return <NoRecords title={props.title} />;
   }
 
   return (
