@@ -1,36 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ScrollableDiv from "../../UI/ScrollableDiv";
 import classes from "../Complaint.module.css";
 import DateFormatter from "../../UI/DateFormatter";
 import StatusFormatter from "../../UI/StatusFormatter";
 import useInput from "../../hooks/useInput";
-import useHTTP from "../../hooks/useHttp";
 import useAxios from "../../hooks/useAxios";
+import axios from "axios";
 
 const Complaint = () => {
   const { id } = useParams();
 
-  const [complaint, setComplaint] = useState([]);
-
-  const { isLoading, error, sendRequest: getComplaint } = useHTTP();
+  const {
+    data: complaintDetails,
+    loading: complaintDetailsLoading,
+    error: complaintDetailsError,
+  } = useAxios(`http://localhost:5000/api/v1/complaints/${id}`, "GET");
 
   const {
     data: messages,
     loading: messagesIsLoading,
     error: messagesHasError,
   } = useAxios(`http://localhost:5000/api/v1/messages/complaint/${id}`, "GET");
-
-  const {
-    isLoading: sendingMessagesIsLoading,
-    error: sendingMessagesHasError,
-    sendRequest: sendMessage,
-  } = useHTTP();
-  const {
-    isLoading: closeComplaintIsLoading,
-    error: closeComplaintHasError,
-    sendRequest: closeComplaint,
-  } = useHTTP();
 
   const {
     value: enteredMessage,
@@ -47,26 +37,6 @@ const Complaint = () => {
     ? "form-control invalid"
     : "form-control";
 
-  const getComplaintHandler = useCallback(() => {
-    getComplaint(
-      {
-        url: "http://localhost:80/cms-api/getComplaintAndUserDeatils.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: { complaintId: id },
-      },
-      (data) => {
-        setComplaint(data);
-      }
-    );
-  }, [getComplaint, id]);
-
-  useEffect(() => {
-    getComplaintHandler();
-  }, [getComplaintHandler]);
-
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
@@ -74,40 +44,19 @@ const Complaint = () => {
       return;
     }
 
-    sendMessage(
-      {
-        url: "http://localhost:80/cms-api/submitMessage.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: { message: enteredMessage, complaintId: parseInt(id), from: 1 },
+    await axios({
+      method: "POST",
+      url: "http://localhost:5000/api/v1/messages",
+      data: {
+        complaintId: id,
+        text: enteredMessage,
       },
-      (data) => {}
-    );
+    });
 
     resetMessageInput();
   };
 
-  const closeComplaintHandler = useCallback(async () => {
-    closeComplaint(
-      {
-        url: "http://localhost:80/cms-api/closeComplaint.php",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: id,
-      },
-      (data) => {
-        if (data.status === 1) {
-          getComplaintHandler();
-        }
-      }
-    );
-  }, [closeComplaint, getComplaintHandler, id]);
-
-  if (messagesIsLoading) return;
+  if (complaintDetailsLoading || messagesIsLoading) return;
 
   return (
     <div className={`row ${classes.complaint}`}>
@@ -192,20 +141,20 @@ const Complaint = () => {
             <p>ID: {id}</p>
           </li>
           <li>
-            <p>Title: {complaint.title}</p>
+            <p>Title: {complaintDetails.title}</p>
           </li>
           <li>
-            <p>Category: {complaint.categoryName}</p>
+            <p>Category: {complaintDetails.categoryName}</p>
           </li>
           <li>
             <p>
-              Created At: <DateFormatter date={complaint.date_created} />
+              Created At: <DateFormatter date={complaintDetails.date_created} />
             </p>
           </li>
           <li>
             <p>
-              Status: <StatusFormatter status={complaint.status} />
-              {parseInt(complaint.status) === 1 ? (
+              Status: <StatusFormatter status={complaintDetails.status} />
+              {parseInt(complaintDetails.status) === 1 ? (
                 <i className="fa-solid fa-lock ms-2"></i>
               ) : (
                 <i
@@ -215,10 +164,10 @@ const Complaint = () => {
               )}
             </p>
           </li>
-          {parseInt(complaint.status) === 1 && (
+          {parseInt(complaintDetails.status) === 1 && (
             <li>
               <p>
-                Closed At: <DateFormatter date={complaint.date_closed} />
+                Closed At: <DateFormatter date={complaintDetails.date_closed} />
               </p>
             </li>
           )}
@@ -226,19 +175,19 @@ const Complaint = () => {
         <h2 className="mb-4">User Details</h2>
         <ul>
           <li>
-            <p>ID: {complaint.userId}</p>
+            <p>ID: {complaintDetails.userId}</p>
           </li>
           <li>
-            <p>National ID: {complaint.userNationalId}</p>
+            <p>National ID: {complaintDetails.userNationalId}</p>
           </li>
           <li>
-            <p>Name: {complaint.userName}</p>
+            <p>Name: {complaintDetails.userName}</p>
           </li>
           <li>
-            <p>Email: {complaint.userEmail}</p>
+            <p>Email: {complaintDetails.userEmail}</p>
           </li>
           <li>
-            <p>Phone: {complaint.userPhone}</p>
+            <p>Phone: {complaintDetails.userPhone}</p>
           </li>
         </ul>
       </div>
