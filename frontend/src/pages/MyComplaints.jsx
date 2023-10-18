@@ -27,11 +27,7 @@ const MyComplaints = () => {
   if (isLoading) {
     return (
       <>
-        <Hero
-          title={
-            user.role === "admin" ? "All User's Complaints" : "My Complaints"
-          }
-        />
+        <Hero title="My Complaints" />
         <section className="complaints text-center">
           <Loading />
         </section>
@@ -41,11 +37,7 @@ const MyComplaints = () => {
   if (error) {
     return (
       <>
-        <Hero
-          title={
-            user.role === "admin" ? "All User's Complaints" : "My Complaints"
-          }
-        />
+        <Hero title="My Complaints" />
         <section className="complaints text-center">{error}</section>
       </>
     );
