@@ -15,7 +15,7 @@ const Table = (props) => {
     ? props.elementsPerPage
     : props.elements.length;
   const start = currentPage ? (currentPage - 1) * elementsPerPage : 0;
-  const end = currentPage ? start + elementsPerPage : props.elements.length;
+  const end = currentPage ? start + elementsPerPage : props.elements?.length;
 
   if (props.isLoading) {
     return <Loading />;
