@@ -45,7 +45,7 @@ const getUsersPerMonth = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("-password");
+    const users = await User.find().select("-password -role -updatedAt");
 
     res.status(200).json(users);
   } catch (error) {
@@ -55,7 +55,9 @@ const getAllUsers = async (req, res) => {
 
 const getAdminUsers = async (req, res) => {
   try {
-    const adminUsers = await User.find({ role: "admin" }).select("-password");
+    const adminUsers = await User.find({ role: "admin" }).select(
+      "-password -role -updatedAt"
+    );
 
     res.status(200).json(adminUsers);
   } catch (error) {
