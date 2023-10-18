@@ -52,11 +52,7 @@ const MyComplaints = () => {
   }
   return (
     <>
-      <Hero
-        title={
-          user.role === "admin" ? "All User's Complaints" : "My Complaints"
-        }
-      />
+      <Hero title="My Complaints" />
       <section className="complaints px-3 px-sm-0">
         <div className="container">
           <div className="row">
@@ -67,7 +63,7 @@ const MyComplaints = () => {
             )}
           </div>
 
-          {userComplaints?.complaints.slice(start, end).map((complaint) => (
+          {userComplaints.slice(start, end).map((complaint) => (
             <div
               key={complaint._id}
               className={`${classes.complaint} mb-3 text-muted`}
