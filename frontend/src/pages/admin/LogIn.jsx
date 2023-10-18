@@ -1,6 +1,6 @@
 import "./LogIn.css";
 import useInput from "../../hooks/useInput";
-import { login } from "../../store/slices/authSlice";
+import { login } from "../../store/slices/userAuthSlice";
 import { useDispatch } from "react-redux";
 
 const AdminLogIn = () => {

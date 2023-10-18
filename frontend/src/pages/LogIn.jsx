@@ -5,7 +5,7 @@ import InputWithIcon from "../UI/InputWithIcon";
 import ShapeBottom from "../UI/ShapeBottom";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { login } from "../store/slices/authSlice";
+import { login } from "../store/slices/userAuthSlice";
 
 const LogIn = () => {
   const introTitle = "Welcome back!";

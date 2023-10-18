@@ -5,7 +5,7 @@ import InputWithIcon from "../UI/InputWithIcon";
 import ShapeBottom from "../UI/ShapeBottom";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
-import { register } from "../store/slices/authSlice";
+import { register } from "../store/slices/userAuthSlice";
 
 const SignUp = () => {
   const introTitle = "Create an account!";

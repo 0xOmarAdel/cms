@@ -3,7 +3,7 @@ import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { selectUser, setUser } from "../../store/slices/authSlice";
+import { selectUser, setUser } from "../../store/slices/userAuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const MainNavigation = () => {

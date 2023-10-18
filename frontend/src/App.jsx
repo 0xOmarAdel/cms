@@ -23,7 +23,7 @@ import AdminPage from "./pages/admin/AdminPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { selectUser, setUser } from "./store/slices/authSlice";
+import { selectUser, setUser } from "./store/slices/userAuthSlice";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);

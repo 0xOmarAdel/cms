@@ -8,7 +8,7 @@ import StatusFormatter from "../UI/StatusFormatter";
 import DateFormatter from "../UI/DateFormatter";
 import useAxios from "../hooks/useAxios";
 import { useSelector } from "react-redux";
-import { selectUser } from "../store/slices/authSlice";
+import { selectUser } from "../store/slices/userAuthSlice";
 
 const MyComplaints = () => {
   const {
