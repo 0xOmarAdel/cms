@@ -1,5 +1,3 @@
-import React from "react";
-
 const dynamicSort = (property) => {
   return function (a, b) {
     const result =
