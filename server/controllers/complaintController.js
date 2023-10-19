@@ -1,5 +1,6 @@
 const Complaint = require("../models/Complaint");
 const Message = require("../models/Message");
+const moment = require("moment");
 
 const createComplaint = async (req, res) => {
   try {
@@ -124,7 +125,7 @@ const getComplaintById = async (req, res) => {
 
 const getComplaintsPerMonth = async (req, res) => {
   try {
-    const complaintsPerMonth = await Complaint.aggregate([
+    let complaintsPerMonth = await Complaint.aggregate([
       {
         $group: {
           _id: {
@@ -134,32 +135,25 @@ const getComplaintsPerMonth = async (req, res) => {
           count: { $sum: 1 },
         },
       },
-      {
-        $sort: { "_id.year": -1, "_id.month": -1 },
-      },
+      { $sort: { "_id.year": -1, "_id.month": -1 } },
+      { $limit: 6 },
     ]);
 
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+    complaintsPerMonth = complaintsPerMonth
+      .map((item) => {
+        const {
+          _id: { year, month },
+          count,
+        } = item;
+        const date = moment()
+          .month(month - 1)
+          .year(year)
+          .format("MMM Y");
+        return { date, count };
+      })
+      .reverse();
 
-    const formattedResponse = complaintsPerMonth.map((item) => ({
-      total: item.count,
-      month: monthNames[item._id.month - 1],
-    }));
-
-    res.status(200).json(formattedResponse);
+    res.status(200).json(complaintsPerMonth);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch complaints per month" });
   }
