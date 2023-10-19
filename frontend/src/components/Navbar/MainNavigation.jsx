@@ -3,7 +3,7 @@ import "./MainNavigation.css";
 import NavbarLink from "./NavbarLink";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { selectUser, setUser } from "../../store/slices/userAuthSlice";
+import { logout, selectUser } from "../../store/slices/userAuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { guestNavLinks, userNavLinks } from "../../data/lists";
 
@@ -24,11 +24,10 @@ const MainNavigation = () => {
   };
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  
   const logoutHandler = () => {
-    dispatch(setUser(null));
-    localStorage.removeItem("token");
+    dispatch(logout());
     navigate("/login");
   };
 

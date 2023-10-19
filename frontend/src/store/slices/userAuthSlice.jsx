@@ -71,6 +71,7 @@ const userAuthSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {

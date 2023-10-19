@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/slices/userAuthSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, logout } from "../../store/slices/userAuthSlice";
 import { adminMenu } from "../../data/lists";
 import adminPic from "../../imgs/admin.png";
 import "./AdminNav.css";
@@ -8,6 +8,14 @@ import "./AdminNav.css";
 const Sidebar = (props) => {
   const user = useSelector(selectUser);
   const adminName = `${user.firstName} ${user.lastName}`;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <div className={props.menuIsOpened ? "sidebar sidebar-opened" : "sidebar"}>
@@ -38,7 +46,11 @@ const Sidebar = (props) => {
           </li>
         ))}
 
-        <li className="mt-1" style={{ cursor: "pointer" }} onClick={() => {}}>
+        <li
+          className="mt-1"
+          style={{ cursor: "pointer" }}
+          onClick={logoutHandler}
+        >
           <a className="link d-flex align-items-center">
             <i className="fa-solid fa-arrow-up-right-from-square"></i>
             <span>Logout</span>
