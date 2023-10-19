@@ -28,6 +28,7 @@ import AdminComplaint from "./pages/admin/Complaint";
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector(selectUser);
+  const isAdmin = user?.role === "admin";
 
   const dispatch = useDispatch();
   const localToken = localStorage.getItem("token");
@@ -58,7 +59,10 @@ const App = () => {
   return (
     <Routes>
       <Route path="*" element={<ErrorPage />} />
-      <Route path="/" element={<RootLayout />}>
+      <Route
+        path="/"
+        element={isAdmin ? <Navigate to="/admin/dashboard" /> : <RootLayout />}
+      >
         <Route
           index={true}
           element={
@@ -94,7 +98,7 @@ const App = () => {
           <Route path=":item" element={<FAQItem />} />
         </Route>
       </Route>
-      <Route path="/admin" >
+      <Route path="/admin" element={!isAdmin && <Navigate to="/" />}>
         <Route
           path="login"
           element={!user ? <AdminLogIn /> : <Navigate to="/admin/dashboard" />}
