@@ -56,6 +56,13 @@ const Complaint = () => {
     resetMessageInput();
   };
 
+  const closeComplaintHandler = async () => {
+    await axios({
+      method: "PUT",
+      url: `http://localhost:5000/api/v1/complaints/close/${id}`,
+    });
+  };
+
   if (complaintDetailsLoading || messagesIsLoading) return;
 
   return (
@@ -155,12 +162,14 @@ const Complaint = () => {
             <p>
               Status: <StatusFormatter status={complaintDetails.status} />
               {parseInt(complaintDetails.status) === 1 ? (
-                <i className="fa-solid fa-lock ms-2"></i>
-              ) : (
                 <i
-                  className="fa-solid fa-lock-open ms-2"
+                  className="fa-solid fa-lock ms-2"
                   onClick={closeComplaintHandler}
-                ></i>
+                >
+                  close
+                </i>
+              ) : (
+                <i className="fa-solid fa-lock-open ms-2"></i>
               )}
             </p>
           </li>
