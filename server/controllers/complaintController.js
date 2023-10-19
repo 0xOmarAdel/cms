@@ -34,35 +34,21 @@ const getAllComplaints = async (req, res) => {
   try {
     const userId = req.user._id;
     const userRole = req.user.role;
-    let complaints;
 
-    if (userRole === "admin") {
-      complaints = await Complaint.find(
-        {},
-        {
-          _id: 1,
-          title: 1,
-          category: 1,
-          status: 1,
-          date_created: 1,
-          date_closed: 1,
-          user: 1,
-        }
-      ).populate("category", "name");
-    } else {
-      complaints = await Complaint.find(
-        { user: userId },
-        {
-          _id: 1,
-          title: 1,
-          category: 1,
-          status: 1,
-          date_created: 1,
-          date_closed: 1,
-          user: 1,
-        }
-      ).populate("category", "name");
-    }
+    const filter = userRole === "admin" ? {} : { user: userId };
+    const projection = {
+      _id: 1,
+      title: 1,
+      status: 1,
+      date_created: 1,
+      date_closed: 1,
+      user: 1,
+    };
+
+    const complaints = await Complaint.find(filter, projection).populate(
+      "category",
+      "name"
+    );
 
     const modifiedComplaints = complaints.map((complaint) => ({
       _id: complaint._id,
