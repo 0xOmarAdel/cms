@@ -70,14 +70,24 @@ const getComplaintById = async (req, res) => {
     const userId = req.user._id;
     const userRole = req.user.role;
 
-    const complaint = await Complaint.findById(complaintId)
-      .populate({
+    let complaint;
+
+    if (userRole === "admin") {
+      complaint = await Complaint.findById(complaintId)
+        .populate({
+          path: "category",
+          select: "name",
+        })
+        .populate("user", "_id firstName lastName email phone");
+    } else {
+      complaint = await Complaint.findOne({
+        _id: complaintId,
+        user: userId,
+      }).populate({
         path: "category",
         select: "name",
-      })
-      .populate("user");
-
-    console.log(complaint);
+      });
+    }
 
     if (!complaint) {
       return res.status(404).json({ message: "Complaint not found" });
