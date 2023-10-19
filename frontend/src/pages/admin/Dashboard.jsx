@@ -7,10 +7,10 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const cards = useMemo(
     () => [
-      { icon: "fa-solid fa-user-shield" },
-      { icon: "fa-solid fa-users" },
-      { icon: "fa-solid fa-envelope" },
-      { icon: "fa-solid fa-list" },
+      { label: "Admins", icon: "fa-solid fa-user-shield" },
+      { label: "Categories", icon: "fa-solid fa-list" },
+      { label: "Complaints", icon: "fa-solid fa-envelope" },
+      { label: "Users", icon: "fa-solid fa-users" },
     ],
     []
   );
@@ -29,7 +29,7 @@ const Dashboard = () => {
         const total = Object.values(totalNumbers)[index];
         return { ...card, total };
       });
-      console.log(mergedArray);
+
       setTotals(mergedArray);
       setTotalsLoading(false);
     }
