@@ -45,11 +45,9 @@ const getAllComplaints = async (req, res) => {
       user: 1,
     };
 
-    const complaints = await Complaint.find(filter, projection).populate(
-      "category",
-      "name"
-    );
-
+    const complaints = await Complaint.find(filter, projection)
+      .populate("category", "name")
+      .populate("user", "firstName lastName");
     const modifiedComplaints = complaints.map((complaint) => ({
       _id: complaint._id,
       title: complaint.title,
@@ -57,7 +55,7 @@ const getAllComplaints = async (req, res) => {
       status: complaint.status,
       date_created: complaint.date_created,
       date_closed: complaint.date_closed,
-      user: complaint.user,
+      user: complaint.user.firstName + " " + complaint.user.lastName,
     }));
 
     res.status(200).json(modifiedComplaints);
