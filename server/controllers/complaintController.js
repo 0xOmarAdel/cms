@@ -169,10 +169,7 @@ const closeComplaint = async (req, res) => {
       return res.status(404).json({ message: "Complaint not found" });
     }
 
-    if (
-      complaint.user.toString() !== req.user._id.toString() ||
-      req.user.role !== "admin"
-    ) {
+    if (req.user.role !== "admin") {
       return res.status(403).json({
         message: "You do not have permission to close this complaint",
       });
