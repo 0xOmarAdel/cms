@@ -1,8 +1,9 @@
 const User = require("../models/User");
+const moment = require("moment");
 
 const getUsersPerMonth = async (req, res) => {
   try {
-    const usersPerMonth = await User.aggregate([
+    let usersPerMonth = await User.aggregate([
       {
         $group: {
           _id: {
@@ -12,32 +13,25 @@ const getUsersPerMonth = async (req, res) => {
           count: { $sum: 1 },
         },
       },
-      {
-        $sort: { "_id.year": -1, "_id.month": -1 },
-      },
+      { $sort: { "_id.year": -1, "_id.month": -1 } },
+      { $limit: 6 },
     ]);
 
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+    usersPerMonth = usersPerMonth
+      .map((item) => {
+        const {
+          _id: { year, month },
+          count,
+        } = item;
+        const date = moment()
+          .month(month - 1)
+          .year(year)
+          .format("MMM Y");
+        return { date, count };
+      })
+      .reverse();
 
-    const formattedResponse = usersPerMonth.map((item) => ({
-      total: item.count,
-      month: monthNames[item._id.month - 1],
-    }));
-
-    res.status(200).json(formattedResponse);
+    res.status(200).json(usersPerMonth);
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch users per month" });
   }
