@@ -178,9 +178,6 @@ const Complaint = () => {
             <p>ID: {complaintDetails.userId}</p>
           </li>
           <li>
-            <p>National ID: {complaintDetails.userNationalId}</p>
-          </li>
-          <li>
             <p>Name: {complaintDetails.userName}</p>
           </li>
           <li>
