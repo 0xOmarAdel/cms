@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import { Chart } from "../../UI/Chart";
 import Loading from "../../UI/Loading";
 import "./Dashboard.css";
+import ChartsContainer from "../../components/ChartsContainer";
 
 const Dashboard = () => {
   const cards = useMemo(
@@ -18,10 +19,10 @@ const Dashboard = () => {
   const [totals, setTotals] = useState();
   const [totalsLoading, setTotalsLoading] = useState(true);
 
-  const {
-    data: totalNumbers,
-    error: totalNumbersHasError,
-  } = useAxios(`http://localhost:5000/api/v1/total-numbers`, "GET");
+  const { data: totalNumbers, error: totalNumbersHasError } = useAxios(
+    `http://localhost:5000/api/v1/total-numbers`,
+    "GET"
+  );
 
   useEffect(() => {
     if (totalNumbers) {
@@ -78,12 +79,13 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="row mt-5">
-          <div className="col-12 col-xl-6">
+          <ChartsContainer />
+          {/* <div className="col-12 col-xl-6">
             <Chart label="Complaints" data={complaintsPerMonth} />
           </div>
           <div className="col-12 col-xl-6">
             <Chart label="Users" data={usersPerMonth} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
