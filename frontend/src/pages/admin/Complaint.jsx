@@ -167,7 +167,12 @@ const Complaint = () => {
           {parseInt(complaintDetails.status) === 1 && (
             <li>
               <p>
-                Closed At: <DateFormatter date={complaintDetails.date_closed} />
+                {complaintDetails.date_closed && (
+                  <>
+                    Closed At:{" "}
+                    <DateFormatter date={complaintDetails.date_closed} />
+                  </>
+                )}
               </p>
             </li>
           )}
