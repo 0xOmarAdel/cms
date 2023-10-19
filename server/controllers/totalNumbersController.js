@@ -13,10 +13,10 @@ const getTotalNumbers = async (req, res) => {
     const totalCategories = await Category.countDocuments();
 
     res.status(200).json({
-      totalComplaints,
-      totalUsers,
       totalAdmins,
       totalCategories,
+      totalComplaints,
+      totalUsers,
     });
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch total numbers" });
