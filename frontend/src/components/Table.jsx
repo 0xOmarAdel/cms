@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import SearchBar from "../UI/SearchBar";
-import Badge from "../UI/Badge";
-import TableHeading from "./TableHeading";
+import TableDataLoading from "./Table/TableDataLoading";
+import TableFetchError from "./Table/TableFetchError";
+import TableSearchInput from "./Table/TableSearchInput";
+import TableBadges from "./Table/TableBadges";
+import TableHeading from "./Table/TableHeading";
 import TableRow from "./TableRow";
+import ErrorText from "../UI/ErrorText";
 import PaginationHandler from "../UI/PaginationHandler";
-import Loading from "../UI/Loading";
-import Error from "../UI/Error";
-import NoRecords from "./NoRecords";
 import dynamicSort from "../utils/dynamicSort";
 
 const Table = (props) => {
@@ -18,75 +18,34 @@ const Table = (props) => {
   const end = currentPage ? start + elementsPerPage : props.elements?.length;
 
   if (props.isLoading) {
-    return (
-      <div className="row">
-        <div className="col-12">
-          <h1 className="mb-4">{props.title}</h1>
-          <Loading />
-        </div>
-      </div>
-    );
+    return <TableDataLoading title={props.title} />;
   }
   if (props.error) {
-    return (
-      <div className="row">
-        <div className="col-12">
-          <h1 className="mb-4">{props.title}</h1>
-          <Error />
-        </div>
-      </div>
-    );
-  }
-  if (props.elements.length === 0) {
-    return <NoRecords title={props.title} />;
+    return <TableFetchError title={props.title} />;
   }
 
   return (
     <>
-      <div className="row">
+      <div className="flex flex-row">
         <div className="col-12">
           <h1 className="mb-4">{props.title}</h1>
-          {props.search && (
-            <div className="mb-3">
-              <div className="row">
-                {props.search && (
-                  <div className="col-lg-4 col-sm-6 col-xs-12 ps-0 pd">
-                    <SearchBar
-                      value={props.searchInputValue}
-                      onChange={(e) => props.searchHandler(e.target.value)}
-                    />
-                  </div>
-                )}
-                {props.badges && (
-                  <div className="col-auto d-flex align-items-center">
-                    <ul className=" d-flex">
-                      {props.badges.map((badge, index) => (
-                        <li key={index}>
-                          {props.activeFilter === badge.value ? (
-                            <Badge
-                              className="me-3 active"
-                              text={badge.label}
-                              onClick={() =>
-                                props.filterHandler(badge.attr, badge.value)
-                              }
-                            />
-                          ) : (
-                            <Badge
-                              className="me-3"
-                              text={badge.label}
-                              onClick={() =>
-                                props.filterHandler(badge.attr, badge.value)
-                              }
-                            />
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+          <div className="mb-4">
+            <div className="flex flex-row items-center gap-4">
+              {props.search && (
+                <TableSearchInput
+                  searchInputValue={props.searchInputValue}
+                  searchHandler={props.searchHandler}
+                />
+              )}
+              {props.badges && (
+                <TableBadges
+                  badges={props.badges}
+                  activeFilter={props.activeFilter}
+                  filterHandler={props.filterHandler}
+                />
+              )}
             </div>
-          )}
+          </div>
           {props.filteredArray.length !== 0 ? (
             <>
               <TableHeading
@@ -107,22 +66,18 @@ const Table = (props) => {
                 ))}
             </>
           ) : (
-            <p className="error-text">Found 0 records!</p>
+            <ErrorText text="Found 0 records!" />
           )}
         </div>
       </div>
-      {props.pagination ? (
-        <div className="row">
-          <div className="col-12">
-            <PaginationHandler
-              currentPage={currentPage}
-              elementsPerPage={elementsPerPage}
-              dataLength={props.filteredArray.length}
-            />
-          </div>
+      {props.pagination && (
+        <div className="w-full flex flex-row">
+          <PaginationHandler
+            currentPage={currentPage}
+            elementsPerPage={elementsPerPage}
+            dataLength={props.filteredArray.length}
+          />
         </div>
-      ) : (
-        ""
       )}
     </>
   );
