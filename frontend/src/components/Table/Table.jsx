@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
-import TableDataLoading from "./Table/TableDataLoading";
-import TableFetchError from "./Table/TableFetchError";
-import TableSearchInput from "./Table/TableSearchInput";
-import TableBadges from "./Table/TableBadges";
-import TableHeading from "./Table/TableHeading";
+import TableDataLoading from "./TableDataLoading";
+import TableFetchError from "./TableFetchError";
+import TableSearchInput from "./TableSearchInput";
+import TableBadges from "./TableBadges";
+import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
-import ErrorText from "../UI/ErrorText";
-import PaginationHandler from "../UI/PaginationHandler";
-import dynamicSort from "../utils/dynamicSort";
+import ErrorText from "../../UI/ErrorText";
+import PaginationHandler from "../../UI/PaginationHandler";
+import dynamicSort from "../../utils/dynamicSort";
 
 const Table = (props) => {
   let { page: currentPage } = useParams();

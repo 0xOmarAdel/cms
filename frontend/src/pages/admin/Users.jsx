@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import useSearch from "../../hooks/useSearch";
-import Table from "../../components/Table";
+import Table from "../../components/Table/Table";
 import { usersPagesGrid } from "../../data/pagesGrid";
 
 const Users = () => {

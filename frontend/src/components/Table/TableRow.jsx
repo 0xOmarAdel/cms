@@ -1,6 +1,6 @@
-import DateFormatter from "../UI/DateFormatter";
 import TableLink from "./TableLink";
-import StatusFormatter from "../UI/StatusFormatter";
+import DateFormatter from "../../UI/DateFormatter";
+import StatusFormatter from "../../UI/StatusFormatter";
 
 const TableRow = ({ element, linkTo, table }) => {
   let result = [];

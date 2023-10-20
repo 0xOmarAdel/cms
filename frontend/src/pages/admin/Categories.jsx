@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
-import Table from "../../components/Table";
+import Table from "../../components/Table/Table";
 import { categoriesPageGrid } from "../../data/pagesGrid";
 
 const Categories = () => {
