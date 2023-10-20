@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-primary-color {
+  @apply bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800;
+}
+
 .shadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
 }

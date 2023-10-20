@@ -86,7 +86,7 @@ const Complaint = () => {
 
   return (
     <>
-      <Hero title={complaintDetails.title} />
+      <Hero title={complaintDetails.title} headTitle="Complaint Name:" />
       <section className={classes.complaint}>
         <div className="container">
           <div className="row">
