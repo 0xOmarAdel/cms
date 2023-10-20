@@ -20,7 +20,7 @@ const TableRow = ({ element, linkTo, table }) => {
   return (
     <div className="py-1.5 text-lg text-gray-600 tracking-tight break-words">
       <TableLink linkTo={linkTo}>
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-2">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-0.5 lg:gap-2">
           {result.map((r, index) => (
             <div key={index} className={r.colSize}>
               {r.isDate ? (
