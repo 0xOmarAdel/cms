@@ -7,7 +7,7 @@ const TableBadges = ({ badges, activeFilter, filterHandler }) => {
         <li key={index}>
           {activeFilter === badge.value ? (
             <Badge
-              className=" active"
+              active={true}
               text={badge.label}
               onClick={() => filterHandler(badge.attr, badge.value)}
             />
