@@ -22,26 +22,26 @@ export const adminMenu = [
   {
     path: "dashboard",
     name: "Dashboard",
-    icon: <FaGlobe />,
+    icon: FaGlobe,
   },
   {
     path: "admins",
     name: "Admins",
-    icon: <FaUserShield />,
+    icon: FaUserShield,
   },
   {
     path: "users",
     name: "Users",
-    icon: <FaUsers />,
+    icon: FaUsers,
   },
   {
     path: "categories",
     name: "Categories",
-    icon: <FaListUl />,
+    icon: FaListUl,
   },
   {
     path: "complaints",
     name: "Complaints",
-    icon: <FaEnvelope />,
+    icon: FaEnvelope,
   },
 ];
