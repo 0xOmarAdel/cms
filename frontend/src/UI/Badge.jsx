@@ -1,12 +1,10 @@
-import React from "react";
-
-const Badge = (props) => {
+const Badge = ({ active, text, onClick }) => {
   return (
     <span
-      className={`badge ${props.className}`}
-      onClick={props.onClick ? props.onClick : () => {}}
+      className={`badge ${active && "active"}`}
+      onClick={onClick ? onClick : () => {}}
     >
-      {props.text}
+      {text}
     </span>
   );
 };
