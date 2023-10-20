@@ -87,7 +87,7 @@ const Complaint = () => {
   return (
     <>
       <Hero title={complaintDetails.title} headTitle="Complaint Name:" />
-      <section className={`bg-blue-50 dark:bg-gray-800 ${classes.complaint}`}>
+      <section className={`bg-blue-50 ${classes.complaint}`}>
         <div className="container px-8">
           <div className="gap-5 grid grid-cols-1 lg:grid-cols-3">
             <div className="lg:mb-5 mb-lg-0 lg:ps-5">
