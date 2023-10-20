@@ -14,7 +14,7 @@ const Sidebar = (props) => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/admin/login");
   };
 
   return (
