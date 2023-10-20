@@ -1,4 +1,3 @@
-import React from "react";
 import DateFormatter from "../UI/DateFormatter";
 import TableLink from "./TableLink";
 import StatusFormatter from "../UI/StatusFormatter";
@@ -8,45 +7,45 @@ const TableRow = ({ element, linkTo, table }) => {
 
   let i = 0;
   for (const [, value] of Object.entries(element)) {
-    result.push([
+    result.push({
       value,
-      table[i].colSize,
-      table[i].label,
-      table[i].isDate,
-      table[i].isStatus,
-    ]);
+      colSize: table[i].colSize,
+      label: table[i].label,
+      isDate: table[i].isDate,
+      isStatus: table[i].isStatus,
+    });
     i++;
   }
 
   return (
-    <div className="table-row py-3">
+    <div className="py-1.5 text-lg text-gray-600 tracking-tight break-words">
       <TableLink linkTo={linkTo}>
-        <div className="row">
+        <div className="grid grid-cols-12">
           {result.map((r, index) => (
-            <div key={index} className={`d-none d-lg-block col-${r[1]}`}>
-              {r[3] ? (
+            <div key={index} className={`hidden lg:block ${r.colSize}`}>
+              {r.isDate ? (
                 <p>
-                  <DateFormatter date={r[0]} />
+                  <DateFormatter date={r.value} />
                 </p>
-              ) : r[4] ? (
+              ) : r.isStatus ? (
                 <p>
-                  <StatusFormatter status={r[0]} />
+                  <StatusFormatter status={r.value} />
                 </p>
               ) : (
-                <p>{r[0]}</p>
+                <p>{r.value}</p>
               )}
             </div>
           ))}
 
           {result.map((r, index) => (
-            <div key={index} className="d-block d-lg-none col-12">
-              {r[3] ? (
+            <div key={index} className="block lg:hidden">
+              {r.isDate ? (
                 <p>
-                  {r[2]} : <DateFormatter date={r[0]} />
+                  {r.label} : <DateFormatter date={r.value} />
                 </p>
               ) : (
                 <p>
-                  {r[2]} : {r[0]}
+                  {r.label} : {r.value}
                 </p>
               )}
             </div>
