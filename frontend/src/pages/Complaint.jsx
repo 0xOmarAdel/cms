@@ -87,10 +87,10 @@ const Complaint = () => {
   return (
     <>
       <Hero title={complaintDetails.title} headTitle="Complaint Name:" />
-      <section className={classes.complaint}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-4 mb-5 mb-lg-0 ps-lg-5">
+      <section className={`bg-blue-50 dark:bg-gray-800 ${classes.complaint}`}>
+        <div className="container px-8">
+          <div className="gap-5 grid grid-cols-1 lg:grid-cols-3">
+            <div className="lg:mb-5 mb-lg-0 lg:ps-5">
               <h2 className="mb-4 font-bold text-xl">Complaint Details</h2>
               <ul>
                 <li>
@@ -123,45 +123,49 @@ const Complaint = () => {
                 )}
               </ul>
             </div>
-            <div className="col-12 col-lg-8 order-lg-first">
-              <div className={`${classes.messages} mb-4`}>
+            <div className="lg:order-first lg:col-span-2">
+              <div
+                className={`mb-4 ${classes.messages} bg-blue-50 dark:bg-gray-800 rounded p-5`}
+              >
                 <ScrollableDiv
-                  className="d-flex align-items-end"
+                  className="flex items-end"
                   style={{ height: "550px" }}
                 >
-                  <div className="row full-width" style={{ maxHeight: "100%" }}>
+                  <div
+                    className="grid grid-cols-1"
+                    style={{ maxHeight: "100%" }}
+                  >
                     {complaintMessages.map((message) => (
                       <div
-                        className={
+                        className={`${
                           parseInt(message.from) === 1
-                            ? "col-7 p-0"
-                            : "col-7 p-0 ms-auto"
-                        }
+                            ? "col-start-1"
+                            : "col-start-2"
+                        } p-0`}
                         key={message.id}
                       >
                         <div
-                          className={
+                          className={`${
                             parseInt(message.from) === 0
-                              ? "d-flex align-items-end"
-                              : "d-flex align-items-start"
-                          }
-                          style={{ flexDirection: "column" }}
+                              ? "flex flex-col items-end"
+                              : "flex flex-col items-start"
+                          }`}
                         >
                           <p
-                            className={
+                            className={`${
                               parseInt(message.from) === 0
-                                ? classes.message + " " + classes.sent + " mb-1"
-                                : classes.message + " mb-1"
-                            }
+                                ? `${classes.message} ${classes.sent} mb-1`
+                                : `${classes.message} mb-1`
+                            } bg-blue-300 dark:bg-gray-700 rounded text-gray-700 dark:text-gray-200 p-2`}
                           >
                             {message.text}
                           </p>
                           <p
-                            className={
+                            className={`${
                               parseInt(message.from) === 0
-                                ? classes.date + " " + classes.sent + " mb-3"
-                                : classes.date + " mb-3"
-                            }
+                                ? `${classes.date} ${classes.sent} mb-3`
+                                : `${classes.date} mb-3`
+                            } opacity-60 text-sm font-bold`}
                           >
                             <DateFormatter date={message.date} />
                           </p>
@@ -172,25 +176,22 @@ const Complaint = () => {
                 </ScrollableDiv>
               </div>
               <form>
-                <div className="row">
-                  <div className="col-11 p-0">
-                    <textarea
-                      className={messageInputClasses}
-                      placeholder="Message"
-                      style={{ height: "20px !important" }}
-                      onChange={messageInputChangeHandler}
-                      onBlur={messageInputBlurHandler}
-                      value={enteredMessage}
-                    />
-                    {messageInputHasError && (
-                      <p className="error-text mt-2">
-                        Message must be at least 10 characters.
-                      </p>
-                    )}
-                  </div>
-                  <div className="col-1 mt-1 pe-0">
+                <div className="grid grid-cols-11 gap-1 p-0">
+                  <textarea
+                    className={`col-span-10 h-24 ${messageInputClasses}`}
+                    placeholder="Message"
+                    onChange={messageInputChangeHandler}
+                    onBlur={messageInputBlurHandler}
+                    value={enteredMessage}
+                  />
+                  {messageInputHasError && (
+                    <p className="error-text mt-2">
+                      Message must be at least 10 characters.
+                    </p>
+                  )}
+                  <div className="col-span-1 mt-1 pe-0">
                     <i
-                      className={`fa-solid fa-location-arrow ${classes.send}`}
+                      className={`fa-solid fa-location-arrow ${classes.send} bg-blue-600 dark:bg-gray-700 text-white rounded-full text-3xl cursor-pointer transform rotate-45`}
                       onClick={sendMessageHandler}
                     ></i>
                   </div>
