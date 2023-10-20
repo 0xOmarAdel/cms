@@ -2,11 +2,9 @@ import Error from "../../UI/Error";
 
 const TableFetchError = ({ title }) => {
   return (
-    <div className="row">
-      <div className="col-12">
-        <h1 className="mb-4">{title}</h1>
-        <Error />
-      </div>
+    <div className="flex flex-col gap-4">
+      <h1>{title}</h1>
+      <Error />
     </div>
   );
 };
