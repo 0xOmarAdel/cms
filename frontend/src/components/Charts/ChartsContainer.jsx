@@ -2,26 +2,9 @@ import { useState } from "react";
 import AreaChart from "./AreaChart";
 import BarChart from "./BarChart";
 import "./ChartsContainer.css";
-import useAxios from "../hooks/useAxios";
 
-const ChartsContainer = () => {
+const ChartsContainer = ({ complaintsPerMonth, usersPerMonth }) => {
   const [barChart, setBarChart] = useState(true);
-  const {
-    data: complaintsPerMonth,
-    loading: complaintsPerMonthLoading,
-    error: complaintsPerMonthHasError,
-  } = useAxios(
-    "http://localhost:5000/api/v1/complaints/complaints-per-month",
-    "GET"
-  );
-
-  const {
-    data: usersPerMonth,
-    loading: usersPerMonthLoading,
-    error: usersPerMonthHasError,
-  } = useAxios("http://localhost:5000/api/v1/users/users-per-month", "GET");
-
-  console.log(usersPerMonth);
 
   return (
     <div className="charts-container">

@@ -1,9 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import useAxios from "../../hooks/useAxios";
-import { Chart } from "../../UI/Chart";
 import Loading from "../../UI/Loading";
 import "./Dashboard.css";
-import ChartsContainer from "../../components/ChartsContainer";
+import ChartsContainer from "../../components/Charts/ChartsContainer";
 
 const Dashboard = () => {
   const cards = useMemo(
@@ -79,13 +78,10 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="row mt-5">
-          <ChartsContainer />
-          {/* <div className="col-12 col-xl-6">
-            <Chart label="Complaints" data={complaintsPerMonth} />
-          </div>
-          <div className="col-12 col-xl-6">
-            <Chart label="Users" data={usersPerMonth} />
-          </div> */}
+          <ChartsContainer
+            complaintsPerMonth={complaintsPerMonth}
+            usersPerMonth={usersPerMonth}
+          />
         </div>
       </div>
     </div>
