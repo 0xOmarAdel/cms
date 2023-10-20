@@ -30,7 +30,7 @@ const Table = (props) => {
         <div className="col-12">
           <h1 className="mb-4">{props.title}</h1>
           <div className="mb-4">
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4">
               {props.search && (
                 <TableSearchInput
                   searchInputValue={props.searchInputValue}

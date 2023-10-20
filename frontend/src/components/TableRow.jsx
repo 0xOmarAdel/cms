@@ -20,32 +20,23 @@ const TableRow = ({ element, linkTo, table }) => {
   return (
     <div className="py-1.5 text-lg text-gray-600 tracking-tight break-words">
       <TableLink linkTo={linkTo}>
-        <div className="grid grid-cols-12">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-2">
           {result.map((r, index) => (
-            <div key={index} className={`hidden lg:block ${r.colSize}`}>
+            <div key={index} className={r.colSize}>
               {r.isDate ? (
-                <p>
+                <p className="flex flex-row gap-2 break-words">
+                  <span className="block lg:hidden">{r.label} :</span>
                   <DateFormatter date={r.value} />
                 </p>
               ) : r.isStatus ? (
-                <p>
+                <p className="flex flex-row gap-2 break-words">
+                  <span className="block lg:hidden">{r.label} :</span>
                   <StatusFormatter status={r.value} />
                 </p>
               ) : (
-                <p>{r.value}</p>
-              )}
-            </div>
-          ))}
-
-          {result.map((r, index) => (
-            <div key={index} className="block lg:hidden">
-              {r.isDate ? (
-                <p>
-                  {r.label} : <DateFormatter date={r.value} />
-                </p>
-              ) : (
-                <p>
-                  {r.label} : {r.value}
+                <p className="flex flex-row gap-2">
+                  <span className="block lg:hidden">{r.label} :</span>
+                  <p className="break-all">{r.value}</p>
                 </p>
               )}
             </div>
