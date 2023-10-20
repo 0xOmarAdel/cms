@@ -5,6 +5,7 @@ import { adminMenu } from "../../data/lists";
 import adminPic from "../../imgs/admin.png";
 import "./AdminNav.css";
 import { Spin as Hamburger } from "hamburger-react";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 const Sidebar = (props) => {
   const user = useSelector(selectUser);
   const adminName = `${user.firstName} ${user.lastName}`;
@@ -46,7 +47,7 @@ const Sidebar = (props) => {
         {adminMenu.map((item, index) => (
           <li key={index}>
             <NavLink to={item.path} className="link d-flex align-items-center">
-              <i className={`d-inline-block ${item.icon}`}></i>
+              {item.icon}
               <span className="d-inline-block">{item.name}</span>
             </NavLink>
           </li>
@@ -58,7 +59,7 @@ const Sidebar = (props) => {
           onClick={logoutHandler}
         >
           <a className="link d-flex align-items-center">
-            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+           <FaArrowUpRightFromSquare />
             <span>Logout</span>
           </a>
         </li>

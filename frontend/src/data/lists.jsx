@@ -1,3 +1,11 @@
+import {
+  FaGlobe,
+  FaUserShield,
+  FaListUl,
+  FaEnvelope,
+  FaUsers,
+} from "react-icons/fa6";
+
 export const guestNavLinks = [
   { path: "/faq", text: "FAQ" },
   { path: "/login", text: "Log In" },
@@ -14,26 +22,26 @@ export const adminMenu = [
   {
     path: "dashboard",
     name: "Dashboard",
-    icon: "fa fa-globe-europe",
+    icon: <FaGlobe />,
   },
   {
     path: "admins",
     name: "Admins",
-    icon: "fa-solid fa-user-shield",
+    icon: <FaUserShield />,
   },
   {
     path: "users",
     name: "Users",
-    icon: "fa-solid fa-users",
+    icon: <FaUsers />,
   },
   {
     path: "categories",
     name: "Categories",
-    icon: "fa-solid fa-list",
+    icon: <FaListUl />,
   },
   {
     path: "complaints",
     name: "Complaints",
-    icon: "fa-solid fa-envelope",
+    icon: <FaEnvelope />,
   },
 ];
