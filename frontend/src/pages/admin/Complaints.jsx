@@ -75,7 +75,7 @@ const Complaints = () => {
       search={true}
       isLoading={complaintsLoading}
       error={complaintsHasError}
-      elements={[]}
+      elements={complaintsList}
       linkTo="/admin/complaint/"
       table={complaintsPageGrid}
     />
