@@ -73,10 +73,10 @@ const Sidebar = (props) => {
           <li key={index}>
             <NavLink
               to={item.path}
-              className={`pt-[13px] flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
+              className={`pt-[5px] flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
                 props.menuIsOpened
-                  ? "pb-[13px] px-[65px]"
-                  : "pr-0 pb-[13px] pl-[43px]"
+                  ? "pb-[5px] px-[65px]"
+                  : "pr-0 pb-[5px] pl-[43px]"
               }`}
             >
               <item.icon className="group-hover:animate-swing" />
