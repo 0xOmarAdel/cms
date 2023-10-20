@@ -2,7 +2,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 const TableHeading = ({ table, sortHandler, sortBy }) => {
   return (
-    <div className="mb-3 hidden lg:flex lg:flex-row border-b-[0.5px] border-gray-400">
+    <div className="mb-3 pb-1.5 hidden lg:flex lg:flex-row border-b-[0.5px] border-gray-400">
       {table.map((heading, index) => (
         <div className={`col-${heading.colSize}`} key={index}>
           <p
