@@ -4,7 +4,7 @@ import { selectUser, logout } from "../../store/slices/userAuthSlice";
 import { adminMenu } from "../../data/lists";
 import adminPic from "../../imgs/admin.png";
 import "./AdminNav.css";
-
+import { Spin as Hamburger } from "hamburger-react";
 const Sidebar = (props) => {
   const user = useSelector(selectUser);
   const adminName = `${user.firstName} ${user.lastName}`;
@@ -19,7 +19,13 @@ const Sidebar = (props) => {
 
   return (
     <div className={props.menuIsOpened ? "sidebar sidebar-opened" : "sidebar"}>
-      <i className="fa-solid fa-bars" onClick={props.toggleMenu}></i>
+      <div className="absolute top-10 right-5">
+        <Hamburger
+          toggled={props.menuIsOpened}
+          toggle={props.setMenuIsOpened}
+          size={22}
+        />
+      </div>
       <h1>Admin Panel</h1>
       <div className="sidebar-header">
         <div className="admin d-flex align-items-center">
