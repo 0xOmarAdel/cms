@@ -91,7 +91,7 @@ const Complaint = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-4 mb-5 mb-lg-0 ps-lg-5">
-              <h2 className="mb-4">Complaint Details</h2>
+              <h2 className="mb-4 font-bold text-xl">Complaint Details</h2>
               <ul>
                 <li>
                   <p>ID: {complaintId}</p>
