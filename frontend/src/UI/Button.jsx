@@ -3,7 +3,7 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      className={`btn-primary ${props.className}`}
+      className={`btn-primary bg-primary-color ${props.className}`}
       style={props.style}
       type={props.type}
       onClick={props.onClick ? () => props.onClick() : () => {}}
