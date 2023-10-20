@@ -1,16 +1,16 @@
 import { useEffect, useState, useMemo } from "react";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../../UI/Loading";
-import "./Dashboard.css";
 import ChartsContainer from "../../components/Charts/ChartsContainer";
+import { FaUserShield, FaListUl, FaEnvelope, FaUsers } from "react-icons/fa6";
 
 const Dashboard = () => {
   const cards = useMemo(
     () => [
-      { label: "Admins", icon: "fa-solid fa-user-shield" },
-      { label: "Categories", icon: "fa-solid fa-list" },
-      { label: "Complaints", icon: "fa-solid fa-envelope" },
-      { label: "Users", icon: "fa-solid fa-users" },
+      { label: "Admins", icon: <FaUserShield className="text-4xl" /> },
+      { label: "Categories", icon: <FaListUl className="text-4xl" /> },
+      { label: "Complaints", icon: <FaEnvelope className="text-4xl" /> },
+      { label: "Users", icon: <FaUsers className="text-4xl" /> },
     ],
     []
   );
@@ -63,28 +63,25 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="admins">
+    <>
       <h1 className="mb-5">Dashboard</h1>
-      <div className="cards">
-        <div className="row">
-          {totals.map((item, index) => (
-            <div className="col-12 col-sm-6 col-lg-3 mb-4" key={index}>
-              <div className="card">
-                <i className={item.cardIcon}></i>
-                <p className="card-title">{item.label}</p>
-                <p className="card-number">{item.total}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="row mt-5">
-          <ChartsContainer
-            complaintsPerMonth={complaintsPerMonth}
-            usersPerMonth={usersPerMonth}
-          />
-        </div>
+      <div className="grid grid-cols-4 gap-8">
+        {totals.map((item, index) => (
+          <div
+            className="py-8 flex flex-col items-center gap-3 bg-gray-300 rounded-lg text-gray-600 font-semibold tracking-wider"
+            key={index}
+          >
+            {item.icon}
+            <p className="text-xl">{item.label}</p>
+            <p className="text-2xl">{item.total}</p>
+          </div>
+        ))}
       </div>
-    </div>
+      <ChartsContainer
+        complaintsPerMonth={complaintsPerMonth}
+        usersPerMonth={usersPerMonth}
+      />
+    </>
   );
 };
 
