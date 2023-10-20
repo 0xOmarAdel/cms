@@ -29,33 +29,3 @@
   font-weight: 600;
   letter-spacing: 0.8px;
 }
-
-.admin-page-content .table-heading p {
-  font-size: 20px;
-  letter-spacing: 0.7px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.admin-page-content .table-row {
-  font-size: 16px;
-  letter-spacing: 0.8px;
-  opacity: 0.8;
-  overflow-wrap: break-word;
-}
-
-@media (min-width: 1200px) {
-  .admin-page-content .table-row {
-    font-size: 17px;
-  }
-}
-
-.admin-page-content .table-heading,
-.admin-page-content .table-row:not(:last-of-type) {
-  border-bottom: 1px solid var(--border-color);
-}
-
-.admin-page-content .table-heading svg {
-  font-size: 15px;
-  margin-left: 10px;
-}
