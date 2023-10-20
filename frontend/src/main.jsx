@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom/client";
 
-import "./grid.css";
 import "./default-styles.css";
 import "./index.css";
 
