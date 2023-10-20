@@ -98,12 +98,16 @@ const App = () => {
           <Route path=":item" element={<FAQItem />} />
         </Route>
       </Route>
-      <Route path="/admin" element={!isAdmin && <Navigate to="/" />}>
+      <Route path="/admin"  >
         <Route
           path="login"
-          element={!user ? <AdminLogIn /> : <Navigate to="/admin/dashboard" />}
+          element={
+            isAdmin ? <Navigate to="/admin/dashboard" /> : <AdminLogIn />
+          }
         />
-        <Route element={user ? <AdminPage /> : <Navigate to="/admin/login" />}>
+        <Route
+          element={isAdmin ? <AdminPage /> : <Navigate to="/admin/login" />}
+        >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="admins" element={<Admins />} />
           <Route path="users/:page?" element={<Users />} />

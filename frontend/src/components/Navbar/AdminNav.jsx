@@ -4,7 +4,8 @@ import { selectUser, logout } from "../../store/slices/userAuthSlice";
 import { adminMenu } from "../../data/lists";
 import adminPic from "../../imgs/admin.png";
 import "./AdminNav.css";
-
+import { Spin as Hamburger } from "hamburger-react";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 const Sidebar = (props) => {
   const user = useSelector(selectUser);
   const adminName = `${user.firstName} ${user.lastName}`;
@@ -14,12 +15,18 @@ const Sidebar = (props) => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/admin/login");
   };
 
   return (
     <div className={props.menuIsOpened ? "sidebar sidebar-opened" : "sidebar"}>
-      <i className="fa-solid fa-bars" onClick={props.toggleMenu}></i>
+      <div className="absolute top-10 right-5">
+        <Hamburger
+          toggled={props.menuIsOpened}
+          toggle={props.setMenuIsOpened}
+          size={22}
+        />
+      </div>
       <h1>Admin Panel</h1>
       <div className="sidebar-header">
         <div className="admin d-flex align-items-center">
@@ -40,7 +47,7 @@ const Sidebar = (props) => {
         {adminMenu.map((item, index) => (
           <li key={index}>
             <NavLink to={item.path} className="link d-flex align-items-center">
-              <i className={`d-inline-block ${item.icon}`}></i>
+              {item.icon}
               <span className="d-inline-block">{item.name}</span>
             </NavLink>
           </li>
@@ -52,7 +59,7 @@ const Sidebar = (props) => {
           onClick={logoutHandler}
         >
           <a className="link d-flex align-items-center">
-            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+           <FaArrowUpRightFromSquare />
             <span>Logout</span>
           </a>
         </li>
