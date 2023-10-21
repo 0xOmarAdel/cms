@@ -20,7 +20,7 @@ const Sidebar = (props) => {
 
   return (
     <div
-      className={`fixed z-50 h-screen pt-24 bg-gray-700 text-gray-300 overflow-hidden transition-all duration-[1.2s] sidebar-opened
+      className={`fixed z-50 h-screen pt-24 bg-gray-50 shadow-lg text-gray-600 font-medium overflow-hidden transition-all duration-[1.2s] sidebar-opened
           ${props.menuIsOpened ? "w-[300px]" : "w-[120px]"}`}
     >
       <div
@@ -35,7 +35,7 @@ const Sidebar = (props) => {
         />
       </div>
       <h1
-        className={`pl-16 text-base text-gray-200 uppercase whitespace-nowrap overflow-hidden transition-all duration-[1.2s] ${
+        className={`pl-16 text-base text-black uppercase whitespace-nowrap overflow-hidden transition-all duration-[1.2s] ${
           props.menuIsOpened ? "w-full" : "w-0"
         }`}
       >
@@ -58,10 +58,10 @@ const Sidebar = (props) => {
                 props.menuIsOpened ? "w-full" : "w-0"
               }`}
             >
-              <p className="text-gray-100 text-base whitespace-nowrap overflow-hidden transition duration-[1.2s]">
+              <p className="text-black text-base whitespace-nowrap overflow-hidden transition duration-[1.2s]">
                 {adminName}
               </p>
-              <p className="text-gray-300 text-sm whitespace-nowrap overflow-hidden transition duration-[1.2s]">
+              <p className="text-gray-500 text-sm whitespace-nowrap overflow-hidden transition duration-[1.2s]">
                 Administrator
               </p>
             </div>
@@ -77,11 +77,11 @@ const Sidebar = (props) => {
                 props.menuIsOpened
                   ? "pb-[5px] px-[65px]"
                   : "pr-0 pb-[5px] pl-[47px]"
-              } ${useMatch(`/admin/${item.path}/*`) && "text-teal-600"}`}
+              } ${useMatch(`/admin/${item.path}/*`) && "text-sky-500"}`}
             >
               <item.icon className="text-xl group-hover:animate-swing" />
               <span
-                className={`text-gray-300 text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
+                className={`text-black text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
                   props.menuIsOpened ? "w-full" : "w-0"
                 }`}
               >
@@ -97,7 +97,7 @@ const Sidebar = (props) => {
           onClick={logoutHandler}
         >
           <a
-            className={`pt-[13px] flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
+            className={`flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
               props.menuIsOpened
                 ? "pb-[13px] px-[65px]"
                 : "pr-0 pb-[13px] pl-[47px]"
@@ -105,7 +105,7 @@ const Sidebar = (props) => {
           >
             <FaArrowUpRightFromSquare className="text-xl" />
             <span
-              className={`text-gray-300 text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
+              className={`text-black text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
                 props.menuIsOpened ? "w-full" : "w-0"
               }`}
             >
