@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useMatch, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, logout } from "../../store/slices/userAuthSlice";
 import { adminMenu } from "../../data/lists";
@@ -20,11 +20,11 @@ const Sidebar = (props) => {
 
   return (
     <div
-      className={`fixed h-screen pt-24 bg-gray-700 text-gray-300 overflow-hidden transition-all duration-[1.2s] sidebar-opened
+      className={`fixed z-50 h-screen pt-24 bg-gray-700 text-gray-300 overflow-hidden transition-all duration-[1.2s] sidebar-opened
           ${props.menuIsOpened ? "w-[300px]" : "w-[120px]"}`}
     >
       <div
-        className={`absolute top-10 right-5 transition-all duration-[1.2s]  ${
+        className={`absolute top-10 transition-all duration-[1.2s]  ${
           props.menuIsOpened ? "right-5" : "right-1/2 translate-x-1/2"
         }`}
       >
@@ -76,10 +76,10 @@ const Sidebar = (props) => {
               className={`pt-[5px] flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
                 props.menuIsOpened
                   ? "pb-[5px] px-[65px]"
-                  : "pr-0 pb-[5px] pl-[43px]"
-              }`}
+                  : "pr-0 pb-[5px] pl-[47px]"
+              } ${useMatch(`/admin/${item.path}/*`) && "text-teal-600"}`}
             >
-              <item.icon className="group-hover:animate-swing" />
+              <item.icon className="text-xl group-hover:animate-swing" />
               <span
                 className={`text-gray-300 text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
                   props.menuIsOpened ? "w-full" : "w-0"
@@ -100,10 +100,10 @@ const Sidebar = (props) => {
             className={`pt-[13px] flex flex-row items-center gap-2 whitespace-nowrap overflow-hidden transition-all duration-[1.2s] group ${
               props.menuIsOpened
                 ? "pb-[13px] px-[65px]"
-                : "pr-0 pb-[13px] pl-[43px]"
+                : "pr-0 pb-[13px] pl-[47px]"
             }`}
           >
-            <FaArrowUpRightFromSquare />
+            <FaArrowUpRightFromSquare className="text-xl" />
             <span
               className={`text-gray-300 text-base tracking-wider whitespace-nowrap overflow-hidden transition-all duration-700 ${
                 props.menuIsOpened ? "w-full" : "w-0"
