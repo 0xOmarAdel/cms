@@ -8,6 +8,7 @@ import TableRow from "./TableRow";
 import ErrorText from "../../UI/ErrorText";
 import PaginationHandler from "../../UI/PaginationHandler";
 import dynamicSort from "../../utils/dynamicSort";
+import Loading from "../../UI/Loading";
 
 const Table = (props) => {
   let { page: currentPage } = useParams();
@@ -17,8 +18,8 @@ const Table = (props) => {
   const start = currentPage ? (currentPage - 1) * elementsPerPage : 0;
   const end = currentPage ? start + elementsPerPage : props.elements?.length;
 
-  if (props.isLoading) {
-    return <TableDataLoading title={props.title} />;
+  if (!props.isLoading) {
+    return <Loading />;
   }
   if (props.error) {
     return <TableFetchError title={props.title} />;
