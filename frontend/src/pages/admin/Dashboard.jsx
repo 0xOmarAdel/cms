@@ -64,8 +64,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1 className="mb-5">Dashboard</h1>
-      <div className="grid grid-cols-4 gap-8">
+      <h1 className="mb-5 text-3xl font-semibold tracking-wide">Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {totals.map((item, index) => (
           <div
             className="py-8 flex flex-col items-center gap-3 bg-gray-300 rounded-lg text-gray-600 font-semibold tracking-wider"

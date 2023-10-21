@@ -26,33 +26,31 @@ const Table = (props) => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <div className="col-12">
-          <h1 className="mb-4">{props.title}</h1>
-          <div className="mb-4">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-              {props.search && (
-                <TableSearchInput
-                  searchInputValue={props.searchInputValue}
-                  searchHandler={props.searchHandler}
-                />
-              )}
-              {props.badges && (
-                <TableBadges
-                  badges={props.badges}
-                  activeFilter={props.activeFilter}
-                  filterHandler={props.filterHandler}
-                />
-              )}
-            </div>
-          </div>
-          {props.filteredArray.length !== 0 ? (
-            <>
-              <TableHeading
-                table={props.table}
-                sortBy={props.sortBy}
-                sortHandler={props.sortHandler}
-              />
+      <div className="flex flex-col gap-4">
+        <h1 className="text-3xl font-semibold tracking-wide">{props.title}</h1>
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+          {props.search && (
+            <TableSearchInput
+              searchInputValue={props.searchInputValue}
+              searchHandler={props.searchHandler}
+            />
+          )}
+          {props.badges && (
+            <TableBadges
+              badges={props.badges}
+              activeFilter={props.activeFilter}
+              filterHandler={props.filterHandler}
+            />
+          )}
+        </div>
+        {props.filteredArray.length !== 0 ? (
+          <>
+            <TableHeading
+              table={props.table}
+              sortBy={props.sortBy}
+              sortHandler={props.sortHandler}
+            />
+            <div className="flex flex-col gap-6 lg:gap-1.5">
               {props.filteredArray
                 .sort(dynamicSort(props.sortBy))
                 .slice(start, end)
@@ -64,11 +62,11 @@ const Table = (props) => {
                     linkTo={props.linkTo ? props.linkTo + element.id : ""}
                   />
                 ))}
-            </>
-          ) : (
-            <ErrorText text="Found 0 records!" />
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          <ErrorText text="Found 0 records!" />
+        )}
       </div>
       {props.pagination && (
         <div className="w-full flex flex-row">
