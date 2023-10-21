@@ -15,8 +15,8 @@ const TextareaForm = ({
   const [iconClasses, setIconClasses] = useState(classes);
 
   useEffect(() => {
-    if (conditionToSend) {
-      setShowSendIcon(conditionToSend);
+    if (conditionToSend(text)) {
+      setShowSendIcon(conditionToSend(text));
       setIconClasses(classes + " !text-sky-500 opacity-100");
     }
   }, [classes, conditionToSend]);
@@ -26,7 +26,7 @@ const TextareaForm = ({
 
     setShowSendIcon(true);
     setIconClasses(
-      conditionToSend
+      conditionToSend(e.target.value)
         ? classes +
             " !text-sky-500 opacity-100 hover:text-sky-600 hover:scale-110"
         : classes
@@ -38,14 +38,14 @@ const TextareaForm = ({
   };
 
   const submitHandler = () => {
-    if (!conditionToSend) return;
+    if (!conditionToSend(text)) return;
 
     submitFunction();
     setIconClasses(classes);
   };
 
   const keyDownHandler = (e) => {
-    if (!conditionToSend) return;
+    if (!conditionToSend(text)) return;
 
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
