@@ -28,7 +28,7 @@ const Table = (props) => {
     <>
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-semibold tracking-wide">{props.title}</h1>
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+        <div className="mb-2 flex flex-col lg:flex-row lg:items-center gap-4">
           {props.search && (
             <TableSearchInput
               searchInputValue={props.searchInputValue}
