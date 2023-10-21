@@ -50,7 +50,7 @@ const Complaint = () => {
   if (complaintDetailsLoading || messagesIsLoading) return <Loading />;
 
   if (complaintDetailsError || messagesHasError) return <Error />;
-  console.log(messages, complaintDetails);
+
   return (
     <div className="flex flex-col lg:grid lg:grid-cols-3 gap-7">
       <div className="lg:col-span-2 flex flex-col gap-5">
@@ -61,8 +61,8 @@ const Complaint = () => {
                 <div
                   className={
                     parseInt(message.from) === 0
-                      ? "max-w-[60%]"
-                      : "max-w-[60%] ml-auto"
+                      ? "w-fit max-w-[60%]"
+                      : "w-fit max-w-[60%] ml-auto"
                   }
                   key={message.id}
                 >
