@@ -8,7 +8,7 @@ const ChartsContainer = ({ complaintsPerMonth, usersPerMonth }) => {
 
   return (
     <div className="charts-container">
-      <h4 style={{ fontSize: "1.5rem" }}>Monthly Complaints</h4>
+      <h4 className="text-2xl">Monthly Complaints</h4>
       <button onClick={() => setBarChart(!barChart)}>
         {barChart ? "AreaChart" : "BarChart"}
       </button>
@@ -18,7 +18,7 @@ const ChartsContainer = ({ complaintsPerMonth, usersPerMonth }) => {
         <AreaChart data={complaintsPerMonth} />
       )}
 
-      <h4 style={{ marginTop: "40px", fontSize: "1.5rem" }}>Monthly Users</h4>
+      <h4 className="mt-10 text-2xl">Monthly Users</h4>
       {barChart ? (
         <BarChart data={usersPerMonth} />
       ) : (
