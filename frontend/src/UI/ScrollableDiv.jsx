@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./ScrollableDiv.css";
 
 const ScrollableDiv = (props) => {
@@ -8,7 +6,6 @@ const ScrollableDiv = (props) => {
       className={
         props.className ? "scrollableDiv " + props.className : "scrollableDiv"
       }
-      style={props.style ? props.style : ""}
     >
       {props.children}
     </div>
