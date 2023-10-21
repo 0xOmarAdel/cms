@@ -69,12 +69,12 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {totals?.map((item, index) => (
           <div
-            className="py-8 flex flex-col items-center gap-3 bg-gray-300 rounded-lg text-gray-600 font-semibold tracking-wider"
+            className="py-8 flex flex-col items-center gap-3 bg-white shadow-md rounded-lg text-sky-500 tracking-wider"
             key={index}
           >
             {item.icon}
-            <p className="text-xl">{item.label}</p>
-            <p className="text-2xl">{item.total}</p>
+            <p className="text-xl text-black">{item.label}</p>
+            <p className="text-2xl text-black">{item.total}</p>
           </div>
         ))}
       </div>
