@@ -46,7 +46,7 @@ const Sidebar = (props) => {
           props.menuIsOpened ? "px-[35px]" : "px-[30px]"
         }`}
       >
-        <div className="py-[25px] flex flex-row items-center border-y border-gray-100">
+        <div className="py-[25px] flex flex-row items-center border-y-2 border-gray-300">
           <div
             className={`mx-auto flex flex-row justify-center overflow-hidden transition-all duration-[1.2s] ${
               props.menuIsOpened ? "gap-3" : "gap-0"
