@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import TableDataLoading from "./TableDataLoading";
 import TableFetchError from "./TableFetchError";
 import TableSearchInput from "./TableSearchInput";
 import TableBadges from "./TableBadges";
