@@ -50,7 +50,7 @@ const MyComplaints = () => {
   return (
     <>
       <Hero title="My Complaints" />
-      <section className="complaints px-3 px-sm-0">
+      <section className="complaints px-8 px-sm-0">
         <div className="container">
           <div className="row">
             {user.role === "user" && (
@@ -59,37 +59,29 @@ const MyComplaints = () => {
               </Alert>
             )}
           </div>
-
-          {userComplaints.slice(start, end).map((complaint) => (
-            <div
-              key={complaint._id}
-              className={`${classes.complaint} mb-3 text-muted`}
-            >
-              <Link to={`/complaint/${complaint._id}`}>
-                <div className="row align-items-center">
-                  <div className="col-5 ps-0 text-left">
-                    <i className="fa-regular fa-envelope pe-3"></i>
-                    <p className="d-inline-block complaint-name">
+          <div className="flex flex-wrap gap-4">
+            {userComplaints.slice(start, end).map((complaint) => (
+              <div
+                key={complaint._id}
+                className={`w-full ${classes.complaint} mb-3 text-muted p-4`}
+              >
+                <Link to={`/complaint/${complaint._id}`}>
+                  <div className="flex md:flex-row flex-col justify-between">
+                    <p className="text-lg font-semibold mb-2">
                       {complaint.title}
                     </p>
-                  </div>
-                  <div className="col-2">
                     <p className="complaint-category">{complaint.category}</p>
-                  </div>
-                  <div className="col-3">
                     <p className="complaint-date-created">
                       <DateFormatter date={complaint.date_created} />
                     </p>
-                  </div>
-                  <div className="col-2 pe-0 text-right">
                     <p className="complaint-status">
                       <StatusFormatter status={complaint.status} />
                     </p>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                </Link>
+              </div>
+            ))}
+          </div>
 
           <PaginationHandler
             currentPage={currentPage}
