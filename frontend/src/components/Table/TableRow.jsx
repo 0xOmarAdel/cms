@@ -22,7 +22,7 @@ const TableRow = ({ element, linkTo, table }) => {
       <TableLink linkTo={linkTo}>
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-0.5 lg:gap-2">
           {result.map((r, index) => (
-            <div key={index} className={r.colSize}>
+            <div key={index} className={`lg:px-6 ${r.colSize}`}>
               {r.isDate ? (
                 <p className="flex flex-row flex-wrap gap-2 break-words">
                   <span className="block lg:hidden font-semibold">
