@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import TableDataLoading from "./TableDataLoading";
 import TableFetchError from "./TableFetchError";
 import TableSearchInput from "./TableSearchInput";
 import TableBadges from "./TableBadges";
@@ -8,6 +7,7 @@ import TableRow from "./TableRow";
 import ErrorText from "../../UI/ErrorText";
 import PaginationHandler from "../../UI/PaginationHandler";
 import dynamicSort from "../../utils/dynamicSort";
+import Loading from "../../UI/Loading";
 
 const Table = (props) => {
   let { page: currentPage } = useParams();
@@ -18,7 +18,7 @@ const Table = (props) => {
   const end = currentPage ? start + elementsPerPage : props.elements?.length;
 
   if (props.isLoading) {
-    return <TableDataLoading title={props.title} />;
+    return <Loading />;
   }
   if (props.error) {
     return <TableFetchError title={props.title} />;
@@ -28,7 +28,7 @@ const Table = (props) => {
     <>
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-semibold tracking-wide">{props.title}</h1>
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+        <div className="mb-2 flex flex-col lg:flex-row lg:items-center gap-4">
           {props.search && (
             <TableSearchInput
               searchInputValue={props.searchInputValue}

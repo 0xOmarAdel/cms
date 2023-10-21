@@ -3,12 +3,14 @@ import loading from "../assets/loading.json";
 
 const Loading = () => {
   return (
-    <Lottie
-      animationData={loading}
-      style={{
-        height: 80,
-      }}
-    />
+    <div className="absolute top-1/2 left-1/2 -translate-y-full">
+      <Lottie
+        animationData={loading}
+        style={{
+          height: 80,
+        }}
+      />
+    </div>
   );
 };
 

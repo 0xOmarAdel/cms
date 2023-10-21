@@ -7,7 +7,7 @@ const AdminPage = () => {
   const [marginLeft, setMarginLeft] = useState(300);
 
   useEffect(() => {
-    const shrinkHeader = () => {
+    const marginHandler = () => {
       if (window.innerWidth > 1000) {
         setMarginLeft(300);
       } else {
@@ -15,10 +15,10 @@ const AdminPage = () => {
       }
     };
 
-    window.addEventListener("resize", shrinkHeader);
+    window.addEventListener("resize", marginHandler);
 
     return () => {
-      window.removeEventListener("resize", shrinkHeader);
+      window.removeEventListener("resize", marginHandler);
     };
   }, []);
 
@@ -26,7 +26,7 @@ const AdminPage = () => {
     <>
       <AdminNav setMenuIsOpened={setMenuIsOpened} menuIsOpened={menuIsOpened} />
       <div
-        className="min-h-screen pt-[50px] sm:pt-[60px] md:pt-[75px] lg:pt-[90px] px-[30px] sm:px-[40px] md:px-[70px] lg:px-[100px] bg-[#f2f5f7] transition-[margin-left] duration-[1.2s]"
+        className="min-h-screen py-[50px] sm:py-[60px] md:py-[75px] lg:py-[90px] px-[30px] sm:px-[40px] md:px-[70px] lg:px-[100px] bg-[#f2f5f7] transition-[margin-left] duration-[1.2s]"
         style={{ marginLeft: menuIsOpened ? `${marginLeft}px` : "120px" }}
       >
         <Outlet />

@@ -6,6 +6,8 @@ import StatusFormatter from "../../UI/StatusFormatter";
 import useInput from "../../hooks/useInput";
 import useAxios from "../../hooks/useAxios";
 import axios from "axios";
+import Loading from "../../UI/Loading";
+import Error from "../../UI/Error";
 
 const Complaint = () => {
   const { id } = useParams();
@@ -63,11 +65,13 @@ const Complaint = () => {
     });
   };
 
-  if (complaintDetailsLoading || messagesIsLoading) return;
+  if (complaintDetailsLoading || messagesIsLoading) return <Loading />;
+
+  if (complaintDetailsError || messagesHasError) return <Error />;
 
   return (
-    <div className={`row ${classes.complaint}`}>
-      <div className="col-sm-12 col-lg-8 mb-5 mb-lg-0">
+    <div className={`grid grid-cols-3 ${classes.complaint}`}>
+      <div className="col-span-2">
         <div className={`${classes.messages} mb-4`}>
           <ScrollableDiv
             className="d-flex align-items-end"
