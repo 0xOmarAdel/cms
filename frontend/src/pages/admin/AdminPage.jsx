@@ -7,7 +7,7 @@ const AdminPage = () => {
   const [marginLeft, setMarginLeft] = useState(300);
 
   useEffect(() => {
-    const shrinkHeader = () => {
+    const marginHandler = () => {
       if (window.innerWidth > 1000) {
         setMarginLeft(300);
       } else {
@@ -15,10 +15,10 @@ const AdminPage = () => {
       }
     };
 
-    window.addEventListener("resize", shrinkHeader);
+    window.addEventListener("resize", marginHandler);
 
     return () => {
-      window.removeEventListener("resize", shrinkHeader);
+      window.removeEventListener("resize", marginHandler);
     };
   }, []);
 
