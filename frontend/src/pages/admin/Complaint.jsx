@@ -17,12 +17,14 @@ const Complaint = () => {
     data: complaintDetails,
     loading: complaintDetailsLoading,
     error: complaintDetailsError,
+    reFetch: reFetchComplaintDetails,
   } = useAxios(`http://localhost:5000/api/v1/complaints/${id}`, "GET");
 
   const {
     data: messages,
     loading: messagesIsLoading,
     error: messagesHasError,
+    reFetch: reFetchMessages,
   } = useAxios(`http://localhost:5000/api/v1/messages/complaint/${id}`, "GET");
 
   const [message, setMessage] = useState("");
@@ -38,6 +40,11 @@ const Complaint = () => {
     });
 
     setMessage("");
+    reFetchMessages();
+
+    if (parseInt(complaintDetails.status) === 0) {
+      reFetchComplaintDetails();
+    }
   };
 
   const closeComplaintHandler = async () => {
@@ -45,6 +52,8 @@ const Complaint = () => {
       method: "PUT",
       url: `http://localhost:5000/api/v1/complaints/close/${id}`,
     });
+
+    reFetchComplaintDetails();
   };
 
   if (complaintDetailsLoading || messagesIsLoading) return <Loading />;
@@ -74,8 +83,8 @@ const Complaint = () => {
                     <p
                       className={`p-2 rounded-lg tracking-wide break-all ${
                         parseInt(message.from) === 1
-                          ? "bg-[#0257dd96]"
-                          : "bg-[#bcbcbc42]"
+                          ? "bg-sky-500"
+                          : "bg-sky-200"
                       }`}
                     >
                       {message.text}
