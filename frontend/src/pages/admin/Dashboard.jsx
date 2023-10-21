@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import Loading from "../../UI/Loading";
 import ChartsContainer from "../../components/Charts/ChartsContainer";
 import { FaUserShield, FaListUl, FaEnvelope, FaUsers } from "react-icons/fa6";
+import TableFetchError from "../../components/Table/TableFetchError";
 
 const Dashboard = () => {
   const cards = useMemo(
@@ -59,14 +60,14 @@ const Dashboard = () => {
     complaintsPerMonthHasError ||
     usersPerMonthHasError
   ) {
-    return <div>An error occurred.</div>;
+    return <TableFetchError title="Dashboard" />;
   }
 
   return (
     <>
       <h1 className="mb-5 text-3xl font-semibold tracking-wide">Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {totals.map((item, index) => (
+        {totals?.map((item, index) => (
           <div
             className="py-8 flex flex-col items-center gap-3 bg-gray-300 rounded-lg text-gray-600 font-semibold tracking-wider"
             key={index}
