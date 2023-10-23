@@ -107,83 +107,82 @@ const CreateComplaint = () => {
   return (
     <>
       <Hero title="Create a New Complaint" />
-      <section>
-        <div className="container">
-          <div className="row px-3 px-md-0">
-            <div className="col-12 col-md-8 p-0 pe-md-5">
-              <form onSubmit={submitHandler}>
-                <div className="row justify-content-center">
-                  {submittingError && (
-                    <p className="error-text text-center mb-3">
-                      An error occurred. Couldn&apos;t submit your complaint.
-                      <br />
-                      You will probably need to complain about that as well
-                      lmao.
-                    </p>
-                  )}
-                  <div className="col-6 mb-4">
-                    <input
-                      className={titleInputClasses}
-                      name="title"
-                      placeholder="Title"
-                      onChange={titleInputChangeHandler}
-                      onBlur={titleInputBlurHandler}
-                      value={enteredTitle}
-                    />
-                    {titleInputHasError && (
-                      <p className="error-text mt-2">
-                        Title must not be [10, 50] characters.
-                      </p>
-                    )}
-                  </div>
-                  <div className="col-6  mb-4">
-                    <select
-                      className="form-control"
-                      name="categoryId"
-                      onChange={categoryInputChangeHandler}
-                      onBlur={categoryInputBlurHandler}
-                      value={enteredCategory}
-                    >
-                      {categories.map((category, index) => (
-                        <option key={index} value={category._id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="col-12 mb-4">
-                    <textarea
-                      className={messageInputClasses}
-                      placeholder="Message"
-                      onChange={messageInputChangeHandler}
-                      onBlur={messageInputBlurHandler}
-                      value={enteredMessage}
-                    />
-                    {messageInputHasError && (
-                      <p className="error-text mt-2">
-                        Message must be at least 50 characters.
-                      </p>
-                    )}
-                  </div>
-                  <Button
-                    text="Cancel"
-                    className="me-4"
-                    onClick={() => {
-                      navigate("/my-complaints");
-                    }}
-                  />
-                  <Button text="Submit" disabled={submitting} />
-                </div>
-              </form>
+      <section className="px-10 sm:px-16 md:px-28 lg:px-40 xl:px-60">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-10">
+          <form
+            className="lg:col-span-2 order-2 lg:order-1 flex flex-col gap-6"
+            onSubmit={submitHandler}
+          >
+            {submittingError && (
+              <p className="error-text text-center mb-3">
+                An error occurred while submitting your complaint.
+              </p>
+            )}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="flex flex-col gap-1">
+                <input
+                  className={titleInputClasses}
+                  name="title"
+                  placeholder="Title"
+                  onChange={titleInputChangeHandler}
+                  onBlur={titleInputBlurHandler}
+                  value={enteredTitle}
+                />
+                {titleInputHasError && (
+                  <p className="error-text">
+                    Title must be [10, 50] characters.
+                  </p>
+                )}
+              </div>
+              <select
+                className="form-control"
+                name="categoryId"
+                onChange={categoryInputChangeHandler}
+                onBlur={categoryInputBlurHandler}
+                value={enteredCategory}
+              >
+                {categories.map((category, index) => (
+                  <option key={index} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className="col-4 d-none d-md-block">
-              <Alert path="/FAQ" icon>
-                Take a look at our FAQ page to quickly find your answers.
-              </Alert>
-              <Alert path="/my-complaints" icon>
-                View your previously created complaints from here.
-              </Alert>
+            <div className="flex flex-col gap-1">
+              <textarea
+                className={messageInputClasses}
+                placeholder="Message"
+                onChange={messageInputChangeHandler}
+                onBlur={messageInputBlurHandler}
+                value={enteredMessage}
+              />
+              {messageInputHasError && (
+                <p className="error-text">
+                  Message must be at least 50 characters.
+                </p>
+              )}
             </div>
+            <div className="flex flex-row gap-5">
+              <Button
+                text="Cancel"
+                onClick={() => {
+                  navigate("/my-complaints");
+                }}
+              />
+              <Button text="Submit" disabled={submitting} />
+            </div>
+          </form>
+          <div className="lg:col-span-1 order-1 lg:order-2 flex flex-col gap-3">
+            <Alert
+              path="/FAQ"
+              icon={true}
+              text="Take a look at our FAQ page to quickly find your answers."
+            />
+            <Alert
+              path="/my-complaints"
+              icon={true}
+              text="View your previously created complaints from here."
+            />
           </div>
         </div>
       </section>
