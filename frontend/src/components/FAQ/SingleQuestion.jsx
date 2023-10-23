@@ -16,7 +16,7 @@ const SingleQuestion = ({ id, title, answer, activeId, toggleQuestion }) => {
         />
       </header>
       <p
-        className={`overflow-hidden transition-all duration-300 ${
+        className={`text-gray-600 overflow-hidden transition-all duration-300 ${
           isActive ? "h-[100px]" : "h-0"
         }`}
       >
