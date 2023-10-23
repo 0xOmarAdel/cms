@@ -2,7 +2,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 const TableHeading = ({ table, sortHandler, sortBy }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="">
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
           <tr className="grid grid-cols-12">
