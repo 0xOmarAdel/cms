@@ -1,8 +1,8 @@
 const Hero = (props) => {
   return (
-    <div className="bg-primary-color py-12 md:py-36 text-white text-center">
-      <h1 className="text-4xl">{props?.headTitle}</h1>
-      <h1 className="text-3xl mt-4">{props.title}</h1>
+    <div className="py-12 md:py-36 flex flex-col gap-4 bg-primary-color text-white text-center capitalize">
+      {props?.headTitle && <h1 className="text-4xl">{props.headTitle}</h1>}
+      <h1 className="text-3xl">{props.title}</h1>
       {props.children}
     </div>
   );
