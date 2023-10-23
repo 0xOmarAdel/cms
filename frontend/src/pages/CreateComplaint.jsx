@@ -6,8 +6,8 @@ import useInput from "../hooks/useInput";
 import Hero from "../UI/Hero";
 import Alert from "../UI/Alert";
 import Button from "../UI/Button";
-import Loading from "../UI/Loading";
-import Error from "../UI/Error";
+import UserPageLoading from "../components/States/UserPageLoading";
+import UserPageError from "../components/States/UserPageError";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -83,31 +83,17 @@ const CreateComplaint = () => {
   };
 
   if (categoriesLoading) {
-    return (
-      <>
-        <Hero title="My Complaints" />
-        <section className="complaints text-center">
-          <Loading />
-        </section>
-      </>
-    );
+    return <UserPageLoading title="Create a New Complaint" />;
   }
 
   if (categoriesHasError) {
-    return (
-      <>
-        <Hero title="My Complaints" />
-        <section className="complaints text-center">
-          <Error />
-        </section>
-      </>
-    );
+    return <UserPageError title="Create a New Complaint" />;
   }
 
   return (
     <>
       <Hero title="Create a New Complaint" />
-      <section className="px-10 sm:px-16 md:px-28 lg:px-40 xl:px-60">
+      <section>
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-10">
           <form
             className="lg:col-span-2 order-2 lg:order-1 flex flex-col gap-6"

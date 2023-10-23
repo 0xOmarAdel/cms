@@ -5,8 +5,8 @@ import Hero from "../UI/Hero";
 import PaginationHandler from "../UI/PaginationHandler";
 import StatusFormatter from "../UI/StatusFormatter";
 import DateFormatter from "../UI/DateFormatter";
-import Loading from "../UI/Loading";
-import Error from "../UI/Error";
+import UserPageLoading from "../components/States/UserPageLoading";
+import UserPageError from "../components/States/UserPageError";
 
 const MyComplaints = () => {
   let { page: currentPage } = useParams();
@@ -21,25 +21,11 @@ const MyComplaints = () => {
   } = useAxios("http://localhost:5000/api/v1/complaints", "GET");
 
   if (userComplaintsLoading) {
-    return (
-      <>
-        <Hero title="My Complaints" />
-        <section className="complaints text-center">
-          <Loading />
-        </section>
-      </>
-    );
+    return <UserPageLoading title="My Complaints" />;
   }
 
   if (userComplaintsHasError) {
-    return (
-      <>
-        <Hero title="My Complaints" />
-        <section className="complaints text-center">
-          <Error />
-        </section>
-      </>
-    );
+    return <UserPageError title="My Complaints" />;
   }
 
   return (
