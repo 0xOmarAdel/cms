@@ -61,12 +61,20 @@ const MyComplaints = () => {
                 to={`/complaint/${complaint._id}`}
                 className="md:grid md:grid-cols-12 items-center"
               >
-                <p className="col-span-5 text-lg">{complaint.title}</p>
-                <p className="col-span-3">{complaint.category}</p>
+                <p className="col-span-5 text-lg">
+                  <span className="md:hidden">Title: </span>
+                  {complaint.title}
+                </p>
                 <p className="col-span-3">
+                  <span className="md:hidden">Category: </span>
+                  {complaint.category}
+                </p>
+                <p className="col-span-3">
+                  <span className="md:hidden">Created: </span>
                   <DateFormatter date={complaint.date_created} />
                 </p>
                 <p className="col-span-1 justify-self-end">
+                  <span className="md:hidden">Status: </span>
                   <StatusFormatter status={complaint.status} />
                 </p>
               </Link>
