@@ -1,4 +1,4 @@
-import FAQCard from "../components/FAQCard";
+import FAQCard from "../components/FAQ/FAQCard";
 import { faqCards } from "../data/faqCards";
 import Hero from "../UI/Hero";
 
@@ -6,14 +6,10 @@ const FAQ = () => {
   return (
     <>
       <Hero title="frequently asked questions" />
-      <section className="py-5">
-        <div className="container">
-          <div className="row justify-content-center">
-            {faqCards.map((card, index) => (
-              <FAQCard key={index} card={card} />
-            ))}
-          </div>
-        </div>
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 items-center">
+        {faqCards.map((card, index) => (
+          <FAQCard key={index} card={card} />
+        ))}
       </section>
     </>
   );

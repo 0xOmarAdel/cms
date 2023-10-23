@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Alert from "../UI/Alert";
 import Hero from "../UI/Hero";
-
-import classes from "./FAQItem.module.css";
-import Questions from "./Questions";
+import Questions from "../components/FAQ/Questions";
 import { faq } from "../data/faq";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const FAQItem = () => {
   const questions = [
@@ -43,49 +42,42 @@ const FAQItem = () => {
   };
 
   const navigate = useNavigate();
-
-  const params = useParams();
+  const { item } = useParams();
 
   useEffect(() => {
-    if (!faq.includes(params.item)) {
+    if (!faq.includes(item)) {
       navigate("/faq");
     }
-  }, [params.item, navigate]);
+  }, [item, navigate]);
 
   return (
     <>
       <Hero title="Frequently Asked Questions" />
-      <section className={`${classes["faq-item"]} faq-item py-5`}>
-        <div className="container w-90vw">
-          <div className="row">
-            <div className="col-auto p-0">
-              <Link to="/faq">
-                <i
-                  className={`fa-solid fa-arrow-left-long ${classes.arrow}`}
-                ></i>
-              </Link>
-            </div>
-            <div className="col mb-4">
-              <h1>{params.item}</h1>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-md-8 p-0 pe-md-5">
-              <Questions
-                questions={questions}
-                activeId={activeId}
-                toggleQuestion={toggleQuestion}
-              />
-            </div>
-            <div className="col-4 d-none d-md-block">
-              <Alert path="/create-complaint" icon>
-                Couldn&apos;t find your answer? Create a new complaint from
-                here.
-              </Alert>
-              <Alert path="/my-complaints" icon>
-                View your previously created complaints from here.
-              </Alert>
-            </div>
+      <section className="flex flex-col gap-5">
+        <Link
+          to="/faq"
+          className="w-fit flex flex-row items-center gap-2 text-3xl text-sky-500"
+        >
+          <FaArrowLeftLong />
+          <h1 className="font-semibold tracking-wide capitalize">{item}</h1>
+        </Link>
+        <div className="flex flex-col lg:flex-row gap-10">
+          <Questions
+            questions={questions}
+            activeId={activeId}
+            toggleQuestion={toggleQuestion}
+          />
+          <div className="order-1 lg:order-2 flex flex-col gap-4">
+            <Alert
+              path="/create-complaint"
+              icon={true}
+              text="Couldn't find your answer? Create a new complaint from here."
+            />
+            <Alert
+              path="/my-complaints"
+              icon={true}
+              text="View your previously created complaints from here."
+            />
           </div>
         </div>
       </section>

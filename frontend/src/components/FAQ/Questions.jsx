@@ -2,8 +2,7 @@ import SingleQuestion from "./SingleQuestion";
 
 const Questions = ({ questions, activeId, toggleQuestion }) => {
   return (
-    <section className="container">
-      <h1>Questions</h1>
+    <div className="order-2 lg:order-1 flex flex-col gap-8">
       {questions.map((question) => {
         return (
           <SingleQuestion
@@ -14,7 +13,7 @@ const Questions = ({ questions, activeId, toggleQuestion }) => {
           />
         );
       })}
-    </section>
+    </div>
   );
 };
 export default Questions;
