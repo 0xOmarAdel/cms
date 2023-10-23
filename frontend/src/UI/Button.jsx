@@ -1,13 +1,13 @@
-import React from "react";
-
 const Button = (props) => {
   return (
     <button
-      className={`btn-primary bg-primary-color ${props.className}`}
+      className={`w-fit py-2 px-5 bg-primary-color rounded-md outline-none text-white text-[15px] font-bold tracking-wider opacity-[0.75] cursor-pointer transition duration-700 hover:opacity-100 ${
+        props.className || ""
+      }`}
       style={props.style}
       type={props.type}
       onClick={props.onClick ? () => props.onClick() : () => {}}
-      disabled={props.disabled ? props.disabled : false}
+      disabled={props.disabled || false}
     >
       {props.text}
       {props.children}
