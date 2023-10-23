@@ -17,39 +17,20 @@ const TableRow = ({ element, linkTo, table }) => {
     i++;
   }
 
+  console.log(result);
+
   return (
-    <div className="text-lg text-gray-600 tracking-tight break-words">
-      <TableLink linkTo={linkTo}>
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-0.5 lg:gap-2">
-          {result.map((r, index) => (
-            <div key={index} className={`lg:px-6 ${r.colSize}`}>
-              {r.isDate ? (
-                <p className="flex flex-row flex-wrap gap-2 break-words">
-                  <span className="block lg:hidden font-semibold">
-                    {r.label} :
-                  </span>
-                  <DateFormatter date={r.value} />
-                </p>
-              ) : r.isStatus ? (
-                <p className="flex flex-row flex-wrap gap-2 break-words">
-                  <span className="block lg:hidden font-semibold">
-                    {r.label} :
-                  </span>
-                  <StatusFormatter status={r.value} />
-                </p>
-              ) : (
-                <p className="flex flex-row flex-wrap gap-2">
-                  <span className="block lg:hidden font-semibold">
-                    {r.label} :
-                  </span>
-                  <p className="break-all">{r.value}</p>
-                </p>
-              )}
-            </div>
+    <TableLink linkTo={linkTo}>
+      <tbody className="text-lg text-gray-600 tracking-tight break-words">
+        <tr className="bg-white border-b">
+          {result.map((item) => (
+            <td key={item.value} className="px-6 py-4">
+              {item.value}
+            </td>
           ))}
-        </div>
-      </TableLink>
-    </div>
+        </tr>
+      </tbody>
+    </TableLink>
   );
 };
 
