@@ -54,13 +54,6 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
-.faq-card:hover > * {
-  @apply bg-none text-white;
-  background-clip: unset;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-}
-
 .main {
   min-height: 100vh !important;
   background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg)
