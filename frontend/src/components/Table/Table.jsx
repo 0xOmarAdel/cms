@@ -26,9 +26,9 @@ const Table = (props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="">
         <h1 className="text-3xl font-semibold tracking-wide">{props.title}</h1>
-        <div className="mb-2 flex flex-col lg:flex-row lg:items-center gap-4">
+        <div className="">
           {props.search && (
             <TableSearchInput
               searchInputValue={props.searchInputValue}
@@ -50,7 +50,7 @@ const Table = (props) => {
               sortBy={props.sortBy}
               sortHandler={props.sortHandler}
             />
-            <div className="flex flex-col gap-6 lg:gap-1.5">
+            <div className="">
               {props.filteredArray
                 .sort(dynamicSort(props.sortBy))
                 .slice(start, end)
