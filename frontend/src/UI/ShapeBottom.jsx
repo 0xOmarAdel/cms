@@ -1,14 +1,11 @@
-import React from "react";
-
-import "./ShapeBottom.css";
-
 const ShapeBottom = () => {
   return (
-    <div className="shape-bottom">
+    <div className="absolute top-auto -bottom-1 left-0 right-0">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1000 100"
         preserveAspectRatio="none"
+        className="w-full rotate-180 overflow-hidden"
       >
         <path
           fill="#FFFFFF"
