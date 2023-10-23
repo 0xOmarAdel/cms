@@ -27,20 +27,6 @@ section {
   @apply bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800;
 }
 
-.active-link {
-  color: #025fe6;
-}
-
-.menu-close {
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  padding: 20px;
-  background-color: transparent;
-  border: transparent;
-  cursor: pointer;
-}
-
 .main {
   min-height: 100vh !important;
   background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg)
@@ -66,22 +52,13 @@ section {
 .main:after {
   content: "";
   position: absolute;
+  inset: 0;
   width: 100%;
-  background: linear-gradient(to right, #090979 0%, #0072ff 100%);
   top: 0;
   height: 100%;
   z-index: -2;
   opacity: 0.94;
-}
-
-.form {
-  background-color: white;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.37) !important;
-  border-radius: 8px;
-}
-
-.form > p {
-  font-size: 30px;
+  @apply bg-sky-600;
 }
 
 .form-control {
