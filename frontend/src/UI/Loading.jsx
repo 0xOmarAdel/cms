@@ -3,7 +3,7 @@ import loading from "../assets/loading.json";
 
 const Loading = () => {
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-y-full">
+    <div className="absolute top-1/2 left-1/2 -translate-y-full -translate-x-1/2">
       <Lottie
         animationData={loading}
         style={{
