@@ -1,7 +1,8 @@
-import "./LogIn.css";
-import useInput from "../../hooks/useInput";
-import { login } from "../../store/slices/userAuthSlice";
 import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/userAuthSlice";
+import useInput from "../../hooks/useInput";
+import Input from "../../UI/Input";
+import Button from "../../UI/Button";
 
 const AdminLogIn = () => {
   const {
@@ -10,7 +11,6 @@ const AdminLogIn = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailInputChangeHandler,
     inputBlurHandler: emailInputBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value) =>
     value.trim().match(/^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$/)
   );
@@ -21,13 +21,9 @@ const AdminLogIn = () => {
     hasError: passwordInputHasError,
     valueChangeHandler: passwordInputChangeHandler,
     inputBlurHandler: passwordInputBlurHandler,
-    reset: resetPasswordInput,
   } = useInput(
     (value) => value.trim().length >= 6 && value.trim().length <= 25
   );
-
-  const emailInputClasses = emailInputHasError ? "invalid" : "";
-  const passwordInputClasses = passwordInputHasError ? "invalid" : "";
 
   const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
@@ -46,49 +42,59 @@ const AdminLogIn = () => {
         password: enteredPassword,
       })
     );
-
-    resetEmailInput();
-    resetPasswordInput();
   };
 
   return (
-    <div className="form-container">
-      <div className="login-form">
-        <h2>Admin Login</h2>
-        <form onSubmit={submitHandler}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
+    <div className="h-screen flex flex-row items-center justify-center">
+      <div className="p-10 flex flex-col items-center gap-5 bg-white rounded-xl shadow-md">
+        <h2 className="text-2xl">Admin Login</h2>
+        <form
+          className="flex flex-col gap-5 text-gray-500"
+          onSubmit={submitHandler}
+        >
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="email" className="font-semibold">
+              Email
+            </label>
+            <Input
               type="text"
               id="email"
               name="email"
-              className={emailInputClasses}
+              className={`!text-lg ${emailInputHasError && "invalid"}`}
               value={enteredEmail}
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
             />
             {emailInputHasError && (
-              <p className="error-text mt-2">Enter a valid email.</p>
+              <p className="error-text">Enter a valid email.</p>
             )}
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
+          <div className="form-group flex flex-col gap-1">
+            <label htmlFor="password" className="font-semibold">
+              Password
+            </label>
+            <Input
               type="password"
               id="password"
               name="password"
-              className={passwordInputClasses}
+              className={`!text-lg ${passwordInputHasError && "invalid"}`}
               value={enteredPassword}
               onChange={passwordInputChangeHandler}
               onBlur={passwordInputBlurHandler}
             />
             {passwordInputHasError && (
-              <p className="error-text mt-2">Enter a valid password.</p>
+              <p className="error-text">Enter a valid password.</p>
             )}
           </div>
-          <button type="submit" disabled={!formIsValid}>
-            Login
-          </button>
+          <Button
+            text="Login"
+            className={`w-full text-lg ${
+              !formIsValid &&
+              "!bg-none !bg-gray-500 !opacity-100 !cursor-default"
+            }`}
+            type="submit"
+            disabled={!formIsValid}
+          />
         </form>
       </div>
     </div>
