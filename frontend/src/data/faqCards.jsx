@@ -13,52 +13,52 @@ import {
 
 export const faqCards = [
   {
-    icon: <FaFaucetDrip className="gradient-text-color" />,
+    icon: FaFaucetDrip,
     text: "Water",
     path: "water",
   },
   {
-    icon: <FaPlug className="gradient-text-color" />,
+    icon: FaPlug,
     text: "Electricity",
     path: "electricity",
   },
   {
-    icon: <FaGasPump className="gradient-text-color" />,
+    icon: FaGasPump,
     text: "Gas",
     path: "gas",
   },
   {
-    icon: <FaTrashCan className="gradient-text-color" />,
+    icon: FaTrashCan,
     text: "Garbage",
     path: "garbage",
   },
   {
-    icon: <FaTrafficLight className="gradient-text-color" />,
+    icon: FaTrafficLight,
     text: "Traffic",
     path: "traffic",
   },
   {
-    icon: <FaRoad className="gradient-text-color" />,
+    icon: FaRoad,
     text: "Roads",
     path: "roads",
   },
   {
-    icon: <FaTrain className="gradient-text-color" />,
+    icon: FaTrain,
     text: "Railways",
     path: "railways",
   },
   {
-    icon: <FaCloudRain className="gradient-text-color" />,
+    icon: FaCloudRain,
     text: "Rain",
     path: "rain",
   },
   {
-    icon: <FaPhone className="gradient-text-color" />,
+    icon: FaPhone,
     text: "Telephone",
     path: "telephone",
   },
   {
-    icon: <FaWifi className="gradient-text-color" />,
+    icon: FaWifi,
     text: "Internet",
     path: "internet",
   },
