@@ -6,6 +6,7 @@ import ShapeBottom from "../UI/ShapeBottom";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { register } from "../store/slices/userAuthSlice";
+import { FaEnvelopeOpen, FaIdCard, FaKey, FaPhone } from "react-icons/fa6";
 
 const SignUp = () => {
   const introTitle = "Create an account!";
@@ -60,14 +61,6 @@ const SignUp = () => {
     (value) => value.trim().length >= 6 && value.trim().length <= 25
   );
 
-  const firstNameInputClasses = firstNameInputHasError
-    ? "py-4 invalid"
-    : "py-4";
-  const lastNameInputClasses = lastNameInputHasError ? "py-4 invalid" : "py-4";
-  const emailInputClasses = emailInputHasError ? "py-4 invalid" : "py-4";
-  const phoneInputClasses = phoneInputHasError ? "py-4 invalid" : "py-4";
-  const passwordInputClasses = passwordInputHasError ? "py-4 invalid" : "py-4";
-
   const formIsValid =
     enteredFirstNameIsValid &&
     enteredLastNameIsValid &&
@@ -96,93 +89,98 @@ const SignUp = () => {
       <Intro title={introTitle} text={introText} />
       <div className="shrink-0 px-7 py-10 flex flex-col gap-4 bg-white rounded-lg shadow-lg">
         <p className="text-3xl text-gray-600 text-center font-bold">Sign Up</p>
-        <form onSubmit={submitHandler}>
-          <InputWithIcon
-            iconClasses="fas fa-user fa-fw"
-            inputClasses={firstNameInputClasses}
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="First Name"
-            value={enteredFirstName}
-            onChange={firstNameInputChangeHandler}
-            onBlur={firstNameInputBlurHandler}
-          />
-          {firstNameInputHasError && (
-            <p className="error-text mt-2">
-              First Name must be [4, 25] characters.
-            </p>
-          )}
-          <InputWithIcon
-            divClasses="mt-4"
-            iconClasses="fas fa-id-card fa-fw"
-            inputClasses={lastNameInputClasses}
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="Last Name"
-            value={enteredLastName}
-            onChange={lastNameInputChangeHandler}
-            onBlur={lastNameInputBlurHandler}
-          />
-          {lastNameInputHasError && (
-            <p className="error-text mt-2">
-              Last Name must be [4, 25] characters.
-            </p>
-          )}
-          <InputWithIcon
-            divClasses="mt-4"
-            iconClasses="fas fa-envelope-open fa-fw"
-            inputClasses={emailInputClasses}
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Email"
-            value={enteredEmail}
-            onChange={emailInputChangeHandler}
-            onBlur={emailInputBlurHandler}
-          />
-          {emailInputHasError && (
-            <p className="error-text mt-2">Enter a valid email.</p>
-          )}
-          <InputWithIcon
-            divClasses="mt-4"
-            iconClasses="fa-solid fa-phone fa-fw"
-            inputClasses={phoneInputClasses}
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="Phone"
-            value={enteredPhone}
-            onChange={phoneInputChangeHandler}
-            onBlur={phoneInputBlurHandler}
-          />
-          {phoneInputHasError && (
-            <p className="error-text mt-2">Enter a valid phone number.</p>
-          )}
-          <InputWithIcon
-            divClasses="mt-4"
-            iconClasses="fas fa-key fa-fw"
-            inputClasses={passwordInputClasses}
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            value={enteredPassword}
-            onChange={passwordInputChangeHandler}
-            onBlur={passwordInputBlurHandler}
-          />
-          {passwordInputHasError && (
-            <p className="error-text">Password must be [6, 25] characters.</p>
-          )}
+        <form onSubmit={submitHandler} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaIdCard />}
+              inputError={firstNameInputHasError}
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+              value={enteredFirstName}
+              onChange={firstNameInputChangeHandler}
+              onBlur={firstNameInputBlurHandler}
+            />
+            {firstNameInputHasError && (
+              <p className="error-text">
+                First Name must be [4, 25] characters.
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaIdCard />}
+              inputError={lastNameInputHasError}
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              value={enteredLastName}
+              onChange={lastNameInputChangeHandler}
+              onBlur={lastNameInputBlurHandler}
+            />
+            {lastNameInputHasError && (
+              <p className="error-text">
+                Last Name must be [4, 25] characters.
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaEnvelopeOpen />}
+              inputError={emailInputHasError}
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={enteredEmail}
+              onChange={emailInputChangeHandler}
+              onBlur={emailInputBlurHandler}
+            />
+            {emailInputHasError && (
+              <p className="error-text">Enter a valid email.</p>
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaPhone />}
+              inputError={phoneInputHasError}
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Phone"
+              value={enteredPhone}
+              onChange={phoneInputChangeHandler}
+              onBlur={phoneInputBlurHandler}
+            />
+            {phoneInputHasError && (
+              <p className="error-text">Enter a valid phone number.</p>
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaKey />}
+              inputError={passwordInputHasError}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              value={enteredPassword}
+              onChange={passwordInputChangeHandler}
+              onBlur={passwordInputBlurHandler}
+            />
+            {passwordInputHasError && (
+              <p className="error-text">Password must be [6, 25] characters.</p>
+            )}
+          </div>
           <Button
             type="submit"
             text="Sign Up"
-            className="full-width mt-4"
-            style={{ fontSize: "16px" }}
+            className="w-full mt-1"
             disabled={!formIsValid}
           />
-          <hr className="mt-5 mb-4" />
+          <hr className="mt-2" />
           <p className="text-center">
             Already have an account?{" "}
             <Link to="/login" className="text-sky-500">

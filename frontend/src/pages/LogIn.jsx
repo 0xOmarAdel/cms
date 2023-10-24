@@ -6,6 +6,7 @@ import ShapeBottom from "../UI/ShapeBottom";
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/userAuthSlice";
+import { FaEnvelopeOpen, FaKey } from "react-icons/fa6";
 
 const LogIn = () => {
   const introTitle = "Welcome back!";
@@ -32,9 +33,6 @@ const LogIn = () => {
     (value) => value.trim().length >= 6 && value.trim().length <= 25
   );
 
-  const nationalIdInputClasses = emailInputHasError ? "py-4 invalid" : "py-4";
-  const passwordInputClasses = passwordInputHasError ? "py-4 invalid" : "py-4";
-
   const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
   const dispatch = useDispatch();
@@ -59,43 +57,46 @@ const LogIn = () => {
       <Intro title={introTitle} text={introText} />
       <div className="shrink-0 px-7 py-10 flex flex-col gap-4 bg-white rounded-lg shadow-lg">
         <p className="text-3xl text-gray-600 text-center font-bold">Log In</p>
-        <form onSubmit={submitHandler}>
-          <InputWithIcon
-            iconClasses="fas fa-id-card fa-fw"
-            inputClasses={nationalIdInputClasses}
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            value={enteredEmail}
-            onChange={emailInputChangeHandler}
-            onBlur={emailInputBlurHandler}
-          />
-          {emailInputHasError && (
-            <p className="error-text mt-2">Enter a valid email.</p>
-          )}
-          <InputWithIcon
-            divClasses="mt-4"
-            iconClasses="fas fa-key fa-fw"
-            inputClasses={passwordInputClasses}
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            value={enteredPassword}
-            onChange={passwordInputChangeHandler}
-            onBlur={passwordInputBlurHandler}
-          />
-          {passwordInputHasError && (
-            <p className="error-text mt-2">Enter a valid password.</p>
-          )}
+        <form onSubmit={submitHandler} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaEnvelopeOpen />}
+              inputError={emailInputHasError}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={enteredEmail}
+              onChange={emailInputChangeHandler}
+              onBlur={emailInputBlurHandler}
+            />
+            {emailInputHasError && (
+              <p className="error-text">Enter a valid email.</p>
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <InputWithIcon
+              icon={<FaKey />}
+              inputError={passwordInputHasError}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              value={enteredPassword}
+              onChange={passwordInputChangeHandler}
+              onBlur={passwordInputBlurHandler}
+            />
+            {passwordInputHasError && (
+              <p className="error-text">Enter a valid password.</p>
+            )}
+          </div>
           <Button
             type="submit"
             text="Log In"
-            className="w-full mt-4"
+            className="w-full mt-1"
             disabled={!formIsValid}
           />
-          <hr className="mt-5 mb-4" />
+          <hr className="mt-2" />
           <p className="text-center">
             Don&apos;t have an account?{" "}
             <Link to="/signup" className="text-sky-500">
