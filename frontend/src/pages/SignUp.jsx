@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../store/slices/userAuthSlice";
 import { FaEnvelopeOpen, FaIdCard, FaKey, FaPhone } from "react-icons/fa6";
 import ErrorText from "../UI/ErrorText";
+import Main from '../layout/Main';
 
 const SignUp = () => {
   const introTitle = "Create an account!";
@@ -86,7 +87,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="relative z-[1] min-h-screen mb-[50px] bg-[url(https://wallpapercave.com/wp/wp3077568.jpg)] bg-no-repeat bg-scroll bg-center bg-cover flex flex-col lg:flex-row lg:items-center justify-center lg:justify-between gap-14 lg:gap-20 after:absolute after:content-[''] after:inset-0 after:z-[-2] after:w-full after:h-full after:bg-sky-600 after:bg-opacity-95">
+    <Main>
       <Intro title={introTitle} text={introText} />
       <div className="shrink-0 px-7 py-10 flex flex-col gap-4 bg-white rounded-lg shadow-lg">
         <p className="text-3xl text-gray-600 text-center font-bold">Sign Up</p>
@@ -185,7 +186,7 @@ const SignUp = () => {
         </form>
       </div>
       <ShapeBottom />
-    </section>
+    </Main>
   );
 };
 
