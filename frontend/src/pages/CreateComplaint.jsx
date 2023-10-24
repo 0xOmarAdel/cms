@@ -131,7 +131,10 @@ const CreateComplaint = () => {
             </div>
             <div className="flex flex-col gap-0.5">
               <textarea
-                className=" min-h-[150px] py-[0.45rem] px-3 bg-white border border-gray-200 outline-none text-gray-600"
+                className={`min-h-[150px] py-[0.45rem] px-3 bg-white border border-gray-200 outline-none text-gray-600 ${
+                  messageInputHasError &&
+                  "!bg-red-100 border-red-200 focus:!bg-orange-100"
+                }`}
                 placeholder="Message"
                 onChange={messageInputChangeHandler}
                 onBlur={messageInputBlurHandler}
