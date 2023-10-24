@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Intro from "../components/Intro";
+import Intro from "../layout/Intro";
 import Button from "../UI/Button";
 import InputWithIcon from "../UI/InputWithIcon";
 import ShapeBottom from "../UI/ShapeBottom";

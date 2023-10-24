@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Intro from "../components/Intro";
+import Intro from "../layout/Intro";
 import Button from "../UI/Button";
 import InputWithIcon from "../UI/InputWithIcon";
 import ShapeBottom from "../UI/ShapeBottom";
@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../store/slices/userAuthSlice";
 import { FaEnvelopeOpen, FaIdCard, FaKey, FaPhone } from "react-icons/fa6";
 import ErrorText from "../UI/ErrorText";
-import Main from '../layout/Main';
+import Main from "../layout/Main";
 
 const SignUp = () => {
   const introTitle = "Create an account!";

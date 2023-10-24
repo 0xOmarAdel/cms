@@ -1,5 +1,5 @@
-import Footer from "../components/footer/Footer";
 import MainNavigation from "../components/Navbar/MainNavigation";
+import Footer from "../layout/Footer";
 import Hero from "../UI/Hero";
 
 const ErrorPage = () => {
