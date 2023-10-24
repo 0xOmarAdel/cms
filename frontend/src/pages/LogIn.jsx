@@ -7,6 +7,7 @@ import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/userAuthSlice";
 import { FaEnvelopeOpen, FaKey } from "react-icons/fa6";
+import ErrorText from "../UI/ErrorText";
 
 const LogIn = () => {
   const introTitle = "Welcome back!";
@@ -70,9 +71,7 @@ const LogIn = () => {
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
             />
-            {emailInputHasError && (
-              <p className="error-text">Enter a valid email.</p>
-            )}
+            {emailInputHasError && <ErrorText text="Enter a valid email." />}
           </div>
           <div className="flex flex-col gap-0.5">
             <InputWithIcon
@@ -87,7 +86,7 @@ const LogIn = () => {
               onBlur={passwordInputBlurHandler}
             />
             {passwordInputHasError && (
-              <p className="error-text">Enter a valid password.</p>
+              <ErrorText text="Enter a valid password." />
             )}
           </div>
           <Button

@@ -7,6 +7,7 @@ import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { register } from "../store/slices/userAuthSlice";
 import { FaEnvelopeOpen, FaIdCard, FaKey, FaPhone } from "react-icons/fa6";
+import ErrorText from "../UI/ErrorText";
 
 const SignUp = () => {
   const introTitle = "Create an account!";
@@ -103,9 +104,7 @@ const SignUp = () => {
               onBlur={firstNameInputBlurHandler}
             />
             {firstNameInputHasError && (
-              <p className="error-text">
-                First Name must be [4, 25] characters.
-              </p>
+              <ErrorText text="First Name must be [4, 25] characters." />
             )}
           </div>
           <div className="flex flex-col gap-0.5">
@@ -121,9 +120,7 @@ const SignUp = () => {
               onBlur={lastNameInputBlurHandler}
             />
             {lastNameInputHasError && (
-              <p className="error-text">
-                Last Name must be [4, 25] characters.
-              </p>
+              <ErrorText text="Last Name must be [4, 25] characters." />
             )}
           </div>
           <div className="flex flex-col gap-0.5">
@@ -138,9 +135,7 @@ const SignUp = () => {
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
             />
-            {emailInputHasError && (
-              <p className="error-text">Enter a valid email.</p>
-            )}
+            {emailInputHasError && <ErrorText text="Enter a valid email." />}
           </div>
           <div className="flex flex-col gap-0.5">
             <InputWithIcon
@@ -155,7 +150,7 @@ const SignUp = () => {
               onBlur={phoneInputBlurHandler}
             />
             {phoneInputHasError && (
-              <p className="error-text">Enter a valid phone number.</p>
+              <ErrorText text="Enter a valid phone number." />
             )}
           </div>
           <div className="flex flex-col gap-0.5">
@@ -171,7 +166,7 @@ const SignUp = () => {
               onBlur={passwordInputBlurHandler}
             />
             {passwordInputHasError && (
-              <p className="error-text">Password must be [6, 25] characters.</p>
+              <ErrorText text="Password must be [6, 25] characters." />
             )}
           </div>
           <Button

@@ -3,6 +3,7 @@ import { login } from "../../store/slices/userAuthSlice";
 import useInput from "../../hooks/useInput";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
+import ErrorText from "../../UI/ErrorText";
 
 const AdminLogIn = () => {
   const {
@@ -65,9 +66,7 @@ const AdminLogIn = () => {
               onChange={emailInputChangeHandler}
               onBlur={emailInputBlurHandler}
             />
-            {emailInputHasError && (
-              <p className="error-text">Enter a valid email.</p>
-            )}
+            {emailInputHasError && <ErrorText text="Enter a valid email." />}
           </div>
           <div className="form-group flex flex-col gap-1">
             <label htmlFor="password" className="font-semibold">
@@ -83,7 +82,7 @@ const AdminLogIn = () => {
               onBlur={passwordInputBlurHandler}
             />
             {passwordInputHasError && (
-              <p className="error-text">Enter a valid password.</p>
+              <ErrorText text="Enter a valid password." />
             )}
           </div>
           <Button

@@ -9,6 +9,7 @@ import Button from "../UI/Button";
 import UserPageLoading from "../components/States/UserPageLoading";
 import UserPageError from "../components/States/UserPageError";
 import Input from "../UI/Input";
+import ErrorText from "../UI/ErrorText";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -94,9 +95,7 @@ const CreateComplaint = () => {
             onSubmit={submitHandler}
           >
             {submittingError && (
-              <p className="error-text text-center mb-3">
-                An error occurred while submitting your complaint.
-              </p>
+              <ErrorText text="An error occurred while submitting your complaint." />
             )}
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col gap-0.5">
@@ -110,9 +109,7 @@ const CreateComplaint = () => {
                   onBlur={titleInputBlurHandler}
                 />
                 {titleInputHasError && (
-                  <p className="error-text">
-                    Title must be [10, 50] characters.
-                  </p>
+                  <ErrorText text="Title must be [10, 50] characters." />
                 )}
               </div>
               <select
@@ -141,9 +138,7 @@ const CreateComplaint = () => {
                 value={enteredMessage}
               />
               {messageInputHasError && (
-                <p className="error-text">
-                  Message must be at least 50 characters.
-                </p>
+                <ErrorText text="Message must be at least 50 characters." />
               )}
             </div>
             <div className="flex flex-row gap-5">

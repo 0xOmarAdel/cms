@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import axios from "axios";
 import Loading from "../../UI/Loading";
-import Error from "../../UI/Error";
 import { useState } from "react";
 import ComplaintChat from "../../components/Complaint/ComplaintChat";
 import ComplaintDetails from "../../components/Complaint/ComplaintDetails";
 import ComplaintUserDetails from "../../components/Complaint/ComplaintUserDetails";
 import ComplaintForm from "../../components/Complaint/ComplaintForm";
+import ErrorText from "../../UI/ErrorText";
 
 const Complaint = () => {
   const { id } = useParams();
@@ -39,7 +39,8 @@ const Complaint = () => {
 
   if (complaintDetailsLoading || messagesIsLoading) return <Loading />;
 
-  if (complaintDetailsError || messagesHasError) return <Error />;
+  if (complaintDetailsError || messagesHasError)
+    return <ErrorText text="An Error occurred" className="!text-xl" />;
 
   return (
     <div className="flex flex-col lg:grid lg:grid-cols-3 gap-7">

@@ -1,12 +1,12 @@
 import Hero from "../../UI/Hero";
-import Error from "../../UI/Error";
+import ErrorText from "../../UI/ErrorText";
 
 const UserPageError = ({ title }) => {
   return (
     <>
       <Hero title={title} />
       <section>
-        <Error />
+        <ErrorText text="An Error occurred" className="!text-xl text-center" />
       </section>
     </>
   );
