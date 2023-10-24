@@ -8,6 +8,7 @@ import Alert from "../UI/Alert";
 import Button from "../UI/Button";
 import UserPageLoading from "../components/States/UserPageLoading";
 import UserPageError from "../components/States/UserPageError";
+import Input from "../UI/Input";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -43,13 +44,6 @@ const CreateComplaint = () => {
   } = useInput((value) => value.trim().length >= 50);
 
   const formIsValid = enteredMessageIsValid && enteredTitleIsValid;
-
-  const titleInputClasses = titleInputHasError
-    ? "form-control invalid"
-    : "form-control";
-  const messageInputClasses = messageInputHasError
-    ? "form-control invalid"
-    : "form-control";
 
   const [submitting, setSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState(false);
@@ -105,14 +99,15 @@ const CreateComplaint = () => {
               </p>
             )}
             <div className="grid grid-cols-2 gap-6">
-              <div className="flex flex-col gap-1">
-                <input
-                  className={titleInputClasses}
+              <div className="flex flex-col gap-0.5">
+                <Input
+                  className="!rounded-none"
                   name="title"
                   placeholder="Title"
+                  inputError={titleInputHasError}
+                  value={enteredTitle}
                   onChange={titleInputChangeHandler}
                   onBlur={titleInputBlurHandler}
-                  value={enteredTitle}
                 />
                 {titleInputHasError && (
                   <p className="error-text">
@@ -121,7 +116,7 @@ const CreateComplaint = () => {
                 )}
               </div>
               <select
-                className="form-control"
+                className="h-fit w-full py-[0.45rem] px-3 bg-white border border-gray-200 outline-none text-gray-600"
                 name="categoryId"
                 onChange={categoryInputChangeHandler}
                 onBlur={categoryInputBlurHandler}
@@ -134,9 +129,9 @@ const CreateComplaint = () => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-0.5">
               <textarea
-                className={messageInputClasses}
+                className=" min-h-[150px] py-[0.45rem] px-3 bg-white border border-gray-200 outline-none text-gray-600"
                 placeholder="Message"
                 onChange={messageInputChangeHandler}
                 onBlur={messageInputBlurHandler}
