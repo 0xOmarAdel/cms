@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import AdminNav from "../../components/Navbar/AdminNav";
+import AdminSidebar from "../../layout/AdminSidebar";
 
 const AdminPage = () => {
   const [menuIsOpened, setMenuIsOpened] = useState(false);
@@ -24,7 +24,10 @@ const AdminPage = () => {
 
   return (
     <>
-      <AdminNav setMenuIsOpened={setMenuIsOpened} menuIsOpened={menuIsOpened} />
+      <AdminSidebar
+        setMenuIsOpened={setMenuIsOpened}
+        menuIsOpened={menuIsOpened}
+      />
       <div
         className="min-h-screen py-[50px] sm:py-[60px] md:py-[75px] lg:py-[90px] px-[30px] sm:px-[40px] md:px-[70px] lg:px-[100px] bg-[#f2f5f7] transition-[margin-left] duration-[1.2s]"
         style={{ marginLeft: menuIsOpened ? `${marginLeft}px` : "120px" }}
