@@ -10,6 +10,7 @@ import UserPageLoading from "../components/States/UserPageLoading";
 import UserPageError from "../components/States/UserPageError";
 import Input from "../UI/Input";
 import ErrorText from "../UI/ErrorText";
+import Section from "../layout/Section";
 
 const CreateComplaint = () => {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const CreateComplaint = () => {
   return (
     <>
       <Hero title="Create a New Complaint" />
-      <section>
+      <Section >
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-10">
           <form
             className="lg:col-span-2 order-2 lg:order-1 flex flex-col gap-6"
@@ -164,7 +165,7 @@ const CreateComplaint = () => {
             />
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 };

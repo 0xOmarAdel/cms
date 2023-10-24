@@ -5,6 +5,7 @@ import Hero from "../UI/Hero";
 import Questions from "../components/FAQ/Questions";
 import { faq } from "../data/faq";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Section from "../layout/Section";
 
 const FAQItem = () => {
   const questions = [
@@ -53,7 +54,7 @@ const FAQItem = () => {
   return (
     <>
       <Hero title="Frequently Asked Questions" />
-      <section className="flex flex-col gap-5">
+      <Section className="flex flex-col gap-5">
         <Link
           to="/faq"
           className="w-fit flex flex-row items-center gap-2 text-3xl text-sky-500"
@@ -80,7 +81,7 @@ const FAQItem = () => {
             />
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 };

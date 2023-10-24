@@ -7,6 +7,7 @@ import ComplaintDetails from "../components/Complaint/ComplaintDetails";
 import ComplaintChat from "../components/Complaint/ComplaintChat";
 import UserPageError from "../components/States/UserPageError";
 import UserPageLoading from "../components/States/UserPageLoading";
+import Section from "../layout/Section";
 
 const Complaint = () => {
   const { complaintId } = useParams();
@@ -41,7 +42,7 @@ const Complaint = () => {
   return (
     <>
       <Hero title={complaintDetails.title} headTitle="Complaint Title:" />
-      <section className="flex flex-col lg:grid lg:grid-cols-3 gap-7">
+      <Section className="flex flex-col lg:grid lg:grid-cols-3 gap-7">
         <div className="lg:col-span-2 flex flex-col gap-5">
           <ComplaintChat messages={complaintMessages} />
           <ComplaintForm
@@ -56,7 +57,7 @@ const Complaint = () => {
         <ComplaintDetails
           complaintDetails={{ ...complaintDetails, id: complaintId }}
         />
-      </section>
+      </Section>
     </>
   );
 };

@@ -7,6 +7,7 @@ import StatusFormatter from "../UI/StatusFormatter";
 import DateFormatter from "../UI/DateFormatter";
 import UserPageLoading from "../components/States/UserPageLoading";
 import UserPageError from "../components/States/UserPageError";
+import Section from "../layout/Section";
 
 const MyComplaints = () => {
   let { page: currentPage } = useParams();
@@ -31,7 +32,7 @@ const MyComplaints = () => {
   return (
     <>
       <Hero title="My Complaints" />
-      <section className="flex flex-col gap-6">
+      <Section className="flex flex-col gap-6">
         <Alert
           path="/create-complaint"
           icon={true}
@@ -73,7 +74,7 @@ const MyComplaints = () => {
           elementsPerPage={elementsPerPage}
           dataLength={userComplaints.length}
         />
-      </section>
+      </Section>
     </>
   );
 };
