@@ -19,10 +19,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-section {
-  @apply px-10 sm:px-16 md:px-28 lg:px-40 xl:px-60 py-12;
-}
-
 .bg-primary-color {
   @apply bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800;
 }
