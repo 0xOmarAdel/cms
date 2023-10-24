@@ -2,11 +2,7 @@ import "./ScrollableDiv.css";
 
 const ScrollableDiv = (props) => {
   return (
-    <div
-      className={
-        props.className ? "scrollableDiv " + props.className : "scrollableDiv"
-      }
-    >
+    <div className={`h-[500px] overflow-auto pr-5 ${props.className || ""}`}>
       {props.children}
     </div>
   );
