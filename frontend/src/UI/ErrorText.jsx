@@ -1,5 +1,5 @@
 const ErrorText = ({ text, className }) => {
-  return <p className={`error-text ${className || ""}`}>{text}</p>;
+  return <p className={`text-sm text-red-700 ${className || ""}`}>{text}</p>;
 };
 
 export default ErrorText;
