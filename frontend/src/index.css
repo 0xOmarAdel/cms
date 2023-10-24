@@ -27,40 +27,6 @@ section {
   @apply bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800;
 }
 
-.main {
-  min-height: 100vh !important;
-  background: rgba(0, 0, 0, 0) url(https://wallpapercave.com/wp/wp3077568.jpg)
-    no-repeat scroll center center/cover;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 50px;
-  padding-top: 50px;
-}
-
-@media (min-width: 800px) {
-  .main {
-    padding-top: 100px;
-  }
-}
-
-@media (min-width: 992px) {
-  .main {
-    padding-top: 80px;
-  }
-}
-
-.main:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  z-index: -2;
-  opacity: 0.94;
-  @apply bg-sky-600;
-}
-
 @keyframes swing {
   0% {
     transform: rotate(0deg);
