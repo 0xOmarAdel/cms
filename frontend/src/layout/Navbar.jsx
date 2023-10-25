@@ -1,4 +1,5 @@
 import { FaBars } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,7 +41,8 @@ const Navbar = () => {
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <ul className="pt-20 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-1.5 lg:gap-4 text-xl lg:text-2xl">
+        <IoClose className="absolute top-12 right-7 text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500" onClick={toggleLinks} />
+        <ul className="pt-24 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
           {user
             ? userNavLinks.map((navLink, index) => (
                 <NavbarLink
