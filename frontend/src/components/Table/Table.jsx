@@ -38,8 +38,8 @@ const Table = ({ title, data }) => {
             />
           )}
         </div> */}
-        <div className="relative shadow-md mt-4">
-          <table className="w-full hidden lg:inline-table text-sm text-left text-gray-500">
+        <div className="relative overflow-x-auto shadow-md mt-4">
+          <table className="w-full text-sm text-left text-gray-500">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
                 <th scope="col" className="px-6 py-3">
@@ -126,12 +126,12 @@ const Table = ({ title, data }) => {
               ))}
             </tbody>
           </table>
-          <div className="bg-white flex lg:hidden flex-col p-4">
+          {/* <div className="bg-white flex lg:hidden flex-col p-4">
             <span>ID: 123123</span>
             <span>Title: Life blah</span>
             <span>Category: 123123</span>
             <span>Title: 123123</span>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* {props.pagination && (
