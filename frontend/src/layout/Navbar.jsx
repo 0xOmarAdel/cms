@@ -42,7 +42,7 @@ const Navbar = () => {
         }`}
       >
         <IoClose
-          className="absolute top-12 right-7 text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500"
+          className="absolute top-12 right-7 lg:hidden text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500"
           onClick={toggleLinks}
         />
         <ul className="pt-24 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
