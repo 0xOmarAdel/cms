@@ -45,13 +45,16 @@ const LogIn = () => {
     if (!formIsValid) {
       return;
     }
-
-    dispatch(
-      login({
-        email: enteredEmail,
-        password: enteredPassword,
-      })
-    );
+    try {
+      await dispatch(
+        login({
+          email: enteredEmail,
+          password: enteredPassword,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
