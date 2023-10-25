@@ -29,10 +29,10 @@ const Navbar = () => {
         CMS
       </Link>
       <div
-        className={`${
+        className={`transition-all duration-500 ease-in-out ${
           showLinks
             ? "fixed !flex h-screen left-0 top-0 bg-white shadow-lg px-5 py-5"
-            : "lg:h-0 hidden lg:flex lg:static lg:bg-transparent text-black lg:text-gray-200 lg:shadow-none"
+            : "lg:h-0 hidden lg:flex fixed left-[-150px] lg:static lg:bg-transparent text-black lg:text-gray-200 lg:shadow-none"
         }`}
       >
         <ul className="flex flex-col lg:flex-row space-y-12 lg:space-y-0 pt-5 lg:pt-0 lg:gap-4 text-2xl">
