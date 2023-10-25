@@ -58,28 +58,7 @@ const Complaints = () => {
     { label: "Pending", attr: "status", value: "1" },
     { label: "Closed", attr: "status", value: "0" },
   ];
-
-  return (
-    <Table
-      title="Complaints"
-      searchInputValue={inputValue}
-      searchHandler={searchHandler}
-      elementsPerPage={10}
-      pagination={true}
-      sortBy={sortBy}
-      sortHandler={sortHandler}
-      filterHandler={filterHandler}
-      filteredArray={resultAfterFiler}
-      badges={badges}
-      activeFilter={activeFilter}
-      search={true}
-      isLoading={complaintsLoading}
-      error={complaintsHasError}
-      elements={complaintsList}
-      linkTo="/admin/complaint/"
-      table={complaintsPageGrid}
-    />
-  );
+  return <Table title="Complaints" data={complaintsList} />;
 };
 
 export default Complaints;
