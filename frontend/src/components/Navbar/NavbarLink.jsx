@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavbarLink = (props) => {
@@ -7,6 +6,7 @@ const NavbarLink = (props) => {
       <NavLink
         to={props.path}
         className={({ isActive }) => (isActive ? "active" : "")}
+        onClick={props.toggleLinks}
       >
         {props.text}
       </NavLink>
