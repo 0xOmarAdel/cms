@@ -31,7 +31,7 @@ const Navbar = () => {
       </Link>
       {showLinks && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-30"
+          className="fixed inset-0 z-30 bg-black bg-opacity-60 cursor-pointer"
           onClick={toggleLinks}
         />
       )}
@@ -41,7 +41,10 @@ const Navbar = () => {
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <IoClose className="absolute top-12 right-7 text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500" onClick={toggleLinks} />
+        <IoClose
+          className="absolute top-12 right-7 text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500"
+          onClick={toggleLinks}
+        />
         <ul className="pt-24 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
           {user
             ? userNavLinks.map((navLink, index) => (
