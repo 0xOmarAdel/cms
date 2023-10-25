@@ -48,7 +48,7 @@ const Navbar = () => {
             onClick={toggleLinks}
           />
         </div>
-        <ul className="flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
+        <ul className="flex flex-col space-y-8 lg:space-y-0 lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
           {user
             ? userNavLinks.map((navLink, index) => (
                 <NavbarLink

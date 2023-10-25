@@ -7,8 +7,8 @@ const NavbarLink = ({ setShowLinks, path, text }) => {
         to={path}
         className={({ isActive }) =>
           isActive
-            ? "text-gray-900 lg:text-gray-50"
-            : "text-gray-400 lg:text-gray-200"
+            ? "text-gray-900 border-b lg:border-b-0 border-b-gray-200 py-2 lg:text-gray-50"
+            : "text-gray-400 border-b lg:border-b-0 border-b-gray-200 py-2 lg:text-gray-200"
         }
         onClick={() => setShowLinks(false)}
       >
