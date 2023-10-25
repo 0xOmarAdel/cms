@@ -40,7 +40,7 @@ const Navbar = () => {
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <ul className="flex flex-col lg:flex-row space-y-12 lg:space-y-0 pt-5 lg:pt-0 lg:gap-4 text-2xl">
+        <ul className="pt-20 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-1.5 lg:gap-4 text-xl lg:text-2xl">
           {user
             ? userNavLinks.map((navLink, index) => (
                 <NavbarLink
