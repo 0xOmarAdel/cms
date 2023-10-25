@@ -37,15 +37,18 @@ const Navbar = () => {
       )}
 
       <div
-        className={`fixed lg:static top-0 left-0 h-screen lg:h-fit bg-white lg:bg-transparent text-black lg:text-gray-200 shadow-lg lg:shadow-none transition-all duration-500 ease-in-out z-40 ${
+        className={`fixed lg:static top-0 left-0 h-screen lg:h-fit pt-14 px-8 lg:p-0 bg-white lg:bg-transparent text-black lg:text-gray-200 shadow-lg lg:shadow-none transition-all duration-500 ease-in-out z-40 ${
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <IoClose
-          className="absolute top-12 right-7 lg:hidden text-2xl text-gray-600 cursor-pointer transition duration-300 hover:text-sky-500"
-          onClick={toggleLinks}
-        />
-        <ul className="pt-24 lg:pt-0 px-6 lg:px-0 flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
+        <div className="mb-5 flex flex-row justify-between text-3xl text-gray-600">
+          <h2>CMS</h2>
+          <IoClose
+            className="lg:hidden cursor-pointer transition duration-300 hover:text-sky-500"
+            onClick={toggleLinks}
+          />
+        </div>
+        <ul className="flex flex-col lg:flex-row gap-2 lg:gap-4 text-xl lg:text-2xl">
           {user
             ? userNavLinks.map((navLink, index) => (
                 <NavbarLink
