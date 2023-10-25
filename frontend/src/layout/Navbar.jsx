@@ -49,7 +49,7 @@ const Navbar = () => {
                   key={index}
                   path={navLink.path}
                   text={navLink.text}
-                  toggleLinks={toggleLinks}
+                  setShowLinks={setShowLinks}
                 />
               ))
             : guestNavLinks.map((navLink, index) => (
@@ -57,7 +57,7 @@ const Navbar = () => {
                   key={index}
                   path={navLink.path}
                   text={navLink.text}
-                  toggleLinks={toggleLinks}
+                  setShowLinks={setShowLinks}
                 />
               ))}
           {user && (
