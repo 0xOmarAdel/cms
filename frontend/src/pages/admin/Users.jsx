@@ -39,24 +39,7 @@ const Users = () => {
     setSortBy(value);
   };
 
-  return (
-    <Table
-      title="Users"
-      table={usersPagesGrid}
-      elements={usersList}
-      elementsPerPage={10}
-      pagination={true}
-      isLoading={usersLoading}
-      error={usersHasError}
-      search={true}
-      searchInputValue={inputValue}
-      searchHandler={searchHandler}
-      filteredArray={filteredArray}
-      sortBy={sortBy}
-      sortHandler={sortHandler}
-      badges={false}
-    />
-  );
+  return <Table title="Users" data={usersList} />;
 };
 
 export default Users;
