@@ -1,14 +1,18 @@
 import { NavLink } from "react-router-dom";
 
-const NavbarLink = (props) => {
+const NavbarLink = ({ setShowLinks, path, text }) => {
   return (
     <li>
       <NavLink
-        to={props.path}
-        className={({ isActive }) => (isActive ? "active" : "")}
-        onClick={props.toggleLinks}
+        to={path}
+        className={({ isActive }) =>
+          isActive
+            ? "text-gray-900 lg:text-gray-50"
+            : "text-gray-400 lg:text-gray-200"
+        }
+        onClick={() => setShowLinks(false)}
       >
-        {props.text}
+        {text}
       </NavLink>
     </li>
   );

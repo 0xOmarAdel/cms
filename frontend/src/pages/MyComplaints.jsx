@@ -50,7 +50,9 @@ const MyComplaints = () => {
               >
                 <p className="col-span-5 text-lg">
                   <span className="md:hidden">Title: </span>
-                  {complaint.title}
+                  {complaint.title.length > 20
+                    ? complaint.title.slice(0, 20) + "..."
+                    : complaint.title}
                 </p>
                 <p className="col-span-3">
                   <span className="md:hidden">Category: </span>
