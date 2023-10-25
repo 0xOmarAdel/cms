@@ -28,8 +28,15 @@ const Navbar = () => {
       <Link to="/" className="text-4xl text-white">
         CMS
       </Link>
+      {showLinks && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-30"
+          onClick={toggleLinks}
+        />
+      )}
+
       <div
-        className={`transition-all duration-500 ease-in-out ${
+        className={`transition-all duration-500 ease-in-out z-40 ${
           showLinks
             ? "fixed !flex h-screen left-0 top-0 bg-white shadow-lg px-5 py-5"
             : "lg:h-0 hidden lg:flex fixed left-[-150px] lg:static lg:bg-transparent text-black lg:text-gray-200 lg:shadow-none"
@@ -42,6 +49,7 @@ const Navbar = () => {
                   key={index}
                   path={navLink.path}
                   text={navLink.text}
+                  toggleLinks={toggleLinks}
                 />
               ))
             : guestNavLinks.map((navLink, index) => (
@@ -49,6 +57,7 @@ const Navbar = () => {
                   key={index}
                   path={navLink.path}
                   text={navLink.text}
+                  toggleLinks={toggleLinks}
                 />
               ))}
           {user && (
