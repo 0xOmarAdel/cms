@@ -1,4 +1,4 @@
-import { FaBars, FaRegWindowMinimize } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -73,7 +73,7 @@ const Navbar = () => {
         className="lg:hidden text-xl text-gray-200 transition duration-500 hover:text-white"
         onClick={toggleLinks}
       >
-        {showLinks ? <FaRegWindowMinimize /> : <FaBars />}
+        <FaBars />
       </button>
     </nav>
   );
