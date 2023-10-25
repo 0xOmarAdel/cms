@@ -1,6 +1,6 @@
 # CMS: Complaint Management System
 
-The Complaint System Management is a web-based application designed to help organizations efficiently handle and track customer complaints and feedback. This system streamlines the process of receiving, documenting, and resolving complaints, ensuring a better customer experience and improved service quality.
+The Complaint Management System is a web-based application designed to help organizations efficiently handle and track customer complaints and feedback. This system streamlines the process of receiving, documenting, and resolving complaints, ensuring a better customer experience and improved service quality.
 
 ## Table of Contents
 
