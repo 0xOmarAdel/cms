@@ -23,6 +23,10 @@ The Complaint System Management is a web-based application designed to help orga
 We would like to express our gratitude to the open-source community and the following technologies and tools that made Complaint System Management (CMS) possible:
 
 - [React.js](https://reactjs.org/): A JavaScript library for building user interfaces, used for the front-end of CMS.
+- [PHP - OLD BACKEND](https://www.php.net/): A popular general-purpose scripting language that is especially suited to web development.
+Fast, flexible and pragmatic, PHP powers everything from your blog to the most popular websites in the world.
+- [PDO - OLD BACKEND](https://www.php.net/manual/en/book.pdo.php): The PHP Data Objects (PDO) extension defines a lightweight, consistent interface for accessing databases in PHP.
+- [MYSQL - OLDBACKEND](https://www.mysql.com/): A widely used relational database management system
 - [Node.js](https://nodejs.org/): A JavaScript runtime that allows us to build scalable and server-side applications.
 - [MongoDB](https://www.mongodb.com/): A popular NoSQL database used for storing user data and complaints.
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for creating beautifully designed and responsive web applications.
