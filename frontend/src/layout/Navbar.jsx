@@ -41,10 +41,10 @@ const Navbar = () => {
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <div className="mb-5 flex flex-row justify-between text-3xl text-gray-600">
+        <div className="lg:hidden mb-5 flex flex-row justify-between text-3xl text-gray-600">
           <h2>CMS</h2>
           <IoClose
-            className="lg:hidden cursor-pointer transition duration-300 hover:text-sky-500"
+            className="cursor-pointer transition duration-300 hover:text-sky-500"
             onClick={toggleLinks}
           />
         </div>
