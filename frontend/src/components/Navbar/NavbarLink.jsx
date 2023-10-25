@@ -5,7 +5,9 @@ const NavbarLink = ({ setShowLinks, path, text }) => {
     <li>
       <NavLink
         to={path}
-        className={({ isActive }) => (isActive ? "active" : "")}
+        className={({ isActive }) =>
+          isActive ? "active text-gray-50" : "text-gray-200"
+        }
         onClick={() => setShowLinks(false)}
       >
         {text}
