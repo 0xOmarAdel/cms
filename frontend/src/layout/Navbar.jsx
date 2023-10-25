@@ -28,20 +28,37 @@ const Navbar = () => {
       <Link to="/" className="text-4xl text-white">
         CMS
       </Link>
-      <ul className="hidden lg:flex lg:flex-row lg:gap-4 text-2xl text-gray-200">
-        {user
-          ? userNavLinks.map((navLink, index) => (
-              <NavbarLink key={index} path={navLink.path} text={navLink.text} />
-            ))
-          : guestNavLinks.map((navLink, index) => (
-              <NavbarLink key={index} path={navLink.path} text={navLink.text} />
-            ))}
-        {user && (
-          <li className="cursor-pointer" onClick={logoutHandler}>
-            Logout
-          </li>
-        )}
-      </ul>
+      <div
+        className={`${
+          showLinks
+            ? "fixed !flex h-screen left-0 top-0 bg-white shadow-lg px-5 py-5"
+            : "lg:h-0 hidden lg:flex lg:static lg:bg-transparent text-black lg:text-gray-200 lg:shadow-none"
+        }`}
+      >
+        <ul className="flex flex-col lg:flex-row space-y-12 lg:space-y-0 pt-5 lg:pt-0 lg:gap-4 text-2xl">
+          {user
+            ? userNavLinks.map((navLink, index) => (
+                <NavbarLink
+                  key={index}
+                  path={navLink.path}
+                  text={navLink.text}
+                />
+              ))
+            : guestNavLinks.map((navLink, index) => (
+                <NavbarLink
+                  key={index}
+                  path={navLink.path}
+                  text={navLink.text}
+                />
+              ))}
+          {user && (
+            <li className="cursor-pointer" onClick={logoutHandler}>
+              Logout
+            </li>
+          )}
+        </ul>
+      </div>
+
       <button
         className="lg:hidden text-xl text-gray-200 transition duration-500 hover:text-white"
         onClick={toggleLinks}
