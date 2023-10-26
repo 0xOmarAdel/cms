@@ -10,7 +10,7 @@ import dynamicSort from "../../utils/dynamicSort";
 import Loading from "../../UI/Loading";
 import SortIcon from "../../UI/SortIcon";
 
-const Table = ({ title, data }) => {
+const Table = ({ title, data, isLoading, error }) => {
   // let { page: currentPage } = useParams();
   // const elementsPerPage = props.elementsPerPage
   //   ? props.elementsPerPage
@@ -18,6 +18,13 @@ const Table = ({ title, data }) => {
   // const start = currentPage ? (currentPage - 1) * elementsPerPage : 0;
   // const end = currentPage ? start + elementsPerPage : props.elements?.length;
   console.log(data);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <TableFetchError title={title} />;
+  }
 
   return (
     <>
