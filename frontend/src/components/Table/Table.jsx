@@ -45,7 +45,7 @@ const Table = ({
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-semibold tracking-wide">{title}</h1>
         {(search || badges) && (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4">
             {search && (
               <TableSearchInput
                 searchInputValue={searchInputValue}
