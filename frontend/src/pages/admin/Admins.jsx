@@ -31,7 +31,21 @@ const Admins = () => {
   const sortHandler = (value) => {
     setSortBy(value);
   };
-  return <Table title="Admins" data={adminsList} />;
+
+  return (
+    <Table
+      title="Admins"
+      table={adminsPageGrid}
+      elements={adminsList}
+      pagination={false}
+      isLoading={adminsLoading}
+      error={adminsHasError}
+      search={false}
+      filteredArray={adminsList}
+      sortBy={sortBy}
+      sortHandler={sortHandler}
+    />
+  );
 };
 
 export default Admins;
