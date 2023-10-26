@@ -8,7 +8,6 @@ import ErrorText from "../../UI/ErrorText";
 import PaginationHandler from "../../UI/PaginationHandler";
 import dynamicSort from "../../utils/dynamicSort";
 import Loading from "../../UI/Loading";
-import SortIcon from "../../UI/SortIcon";
 
 const Table = ({
   title,
