@@ -25,6 +25,7 @@ const Table = ({
   filteredArray,
   pagination,
   sortBy,
+  sortHandler,
   table,
 }) => {
   let { page: currentPage } = useParams();
@@ -39,6 +40,8 @@ const Table = ({
   if (error) {
     return <TableFetchError title={title} />;
   }
+
+  console.log(table);
 
   return (
     <>
@@ -61,59 +64,11 @@ const Table = ({
         </div>
         <div className="relative overflow-x-auto shadow-md mt-4">
           <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  ID
-                </th>
-                {title === "Categories" ? (
-                  <>
-                    <th scope="col" className="px-6 py-3">
-                      CATEGORY
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      COMPLAINTS
-                    </th>
-                  </>
-                ) : title === "Complaints" ? (
-                  <>
-                    <th scope="col" className="px-6 py-3">
-                      TITLE
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      CATEGORY
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      USER
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      STATUS
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      CREATED AT
-                    </th>
-                  </>
-                ) : (
-                  (title === "Users" || title === "Admins") && (
-                    <>
-                      <th scope="col" className="px-6 py-3">
-                        NAME
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        EMAIL
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        PHONE
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        CREATED AT
-                      </th>
-                    </>
-                  )
-                )}
-              </tr>
-            </thead>
-
+            <TableHeading
+              table={table}
+              sortHandler={sortHandler}
+              sortBy={sortBy}
+            />
             <tbody>
               {filteredArray
                 .sort(dynamicSort(sortBy))
