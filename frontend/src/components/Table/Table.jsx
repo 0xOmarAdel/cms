@@ -22,6 +22,9 @@ const Table = ({
   badges,
   activeFilter,
   filterHandler,
+  filteredArray,
+  pagination,
+  sortBy,
 }) => {
   let { page: currentPage } = useParams();
   const epp = elementsPerPage || elements.length;
@@ -31,6 +34,7 @@ const Table = ({
   if (isLoading) {
     return <Loading />;
   }
+
   if (error) {
     return <TableFetchError title={title} />;
   }
@@ -110,55 +114,52 @@ const Table = ({
             </thead>
 
             <tbody>
-              {elements?.map((item) => (
-                <tr key={item.id} className="bg-white border-b">
-                  <td className="px-6 py-4 font-medium text-black">
-                    {item.id}
-                  </td>
-                  {title === "Categories" && (
-                    <>
-                      <td className="px-6 py-4">{item.title || item.name}</td>
-                      <td className="px-6 py-4">{item?.number}</td>
-                    </>
-                  )}
-                  {title === "Complaints" && (
-                    <>
-                      <td className="px-6 py-4">{item.title || item.name}</td>
-                      <td className="px-6 py-4">{item.category}</td>
-                      <td className="px-6 py-4">{item.user}</td>
-                      <td className="px-6 py-4">{item.status}</td>
-                      <td className="px-6 py-4">{item.date_created}</td>
-                    </>
-                  )}
-                  {(title === "Users" || title === "Admins") && (
-                    <>
-                      <td className="px-6 py-4">{item.name}</td>
-                      <td className="px-6 py-4">{item.email}</td>
-                      <td className="px-6 py-4">{item.phone}</td>
-                      <td className="px-6 py-4">{item.createdAt}</td>
-                    </>
-                  )}
-                </tr>
-              ))}
+              {filteredArray
+                .sort(dynamicSort(sortBy))
+                .slice(start, end)
+                .map((item) => (
+                  <tr key={item.id} className="bg-white border-b">
+                    <td className="px-6 py-4 font-medium text-black">
+                      {item.id}
+                    </td>
+                    {title === "Categories" && (
+                      <>
+                        <td className="px-6 py-4">{item.title || item.name}</td>
+                        <td className="px-6 py-4">{item?.number}</td>
+                      </>
+                    )}
+                    {title === "Complaints" && (
+                      <>
+                        <td className="px-6 py-4">{item.title || item.name}</td>
+                        <td className="px-6 py-4">{item.category}</td>
+                        <td className="px-6 py-4">{item.user}</td>
+                        <td className="px-6 py-4">{item.status}</td>
+                        <td className="px-6 py-4">{item.date_created}</td>
+                      </>
+                    )}
+                    {(title === "Users" || title === "Admins") && (
+                      <>
+                        <td className="px-6 py-4">{item.name}</td>
+                        <td className="px-6 py-4">{item.email}</td>
+                        <td className="px-6 py-4">{item.phone}</td>
+                        <td className="px-6 py-4">{item.createdAt}</td>
+                      </>
+                    )}
+                  </tr>
+                ))}
             </tbody>
           </table>
-          {/* <div className="bg-white flex lg:hidden flex-col p-4">
-            <span>ID: 123123</span>
-            <span>Title: Life blah</span>
-            <span>Category: 123123</span>
-            <span>Title: 123123</span>
-          </div> */}
         </div>
       </div>
-      {/* {props.pagination && (
+      {pagination && (
         <div className="w-full flex flex-row">
           <PaginationHandler
             currentPage={currentPage}
             elementsPerPage={elementsPerPage}
-            dataLength={props.filteredArray.length}
+            dataLength={filteredArray.length}
           />
         </div>
-      )} */}
+      )}
     </>
   );
 };
