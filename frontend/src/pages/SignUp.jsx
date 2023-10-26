@@ -180,7 +180,7 @@ const SignUp = () => {
             disabled={!formIsValid}
           />
           <hr className="mt-2" />
-          <p className="text-center">
+          <p className="text-gray-600 text-center">
             Already have an account?{" "}
             <Link to="/login" className="text-sky-500">
               Log In

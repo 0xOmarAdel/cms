@@ -103,7 +103,7 @@ const LogIn = () => {
             disabled={!formIsValid}
           />
           <hr className="mt-2" />
-          <p className="text-center">
+          <p className="text-gray-600 text-center">
             Don&apos;t have an account?{" "}
             <Link to="/signup" className="text-sky-500">
               Sign Up
