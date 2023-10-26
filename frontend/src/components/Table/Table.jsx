@@ -59,23 +59,27 @@ const Table = ({
             />
           )}
         </div>
-        <div className="relative overflow-x-auto shadow-md mt-4">
-          <table className="w-full text-sm text-left text-gray-500">
-            <TableHeading
-              table={table}
-              sortHandler={sortHandler}
-              sortBy={sortBy}
-            />
-            <tbody>
-              {filteredArray
-                .sort(dynamicSort(sortBy))
-                .slice(start, end)
-                .map((item) => (
-                  <TableRow key={item.id} element={item} table={table} />
-                ))}
-            </tbody>
-          </table>
-        </div>
+        {filteredArray.length !== 0 ? (
+          <div className="relative overflow-x-auto shadow-md mt-4">
+            <table className="w-full text-sm text-left text-gray-500">
+              <TableHeading
+                table={table}
+                sortHandler={sortHandler}
+                sortBy={sortBy}
+              />
+              <tbody>
+                {filteredArray
+                  .sort(dynamicSort(sortBy))
+                  .slice(start, end)
+                  .map((item) => (
+                    <TableRow key={item.id} element={item} table={table} />
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <ErrorText text="Found no records!" className="!text-xl" />
+        )}
       </div>
       {pagination && (
         <div className="w-full flex flex-row">
