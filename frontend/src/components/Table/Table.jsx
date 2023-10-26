@@ -25,6 +25,7 @@ const Table = ({
   filteredArray,
   pagination,
   sortBy,
+  table,
 }) => {
   let { page: currentPage } = useParams();
   const epp = elementsPerPage || elements.length;
@@ -118,34 +119,7 @@ const Table = ({
                 .sort(dynamicSort(sortBy))
                 .slice(start, end)
                 .map((item) => (
-                  <tr key={item.id} className="bg-white border-b">
-                    <td className="px-6 py-4 font-medium text-black">
-                      {item.id}
-                    </td>
-                    {title === "Categories" && (
-                      <>
-                        <td className="px-6 py-4">{item.title || item.name}</td>
-                        <td className="px-6 py-4">{item?.number}</td>
-                      </>
-                    )}
-                    {title === "Complaints" && (
-                      <>
-                        <td className="px-6 py-4">{item.title || item.name}</td>
-                        <td className="px-6 py-4">{item.category}</td>
-                        <td className="px-6 py-4">{item.user}</td>
-                        <td className="px-6 py-4">{item.status}</td>
-                        <td className="px-6 py-4">{item.date_created}</td>
-                      </>
-                    )}
-                    {(title === "Users" || title === "Admins") && (
-                      <>
-                        <td className="px-6 py-4">{item.name}</td>
-                        <td className="px-6 py-4">{item.email}</td>
-                        <td className="px-6 py-4">{item.phone}</td>
-                        <td className="px-6 py-4">{item.createdAt}</td>
-                      </>
-                    )}
-                  </tr>
+                  <TableRow key={item.id} element={item} table={table} />
                 ))}
             </tbody>
           </table>

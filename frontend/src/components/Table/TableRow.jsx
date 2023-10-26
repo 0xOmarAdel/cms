@@ -21,15 +21,13 @@ const TableRow = ({ element, linkTo, table }) => {
 
   return (
     <TableLink linkTo={linkTo}>
-      <tbody className="text-lg text-gray-600 tracking-tight break-words">
-        <tr className="bg-white border-b">
-          {result.map((item) => (
-            <td key={item.value} className="px-6 py-4">
-              {item.value}
-            </td>
-          ))}
-        </tr>
-      </tbody>
+      <tr className="bg-white border-b">
+        {result.map((item) => (
+          <td key={item.value} className="px-6 py-4">
+            {item.value}
+          </td>
+        ))}
+      </tr>
     </TableLink>
   );
 };
