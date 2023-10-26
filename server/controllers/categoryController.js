@@ -19,16 +19,17 @@ const createCategory = async (req, res) => {
 
 const getAllCategories = async (req, res) => {
   try {
-    const categories = await Category.find();
+    const categories = await Category.find().populate("complaints");
+    console.log(categories);
 
     const response = categories.map((category) => ({
       _id: category._id,
       name: category.name,
-      number: categories.length,
+      number: category.complaints.length,
     }));
-
     res.status(200).json(response);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Unable to fetch categories" });
   }
 };

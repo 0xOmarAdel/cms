@@ -8,11 +8,11 @@ const register = async (req, res) => {
 
   const emailAlreadyExists = await User.findOne({ email });
   if (emailAlreadyExists) {
-    throw new CustomError.BadRequestError("Email already exists");
+    return res.status(400).json({ message: "Email already exists" });
   }
   const phoneAlreadyExists = await User.findOne({ phone });
   if (phoneAlreadyExists) {
-    throw new CustomError.BadRequestError("Phone already exists");
+    return res.status(400).json({ message: "Phone already exists" });
   }
   const isFirstAccount = (await User.countDocuments({})) === 0;
   const role = isFirstAccount ? "admin" : "user";
@@ -32,9 +32,9 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    throw new CustomError.BadRequestError(
-      "Please provide an email and password"
-    );
+    return res
+      .status(400)
+      .json({ message: "Please provide an email and password" });
   }
   const user = await User.findOne({ email });
   if (!user) {
@@ -51,7 +51,7 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "User Logged out!" });
+  res.status(StatusCodes.OK).json({ message: "You Logged out!" });
 };
 
 module.exports = {
