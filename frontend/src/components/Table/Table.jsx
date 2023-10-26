@@ -26,6 +26,7 @@ const Table = ({
   sortBy,
   sortHandler,
   table,
+  linkTo,
 }) => {
   let { page: currentPage } = useParams();
   const epp = elementsPerPage || elements.length;
@@ -74,7 +75,12 @@ const Table = ({
                   .sort(dynamicSort(sortBy))
                   .slice(start, end)
                   .map((item) => (
-                    <TableRow key={item.id} element={item} table={table} />
+                    <TableRow
+                      key={item.id}
+                      element={item}
+                      table={table}
+                      linkTo={linkTo && linkTo + item.id}
+                    />
                   ))}
               </tbody>
             </table>
