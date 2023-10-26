@@ -40,8 +40,6 @@ const Table = ({
     return <TableFetchError title={title} />;
   }
 
-  console.log(table);
-
   return (
     <>
       <div className="">

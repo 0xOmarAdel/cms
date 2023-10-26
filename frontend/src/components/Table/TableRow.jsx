@@ -17,8 +17,6 @@ const TableRow = ({ element, linkTo, table }) => {
     i++;
   }
 
-  console.log(result);
-
   return (
     <TableLink linkTo={linkTo}>
       <tr className="bg-white border-b">
