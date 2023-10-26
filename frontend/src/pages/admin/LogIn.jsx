@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/slices/userAuthSlice";
 import useInput from "../../hooks/useInput";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
 import ErrorText from "../../UI/ErrorText";
+import { useState } from "react";
 
 const AdminLogIn = () => {
   const {
@@ -29,6 +30,8 @@ const AdminLogIn = () => {
   const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
+  const [showError, setShowError] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -37,18 +40,23 @@ const AdminLogIn = () => {
       return;
     }
 
-    dispatch(
+    await dispatch(
       login({
         email: enteredEmail,
         password: enteredPassword,
       })
     );
+
+    setShowError(true);
   };
 
   return (
     <div className="h-screen flex flex-row items-center justify-center">
       <div className="p-10 flex flex-col items-center gap-5 bg-white rounded-xl shadow-md">
         <h2 className="text-2xl">Admin Login</h2>
+        {showError && error && (
+          <ErrorText text={error} className="!text-base text-center" />
+        )}
         <form
           className="flex flex-col gap-5 text-gray-500"
           onSubmit={submitHandler}
