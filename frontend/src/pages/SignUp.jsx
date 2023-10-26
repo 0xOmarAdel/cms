@@ -173,7 +173,10 @@ const SignUp = () => {
           <Button
             type="submit"
             text="Sign Up"
-            className="w-full mt-1"
+            className={`w-full mt-1 ${
+              !formIsValid &&
+              "!bg-none !bg-gray-500 !opacity-100 !cursor-default"
+            }`}
             disabled={!formIsValid}
           />
           <hr className="mt-2" />
