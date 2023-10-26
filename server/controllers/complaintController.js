@@ -1,3 +1,4 @@
+const Category = require("../models/Category");
 const Complaint = require("../models/Complaint");
 const Message = require("../models/Message");
 const moment = require("moment");
@@ -7,9 +8,15 @@ const createComplaint = async (req, res) => {
     const { title, category, text } = req.body;
     const user = req.user._id;
 
+    const categoryDoc = await Category.findOne({ name: category });
+
+    if (!categoryDoc) {
+      return res.status(400).json({ error: "Category not found" });
+    }
+
     const complaint = new Complaint({
       title,
-      category,
+      category: categoryDoc._id,
       user,
     });
 
