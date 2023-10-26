@@ -42,25 +42,27 @@ const Table = ({
 
   return (
     <>
-      <div className="">
+      <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-semibold tracking-wide">{title}</h1>
-        <div className="">
-          {search && (
-            <TableSearchInput
-              searchInputValue={searchInputValue}
-              searchHandler={searchHandler}
-            />
-          )}
-          {badges && (
-            <TableBadges
-              badges={badges}
-              activeFilter={activeFilter}
-              filterHandler={filterHandler}
-            />
-          )}
-        </div>
+        {(search || badges) && (
+          <div className="flex flex-col gap-4">
+            {search && (
+              <TableSearchInput
+                searchInputValue={searchInputValue}
+                searchHandler={searchHandler}
+              />
+            )}
+            {badges && (
+              <TableBadges
+                badges={badges}
+                activeFilter={activeFilter}
+                filterHandler={filterHandler}
+              />
+            )}
+          </div>
+        )}
         {filteredArray.length !== 0 ? (
-          <div className="relative overflow-x-auto shadow-md mt-4">
+          <div className="relative overflow-x-auto shadow-md">
             <table className="w-full text-sm text-left text-gray-500">
               <TableHeading
                 table={table}
@@ -82,7 +84,7 @@ const Table = ({
         )}
       </div>
       {pagination && (
-        <div className="w-full flex flex-row">
+        <div className="w-full mt-5 flex flex-row">
           <PaginationHandler
             currentPage={currentPage}
             elementsPerPage={elementsPerPage}
