@@ -24,7 +24,13 @@ const TableRow = ({ element, linkTo, table }) => {
       <tr className="bg-white border-b">
         {result.map((item) => (
           <td key={item.value} className="px-6 py-4">
-            {item.value}
+            {item.isDate ? (
+              <DateFormatter date={item.value} />
+            ) : item.isStatus ? (
+              <StatusFormatter status={item.value} />
+            ) : (
+              item.value
+            )}
           </td>
         ))}
       </tr>
