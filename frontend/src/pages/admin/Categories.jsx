@@ -30,7 +30,20 @@ const Categories = () => {
     setSortBy(value);
   };
 
-  return <Table title="Categories" data={categoriesList} />;
+  return (
+    <Table
+      title="Categories"
+      table={categoriesPageGrid}
+      elements={categoriesList}
+      pagination={false}
+      isLoading={categoriesLoading}
+      error={categoriesHasError}
+      search={false}
+      filteredArray={categoriesList}
+      sortBy={sortBy}
+      sortHandler={sortHandler}
+    />
+  );
 };
 
 export default Categories;
