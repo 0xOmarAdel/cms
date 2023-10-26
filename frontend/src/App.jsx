@@ -98,7 +98,17 @@ const App = () => {
           <Route path=":item" element={<FAQItem />} />
         </Route>
       </Route>
-      <Route path="/admin"  >
+      <Route path="/admin">
+        <Route
+          index={true}
+          element={
+            isAdmin ? (
+              <Navigate to="/admin/dashboard" />
+            ) : (
+              <Navigate to="/admin/login" />
+            )
+          }
+        />
         <Route
           path="login"
           element={
