@@ -1,4 +1,3 @@
-import React from "react";
 import PaginationLink from "./PaginationLink";
 
 import "./Pagination.css";
@@ -14,7 +13,7 @@ const Pagination = ({ pages, pagesNumber, currentPage, path }) => {
   const modifiedPages = pages.slice(start, end + 1);
   return (
     <div className="pagination">
-      <ul className={"d-flex justify-content-center mt-4"}>
+      <ul className={"flex justify-center"}>
         {currentPage !== 1 && (
           <PaginationLink page="«" to={`${path}${currentPage - 1}`} />
         )}
@@ -32,7 +31,7 @@ const Pagination = ({ pages, pagesNumber, currentPage, path }) => {
           <PaginationLink page="»" to={`${path}${currentPage + 1}`} />
         )}
       </ul>
-      <p className="mt-3 text-muted text-center">
+      <p className="mt-2">
         Page {currentPage} out of {pagesNumber}
       </p>
     </div>

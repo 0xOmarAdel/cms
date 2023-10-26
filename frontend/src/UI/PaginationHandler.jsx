@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Pagination from "./Pagination";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const PaginationHandler = ({ currentPage, dataLength, elementsPerPage }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const pagesNumber =
     Math.ceil(dataLength / elementsPerPage) === 0
