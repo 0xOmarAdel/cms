@@ -15,7 +15,7 @@ export const register = createAsyncThunk(
   async (registrationData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/register",
+        "https://cms-complaints-api.onrender.com/api/v1/auth/register",
         registrationData
       );
       if (response.data.token) {
@@ -41,7 +41,7 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/login",
+        "https://cms-complaints-api.onrender.com/api/v1/auth/login",
         credentials
       );
       if (response.data.token) {

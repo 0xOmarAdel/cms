@@ -19,7 +19,10 @@ const CreateComplaint = () => {
     data: categories,
     loading: categoriesLoading,
     error: categoriesHasError,
-  } = useAxios("http://localhost:5000/api/v1/categories", "GET");
+  } = useAxios(
+    "https://cms-complaints-api.onrender.com/api/v1/categories",
+    "GET"
+  );
 
   const {
     value: enteredTitle,
@@ -62,7 +65,7 @@ const CreateComplaint = () => {
     try {
       await axios({
         method: "POST",
-        url: "http://localhost:5000/api/v1/complaints",
+        url: "https://cms-complaints-api.onrender.com/api/v1/complaints",
         data: {
           title: enteredTitle,
           category: enteredCategory || categories[0]._id,
@@ -89,7 +92,7 @@ const CreateComplaint = () => {
   return (
     <>
       <Hero title="Create a New Complaint" />
-      <Section >
+      <Section>
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-10">
           <form
             className="lg:col-span-2 order-2 lg:order-1 flex flex-col gap-6"

@@ -10,7 +10,10 @@ const Complaints = () => {
     data: complaints,
     loading: complaintsLoading,
     error: complaintsHasError,
-  } = useAxios(`http://localhost:5000/api/v1/complaints`, "GET");
+  } = useAxios(
+    `https://cms-complaints-api.onrender.com/api/v1/complaints`,
+    "GET"
+  );
 
   const [sortBy, setSortBy] = useState("id");
   const { setOriginalArray, filterArray, filteredArray, inputValue } =
@@ -58,7 +61,7 @@ const Complaints = () => {
     { label: "Pending", attr: "status", value: "1" },
     { label: "Closed", attr: "status", value: "0" },
   ];
-  
+
   return (
     <Table
       title="Complaints"

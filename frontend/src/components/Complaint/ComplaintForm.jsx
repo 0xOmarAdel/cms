@@ -12,7 +12,7 @@ const ComplaintForm = ({
   const sendMessageHandler = async () => {
     await axios({
       method: "POST",
-      url: "http://localhost:5000/api/v1/messages",
+      url: "https://cms-complaints-api.onrender.com/api/v1/messages",
       data: {
         complaintId,
         text: message,

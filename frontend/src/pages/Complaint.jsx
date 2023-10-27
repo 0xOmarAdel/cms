@@ -19,7 +19,10 @@ const Complaint = () => {
     loading: complaintDetailsLoading,
     error: complaintDetailsError,
     reFetch: reFetchComplaintDetails,
-  } = useAxios(`http://localhost:5000/api/v1/complaints/${complaintId}`, "GET");
+  } = useAxios(
+    `https://cms-complaints-api.onrender.com/api/v1/complaints/${complaintId}`,
+    "GET"
+  );
 
   const {
     data: complaintMessages,
@@ -27,7 +30,7 @@ const Complaint = () => {
     error: complaintMessagesError,
     reFetch: reFetchComplaintMessages,
   } = useAxios(
-    `http://localhost:5000/api/v1/messages/complaint/${complaintId}`,
+    `https://cms-complaints-api.onrender.com/api/v1/messages/complaint/${complaintId}`,
     "GET"
   );
 
