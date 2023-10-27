@@ -1,4 +1,5 @@
 const Category = require("../models/Category");
+const Complaint = require("../models/Complaint");
 const { checkPermissions } = require("../utils");
 
 const createCategory = async (req, res) => {
@@ -19,14 +20,23 @@ const createCategory = async (req, res) => {
 
 const getAllCategories = async (req, res) => {
   try {
-    const categories = await Category.find().populate("complaints");
+    const categories = await Category.find();
     console.log(categories);
 
-    const response = categories.map((category) => ({
-      _id: category._id,
-      name: category.name,
-      number: category.complaints.length,
-    }));
+    const response = await Promise.all(
+      categories.map(async (category) => {
+        const numberOfComplaints = await Complaint.countDocuments({
+          category: category._id,
+        });
+
+        return {
+          _id: category._id,
+          name: category.name,
+          number: numberOfComplaints,
+        };
+      })
+    );
+
     res.status(200).json(response);
   } catch (error) {
     console.log(error);
