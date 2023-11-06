@@ -1,13 +1,8 @@
 import DateFormatter from "../../UI/DateFormatter";
 import StatusFormatter from "../../UI/StatusFormatter";
 import { FaLock, FaLockOpen } from "react-icons/fa6";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/slices/userAuthSlice";
 
 const ComplaintDetails = ({ complaintDetails, closeComplaintHandler }) => {
-  const user = useSelector(selectUser);
-  const isAdmin = user?.role === "admin";
-
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-lg text-gray-600 font-semibold tracking-wide">
