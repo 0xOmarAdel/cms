@@ -10,7 +10,10 @@ const Categories = () => {
     data: categories,
     loading: categoriesLoading,
     error: categoriesHasError,
-  } = useAxios("http://localhost:5000/api/v1/categories", "GET");
+  } = useAxios(
+    "https://cms-complaints-api.onrender.com/api/v1/categories",
+    "GET"
+  );
 
   const [sortBy, setSortBy] = useState("id");
 

@@ -11,7 +11,10 @@ const Users = () => {
     data: users,
     loading: usersLoading,
     error: usersHasError,
-  } = useAxios("http://localhost:5000/api/v1/users/all-users", "GET");
+  } = useAxios(
+    "https://cms-complaints-api.onrender.com/api/v1/users/all-users",
+    "GET"
+  );
 
   const [sortBy, setSortBy] = useState("id");
   const { setOriginalArray, filterArray, filteredArray, inputValue } =

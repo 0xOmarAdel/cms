@@ -18,9 +18,12 @@ const ComplaintDetails = ({ complaintDetails, closeComplaintHandler }) => {
         <li className="flex flex-row items-center gap-2">
           Status: <StatusFormatter status={complaintDetails.status} />
           {closeComplaintHandler && parseInt(complaintDetails.status) === 1 ? (
-            <FaLock onClick={closeComplaintHandler} />
+            <FaLock
+              onClick={closeComplaintHandler}
+              className="cursor-pointer"
+            />
           ) : (
-            <FaLockOpen />
+            <FaLockOpen className="cursor-pointer" />
           )}
         </li>
         {parseInt(complaintDetails.status) === 0 && (

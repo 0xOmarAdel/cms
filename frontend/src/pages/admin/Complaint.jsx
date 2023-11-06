@@ -17,21 +17,27 @@ const Complaint = () => {
     loading: complaintDetailsLoading,
     error: complaintDetailsError,
     reFetch: reFetchComplaintDetails,
-  } = useAxios(`http://localhost:5000/api/v1/complaints/${id}`, "GET");
+  } = useAxios(
+    `https://cms-complaints-api.onrender.com/api/v1/complaints/${id}`,
+    "GET"
+  );
 
   const {
     data: messages,
     loading: messagesIsLoading,
     error: messagesHasError,
     reFetch: reFetchMessages,
-  } = useAxios(`http://localhost:5000/api/v1/messages/complaint/${id}`, "GET");
+  } = useAxios(
+    `https://cms-complaints-api.onrender.com/api/v1/messages/complaint/${id}`,
+    "GET"
+  );
 
   const [message, setMessage] = useState("");
 
   const closeComplaintHandler = async () => {
     await axios({
       method: "PUT",
-      url: `http://localhost:5000/api/v1/complaints/close/${id}`,
+      url: `https://cms-complaints-api.onrender.com/api/v1/complaints/close/${id}`,
     });
 
     reFetchComplaintDetails();

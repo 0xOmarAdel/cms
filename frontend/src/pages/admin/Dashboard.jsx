@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [totalsLoading, setTotalsLoading] = useState(true);
 
   const { data: totalNumbers, error: totalNumbersHasError } = useAxios(
-    `http://localhost:5000/api/v1/total-numbers`,
+    `https://cms-complaints-api.onrender.com/api/v1/total-numbers`,
     "GET"
   );
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
     loading: complaintsPerMonthLoading,
     error: complaintsPerMonthHasError,
   } = useAxios(
-    `http://localhost:5000/api/v1/complaints/complaints-per-month`,
+    `https://cms-complaints-api.onrender.com/api/v1/complaints/complaints-per-month`,
     "GET"
   );
 
@@ -49,7 +49,10 @@ const Dashboard = () => {
     data: usersPerMonth,
     loading: usersPerMonthLoading,
     error: usersPerMonthHasError,
-  } = useAxios(`http://localhost:5000/api/v1/users/users-per-month`, "GET");
+  } = useAxios(
+    `https://cms-complaints-api.onrender.com/api/v1/users/users-per-month`,
+    "GET"
+  );
 
   if (totalsLoading || complaintsPerMonthLoading || usersPerMonthLoading) {
     return <Loading />;

@@ -10,7 +10,10 @@ const Admins = () => {
     data: admins,
     loading: adminsLoading,
     error: adminsHasError,
-  } = useAxios("http://localhost:5000/api/v1/users/all-admins", "GET");
+  } = useAxios(
+    "https://cms-complaints-api.onrender.com/api/v1/users/all-admins",
+    "GET"
+  );
 
   const [sortBy, setSortBy] = useState("id");
 

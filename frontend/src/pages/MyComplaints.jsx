@@ -19,7 +19,10 @@ const MyComplaints = () => {
     data: userComplaints,
     loading: userComplaintsLoading,
     error: userComplaintsHasError,
-  } = useAxios("http://localhost:5000/api/v1/complaints", "GET");
+  } = useAxios(
+    "https://cms-complaints-api.onrender.com/api/v1/complaints",
+    "GET"
+  );
 
   if (userComplaintsLoading) {
     return <UserPageLoading title="My Complaints" />;
