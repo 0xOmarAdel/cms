@@ -16,7 +16,7 @@ const complaintSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type: String,
+    type: Number,
     enum: [1, 0],
     default: 1,
   },
