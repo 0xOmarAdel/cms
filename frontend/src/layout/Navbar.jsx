@@ -37,7 +37,7 @@ const Navbar = () => {
       )}
 
       <div
-        className={`fixed lg:static top-0 left-0 h-screen lg:h-fit pt-14 px-8 lg:p-0 bg-white lg:bg-transparent text-black lg:text-gray-200 shadow-lg lg:shadow-none transition-all duration-500 ease-in-out z-40 ${
+        className={`fixed lg:static top-0 left-0 h-screen lg:h-fit pt-14 px-8 lg:p-0 lg:flex lg:flex-row bg-white lg:bg-transparent text-black lg:text-gray-200 shadow-lg lg:shadow-none transition-all duration-500 ease-in-out z-40 ${
           showLinks ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
