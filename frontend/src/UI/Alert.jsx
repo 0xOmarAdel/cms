@@ -6,7 +6,9 @@ const Alert = (props) => {
     <Link to={props.path} className={props.className || ""}>
       <div className="p-3 bg-primary-color rounded-lg text-white">
         <div className="flex items-center gap-2">
-          {props.icon && <FaCircleInfo className="text-2xl" />}
+          {props.icon && (
+            <FaCircleInfo className="min-w-[1.25rem] min-h-[1.25rem]" />
+          )}
           <p className="text-lg font-semibold">{props.text}</p>
         </div>
       </div>
