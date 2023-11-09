@@ -78,7 +78,7 @@ const SignUp = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    await dispatch(
+    dispatch(
       register({
         firstName: enteredFirstName,
         lastName: enteredLastName,

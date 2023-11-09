@@ -26,10 +26,8 @@ export const register = createAsyncThunk(
       }
       return response.data.user;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          return rejectWithValue(error.response.data.msg);
-        }
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(error.response.data.message);
       }
       return rejectWithValue("An error occurred while registering.");
     }
